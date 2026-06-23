@@ -83,7 +83,7 @@ function OnTick()
             local mineArgs = NewJSONObject()
             mineArgs.AddFieldFloat("my", -3)
 
-            SpawnEntityWorld("enemyshot_bomb", minePos, mineArgs)
+            SpawnEntityWorld("bullet2_enemy_bomb", minePos, mineArgs)
         end
     end
             

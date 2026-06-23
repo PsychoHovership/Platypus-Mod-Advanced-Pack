@@ -56,7 +56,7 @@ function OnTick()
     if self.worldPosition.y > 200 then
         local missileArgs = NewJSONObject()
         missileArgs.AddFieldInt("direction", direction)
-        SpawnEntityWorld("icnmLaunched", { x = spawnX, y = spawnY }, missileArgs)
+        SpawnEntityWorld("enemy2_icbm", { x = spawnX, y = spawnY }, missileArgs)
         self.Deactivate()
     end
     self.movement = { x = mx, y = my, z = 0 }

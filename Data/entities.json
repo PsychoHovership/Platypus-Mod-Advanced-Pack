@@ -1,30 +1,7 @@
 [
-  {
-    "name": "enemy2_bomber",
-    "sprite": "Sprites/Enemies/bomber",
-    "behaviour": "Lua",
-    "customBehaviourData": {
-      "luaScript": "enemy2_bomberr",
-      "firePattern": {
-        "veryEasy": [ 200 ],
-        "easy": [ 150 ],
-        "normal": [ 100 ],
-        "hard": [ 80 ],
-        "nasty": [ 60 ]
-      }
-    },
-    "explosionEntity": "explosionBig",
-    "explosionX": 0,
-    "explosionY": 0,
-    "mainDebrisEntity": "debris_red_1",
-    "secondaryDebrisEntity": "debris_red_2",
-    "sortOrder": 9000,
-    "maxHitPoints": 300,
-    "isEnemy": true,
-    "highlightPoints": true,
-    "points": 1000,
-    "primaryTargetValue": 2
-  },
+
+  // ########################### ││   B U L L E T S   ││ ########################### //
+
   {
     "name": "bullet2_enemy_bomb",
     "sprite": "Effects/Bullets/bullet bomb",
@@ -38,25 +15,9 @@
     "smallAndFastMoving": true
   },
 
-  {
-    "name": "enemy_boat_small",
-    "sprite": "Sprites/Enemies/missile boat",
-    "behaviour": "Lua",
-    "customBehaviourData": {
-      "luaScript": "enemy_boat_small"
-    },
-    "explosionEntity": "explosionBig",
-    "explosionX": 0,
-    "explosionY": 0,
-    "mainDebrisEntity": "debris_grey_1",
-    "secondaryDebrisEntity": "debris_grey_2",
-    "isEnemy": true,
-    "shieldPenetrating": true,
-    "maxHitPoints": 200,
-    "highlightPoints": true,
-    "points": 500,
-    "primaryTargetValue": 2
-  },
+
+  // ########################### ││   E N E M I E S  ││ ########################### //
+
   {
     "name": "enemy_boat_big",
     "sprite": "Sprites/Enemies/cannon boat",
@@ -76,26 +37,25 @@
     "points": 1000,
     "primaryTargetValue": 5
   },
-
   {
-    "name": "enemy2_jumper",
-    "sprite": "Sprites/Enemies/jumper",
+    "name": "enemy_boat_small",
+    "sprite": "Sprites/Enemies/missile boat",
     "behaviour": "Lua",
     "customBehaviourData": {
-      "luaScript": "enemy2_jumper"
+      "luaScript": "enemy_boat_small"
     },
-    "explosionEntity": "explosionSmall",
+    "explosionEntity": "explosionBig",
     "explosionX": 0,
     "explosionY": 0,
-    "sortOrder": 10000,
-    "maxHitPoints": 1,
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
     "isEnemy": true,
-    "deathBulletEntity": "deathBullet",
-    "highlightPoints": false,
-    "points": 10,
-    "secondaryTargetValue": 1
+    "shieldPenetrating": true,
+    "maxHitPoints": 200,
+    "highlightPoints": true,
+    "points": 500,
+    "primaryTargetValue": 2
   },
-
   {
     "name": "enemy_boat_cannon",
     "sprite": "Sprites/Enemies/cannon boat",
@@ -149,7 +109,6 @@
     "points": 500,
     "primaryTargetValue": 2
   },
-
   {
     "name": "enemy_saucer",
     "sprite": "Sprites/Enemies/saucer",
@@ -178,6 +137,54 @@
   },
 
   {
+    "name": "enemy2_bomber",
+    "sprite": "Sprites/Enemies/bomber",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy2_bomberr",
+      "firePattern": {
+        "veryEasy": [ 200 ],
+        "easy": [ 150 ],
+        "normal": [ 100 ],
+        "hard": [ 80 ],
+        "nasty": [ 60 ]
+      }
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_red_1",
+    "secondaryDebrisEntity": "debris_red_2",
+    "sortOrder": 9000,
+    "maxHitPoints": 300,
+    "isEnemy": true,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy2_jumper",
+    "sprite": "Sprites/Enemies/jumper",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy2_jumper"
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 10,
+    "secondaryTargetValue": 1
+  },
+
+
+  // ########################### ││   G U N S   ││ ########################### //
+
+  {
     "name": "gun_boat_cannon",
     "sprite": "empty",
     "behaviour": "Lua",
@@ -188,6 +195,7 @@
   },
 
 
+  // ########################### ││   M I S C   ││ ########################### //
 
   {
     "name": "playsound",
@@ -197,4 +205,5 @@
       "luaScript": "misc_playsound"
     }
   }
+  
 ]

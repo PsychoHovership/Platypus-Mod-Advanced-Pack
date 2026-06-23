@@ -18,7 +18,7 @@ function OnInitialise()
     timer = math.random(0, 30)
     targetTimer = math.random(50, 200)
 
-    finSprite = self.SpawnAttachedSpriteAnimator("Sprites/Enemies/cuttlefish bottom", -1)
+    finSprite = self.SpawnAttachedSpriteAnimator("Sprites/Enemies/squid bottom", -1)
     finSprite.position = { x = 20, y = 3 }
 
     if finSprite ~= nil then finCollider = finSprite.AddCollider(); finCollider.SetLogicLayerEnemy() end

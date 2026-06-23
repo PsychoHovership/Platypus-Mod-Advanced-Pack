@@ -58,7 +58,7 @@ function OnInitialise()
 
             local launcherArgs = NewJSONObject()
             launcherArgs.AddFieldBool("decoy", true)
-            SpawnEntityWorld("icbmLauncher", { x = self.worldPosition.x + offset, y = self.worldPosition.y}, launcherArgs)
+            SpawnEntityWorld("enemy2_icbm_launch", { x = self.worldPosition.x + offset, y = self.worldPosition.y}, launcherArgs)
             offset = offset + 70
         end
     end
