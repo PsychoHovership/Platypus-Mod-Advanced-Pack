@@ -1,0 +1,14 @@
+metadata();
+
+// Example level file that spawns tiles of cave terrain with optional "speedX" and "speedY" subcommands
+
+wait( 200); spawnEntity("entity": "caveFloor-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait(   0); spawnEntity("entity": "caveCeiling-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait( 200); spawnEntity("entity": "caveFloor-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait(   0); spawnEntity("entity": "caveCeiling-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait( 200); spawnEntity("entity": "caveFloor-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait(   0); spawnEntity("entity": "caveCeiling-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait( 200); spawnEntity("entity": "caveFloor-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait(   0); spawnEntity("entity": "caveCeiling-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait( 200); spawnEntity("entity": "caveFloor-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);
+wait(   0); spawnEntity("entity": "caveCeiling-1", "x": 1000, "y": 300, "speedX": -3, "speedY": 0);

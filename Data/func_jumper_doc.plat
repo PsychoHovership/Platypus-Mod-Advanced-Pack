@@ -1,0 +1,46 @@
+metadata();
+
+// This level file documents the ways to spawn the "jumper" enemy, as well as applications of the entity's supported command arguments
+
+// This is the most basic spawn command for the jumper enemy. It may move horizontally at random direction, and will jump fairly high.
+// It is highly recommended to have the jumper spawn at a "y" position of 700:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700);
+
+// You can adjust its initial speed using both the optional float arrays "speedX" and "speedY".
+// Either command argument needs two comma separated values, which represent the speed range of the entity.
+// Without these arguments, the entity will instead default to the following: "speedX": [-1, 1], "speedY": [9, 10].
+
+// Worth noting that negative "speedX" value results in the entity going toward the left and vice versa.
+// The "speedY" value must be at positive value as always. If at negative value, it will despawn.
+// Additionally, if the entity jumps too high at around 1000 Y units above the top screen edge, then it will despawn and will not fall down.
+
+// If both values in an array are identical to each other, the entity will then be spawned with a fixed speed value:
+wait(   0); spawnEntity("entity": "jumper", "x": 500, "y": 700, "speedX": [2, 2], "speedY": [12, 12]);
+
+// If different from one another, the entity will gain a random speed value between the specified values.
+// There is no particular order when configuring the entity's initial speed range:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700, "speedX": [-2, 2], "speedY": [8, 12]);
+wait(   0); spawnEntity("entity": "jumper", "x": 350, "y": 700, "speedX": [2, -2], "speedY": [12, 8]);
+
+// There is an optional command argument specifying the amount of time it takes before the entity starts losing its upward momentum.
+// This is known as "upwardTime", and it defaults to "0".
+// It is useful if you want to spawn a jumper that jumps high, but you do not want it to go upward at high speeds:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700, "speedY": [6, 6], "upwardTime": 100);
+
+// "downwardMax" is another optional command argument that allows you to configure its max downward speed. Defaults to "-6".
+// As the entity starts falling, it will gain its downward momentum until it reaches the given "downwardMax", to which it stops accelerating.
+
+// High values mean the entity will fall considerably quickly provided that it continues gaining downward speed:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700, "speedY": [16, 16], "downwardMax": -20);
+
+// Conversely, low values denote slower fall speed for the entity:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700, "downwardMax": -3);
+
+// Finally, there is "acceleration", another optional argument that specifies the acceleration speed of the entity. Defaults to "2".
+// It is multiplicative, which means a value of "0" will cause the jumper to never lose upward momentum.
+
+// The higher the value, the faster it will lose upward speed and then ultimately fall down, as if the gravity is high:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700, "speedY": [20, 20], "acceleration": 4);
+
+// On the other hand, lower values cause the jumper to fall much slower as if the gravity is low:
+wait(   0); spawnEntity("entity": "jumper", "x": 300, "y": 700, "speedY": [6, 6], "acceleration": 0.5);

@@ -1,0 +1,15 @@
+[
+  {
+    "isLegacy": false,
+    "allowAssetBundles": true,
+    "allowNastyDifficulty": true,
+    "displayName": "Advanced Modpack",
+    "supportsCreditsPanel": false,
+    "supportsAchievementsPanel": false,
+    "supportsGalleryPanel": false,
+
+    "isAddon": false,
+    "addonTarget": "",
+    "baseMod": "Platypus Reclayed"
+  }
+]

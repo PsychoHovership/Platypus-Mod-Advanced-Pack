@@ -1,0 +1,10 @@
+[
+    {
+        "name": "s_enemyfire_bomber",
+        "audioBus": "sfx",
+        "audioFile": "clunk",
+        "defaultVolume": 0.6,
+        "minPitch": 1.0,
+        "maxPitch": 1.0
+    }
+]

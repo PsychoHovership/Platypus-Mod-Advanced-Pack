@@ -1,0 +1,200 @@
+[
+  {
+    "name": "enemy2_bomber",
+    "sprite": "Sprites/Enemies/bomber",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy2_bomberr",
+      "firePattern": {
+        "veryEasy": [ 200 ],
+        "easy": [ 150 ],
+        "normal": [ 100 ],
+        "hard": [ 80 ],
+        "nasty": [ 60 ]
+      }
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_red_1",
+    "secondaryDebrisEntity": "debris_red_2",
+    "sortOrder": 9000,
+    "maxHitPoints": 300,
+    "isEnemy": true,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 2
+  },
+  {
+    "name": "bullet2_enemy_bomb",
+    "sprite": "Effects/Bullets/bullet bomb",
+    "sortOrder": 10001,
+    "explosionEntity": "explosionMedium",
+    "maxHitPoints": 1,
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bullet2_enemy_bomb"
+    },
+    "smallAndFastMoving": true
+  },
+
+  {
+    "name": "enemy_boat_small",
+    "sprite": "Sprites/Enemies/missile boat",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_boat_small"
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 200,
+    "highlightPoints": true,
+    "points": 500,
+    "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy_boat_big",
+    "sprite": "Sprites/Enemies/cannon boat",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_boat_big"
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 600,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5
+  },
+
+  {
+    "name": "enemy2_jumper",
+    "sprite": "Sprites/Enemies/jumper",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy2_jumper"
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 10,
+    "secondaryTargetValue": 1
+  },
+
+  {
+    "name": "enemy_boat_cannon",
+    "sprite": "Sprites/Enemies/cannon boat",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_boat_big"
+    },
+    "turrets": [
+      {
+        "turretEntity": "boatCannonGun",
+        "turretX": -65,
+        "turretY": 30
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 100,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 600,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5
+  },
+  {
+    "name": "enemy_boat_missile",
+    "sprite": "Sprites/Enemies/missile boat",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_boat_small"
+    },
+    "turrets": [
+      {
+        "turretEntity": "boatMissileLauncher",
+        "turretX": 40,
+        "turretY": 10
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 200,
+    "highlightPoints": true,
+    "points": 500,
+    "primaryTargetValue": 2
+  },
+
+  {
+    "name": "enemy_saucer",
+    "sprite": "Sprites/Enemies/saucer",
+    "behaviour": "Lua",
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": 4,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 10,
+    "secondaryTargetValue": 1,
+    "customBehaviourData": {
+      "luaScript": "enemy_saucer",
+      "firePattern": {
+        "veryEasy": [ 80 ],
+        "easy": [ 80 ],
+        "normal": [ 60 ],
+        "hard": [ 40 ],
+        "nasty": [ 50 ]
+      }
+    }
+  },
+
+  {
+    "name": "gun_boat_cannon",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"gun_boat_cannon"
+    },
+    "sortOrder": -100
+  },
+
+
+
+  {
+    "name": "playsound",
+    "sprite": "",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "misc_playsound"
+    }
+  }
+]

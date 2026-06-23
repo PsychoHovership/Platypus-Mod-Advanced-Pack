@@ -1,0 +1,136 @@
+[
+
+  {
+    "name": "gun_boat_cannon",
+    "sprite": "Sprites/Boss 1/big barrel",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"gun_boat_cannon",
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 7,
+          "easy": 7,
+          "normal": 7,
+          "hard": 7,
+          "nasty": 7
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": 0,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "veryEasy": 4.4,
+          "easy": 4.4,
+          "normal": 4.4,
+          "hard": 4.4,
+          "nasty": 4.4
+        },
+        "bulletSpreadAngle": 120,
+        "bulletEntity": "enemyshot_car_cannon"
+      },
+      "firePattern": {
+        "veryEasy": [ 150 ],
+        "easy": [ 150 ],
+        "normal": [ 150 ],
+        "hard": [ 150 ],
+        "nasty": [ 150 ]
+      }
+    },
+    "sortOrder": -100
+  },
+  {
+    "name": "gun_boat_missile",
+    "sprite": "Sprites/Enemies/missile launcher",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"gun_boat_missile",
+      "firePattern": {
+        "veryEasy": [ 200 ],
+        "easy": [ 200 ],
+        "normal": [ 200 ],
+        "hard": [ 200 ],
+        "nasty": [ 200 ]
+      }
+    },
+    "sortOrder": -100
+  },
+
+  {
+    "name": "gun_cannon",
+    "sprite": "Sprites/Boss 1/big barrel",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"gun_cannon",
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 1,
+          "easy": 1,
+          "normal": 1,
+          "hard": 1,
+          "nasty": 1
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": 0,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "veryEasy": 4,
+          "easy": 4,
+          "normal": 4,
+          "hard": 4,
+          "nasty": 4
+        },
+        "bulletSpreadAngle": 120,
+        "bulletEntity": "enemyshot_car_cannon"
+      },
+      "firePattern": {
+        "veryEasy": [ 150 ],
+        "easy": [ 150 ],
+        "normal": [ 150 ],
+        "hard": [ 150 ],
+        "nasty": [ 150 ]
+      }
+    },
+    "sortOrder": -100
+  },
+
+  {
+    "name": "gun_starfish_small",
+    "sprite": "Sprites/Enemies/starfish gun small",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "gun_starfish",
+      "bulletSpawnDistance": 40,
+      "bulletSpeed": [ 4.5, 4.5, 6, 6.5, 7 ],
+      "bulletEntity": "enemyshot_accellerator",
+      "shotsTillSwitch": [ 1, 1, 1, 1, 1 ],
+      "fireSFX": "s_laser2",
+      "firePattern": {
+        "veryEasy": [ 150 ],
+        "easy": [ 150 ],
+        "normal": [ 150 ],
+        "hard": [ 150 ],
+        "nasty": [ 150 ]
+      }
+    }
+  },
+  {
+    "name": "gun_starfish_med",
+    "sprite": "Sprites/Enemies/starfish gun med",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "gun_starfish",
+      "bulletSpawnDistance": 60,
+      "bulletSpeed": [ 4.5, 4.5, 6, 7, 8 ],
+      "bulletEntity": "enemyshot_accellerator",
+      "shotsTillSwitch": [ 3, 3, 3, 3, 3 ],
+      "fireSFX": "s_laser2",
+      "firePattern": {
+        "veryEasy": [ 20, 20, 110 ],
+        "easy": [ 20, 20, 110 ],
+        "normal": [ 20, 20, 110 ],
+        "hard": [ 20, 20, 110 ],
+        "nasty": [ 20, 20, 110 ]
+      }
+    }
+  }
+  
+]

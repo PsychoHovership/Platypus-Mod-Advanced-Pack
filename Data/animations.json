@@ -1,0 +1,32 @@
+[
+  {
+    "sprite": "Sprites/Enemies/bomber",
+    "generateColliders": true,
+    "matDayCycleMultiplier": 0.5,
+    "rows": 1,
+    "columns": 4
+  },
+  {
+    "sprite": "Effects/Bullets/bullet bomb",
+    "generateColliders": true,
+    "matReflectionPass": false,
+    "matEmissionPower": 2
+  },
+  {
+      "sprite": "Effects/Bullets/directional lightning",
+      "collisionSpriteScale": "Effects/Bullets/directional lightning_collision",
+      "matDayCycleMultiplier": 0,
+      "generateColliders": true,
+      "matReflectionPass": false,
+      "matEmissionPower": 2,
+      "rows": 10,
+      "columns": 1
+  },
+  {
+    "sprite": "Sprites/Enemies/jumper",
+    "generateColliders": true,
+    "matDayCycleMultiplier": 0.5,
+    "rows": 2,
+    "columns": 4
+  }
+]

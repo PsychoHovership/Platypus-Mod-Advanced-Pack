@@ -1,0 +1,1813 @@
+metadata(
+    "name": "level1_data",
+    "tilesetPath": "Scenery/Stage 1/Tiles",
+
+    "hackStage3Clouds": false,
+    "enableWaterfalls": true,
+
+    "firewait": 40,
+    "skyRise": 0.000065,
+    "skyDayAmount": 0.45,
+
+    "groundSprite": "BG Gradient/Ground/lake",
+    "skySprite": "BG Gradient/Sky/sky",
+
+    "tileInitialFrontGroup": [1, 2, 3, 4, 10],
+    "tileInitialMidGroup": [1, 2, 3, 4],
+    "tileOverrides": {
+        "8": [ 1, 2 ]
+    },
+
+    "dynamicTileScaling": true
+);
+
+wait(   0); importLevel("fileName": "level_defaults");
+wait(   0); changeToCustomisableTrack("slotName": "level1");
+wait(   0); fastForwardToTargetCheckpoint();
+wait(   0); setFrontLayerFadeoutParams("startPos": 60, "endPos": 90, "startAlpha": 1.0, "endAlpha": 0.5);
+wait(   0); setLayerOffsetY("layer": 1, "value": -625);
+wait(   0); setDayTintColor("color": "#FFFFFFFF");
+wait(   0); setNightTintColor("color": "#202060ff");
+wait(   0); setFogColor("color": "#101080FF");
+wait(   0); setFogDensity("value": 2.2);
+wait(   0); setReflectionTintColors("horizonColor": "#2058A800", "baseColor": "#103898F0", "blendDuration": 0); // based off lake.png gradient colours
+wait(   0); defineTileGroup("name": "hill", "tiles": [51, 54, 57]);
+wait(   0); defineTileGroup("name": "plainHill", "tiles": [57]);
+wait(   0); defineTileGroup("name": "hangars", "tiles": [53, 53, 51, 57]);
+wait(   0); defineTileGroup("name": "openWater", "tiles": [90]);
+
+wait(   0); defineTileGroup("name": "mainMid", "tiles": [2, 3, 7, 9, 11, 12]);
+
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [1, 2, 4, 10]);
+wait(   0); switchTileGroupMid("name": "mainMid");
+wait(   0); switchTileGroupFront("name": "mainFront");
+wait(   0); setWaterSplashes("enabled": false);
+
+wait(   0); setEnemyShotSpeed("multiplier": 1.2);
+
+wait(   0); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(   0); setEnemyShotSpeed("multiplier": 1.3);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   0); setEnemyShotSpeed("multiplier": 1.4);
+
+wait(   0); setGunMountSettings("spawnTile": 57, "xOffset": 150.0, "yOffset": 40.0);
+wait(   1); spawnBackgroundSprite("x": 150, "y": 100, "mx": -0.02, "my": -0.01, "sprite": "Scenery/Common/moon", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 500, "y": 275, "mx": -0.02, "my": -0.01, "sprite": "Scenery/Common/moon2", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 250, "y": 150, "mx": -0.15, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 200, "y": 180, "mx": -0.25, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 750, "y": 100, "mx": -0.20, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+wait(  40); blimp("y": 140, "message": 0);
+wait(   0); toggleFiring("disabled": 1);
+wait(   0); checkpoint("name": "area1");
+wait(  80); sayLevel("level": 1, "area": 1);
+wait( 150); destroyText();
+wait( 100); toggleFiring("disabled": 0);
+
+// ######################################################################################
+// AREA 1
+
+
+//wait(  0); spawnEntity("entity": "starTick", "x":1000, "y": 200, "focus_x":650, "focus_y":300);
+//wait( 50); spawnEntity("entity": "medTick", "x": 900, "y": 240, "focus_y": 300, "focus_x": 550);
+
+//wait( 0); spawnEntity("entity": "pinkSquid", "x": 700, "y": -200, "focus_x": 500, "focus_y": 250);
+
+
+// TEST
+
+// wait( 999999);
+
+
+
+
+
+
+
+//-o    ############  │ TO-DO │  ###############    -   Define Saucers random values.
+wait(   0); setFiringChanceSaucer("veryEasy": 0, "easy": 0, "normal": 0, "hard": 50, "nasty": 70);
+wait(  50); randSaucers("saucers": 1);
+wait(  40); randSaucers("saucers": 1);
+wait( 100); randSaucers("saucers": 1);
+wait(  40); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(   0); setFiringChanceSaucer("veryEasy": 10, "easy": 20, "normal": 40, "hard": 60, "nasty": 80);
+wait(  40); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 950, "y": 300); //                   HEART
+wait(  40); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  40); randSaucers("saucers": 1);
+
+
+
+wait(   1); setBonusCounter("bonus": 1, "value": 8);
+wait(   1); setBonusReward("bonus": 1, "type": 500);
+wait(   1); setFishFire("enabled": false);
+wait(  30); blackFish("bonus": 1, "x": 900, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 900, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 800, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 800, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 700, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 700, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 600, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 600, "y": -110, "scriptIndex": 5);
+
+wait( 120); randSaucers("saucers": 1);
+wait(  30); randSaucers("saucers": 1);
+wait(  30); randSaucers("saucers": 2);
+wait( 50); randSaucers("saucers": 1);
+wait(  30); randSaucers("saucers": 2);
+wait(  30); randSaucers("saucers": 1);
+wait(  30); randSaucers("saucers": 2);
+wait( 50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 450); //                   HEART
+
+wait(   1); greenBigUn("y": 250, "fruit_set": 0);
+
+wait(   1); setBonusCounter("bonus": 1, "value": 8);
+wait(   1); setBonusReward("bonus": 1, "type": 500);
+wait( 10); blackFish("bonus": 1, "x": 900, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 900, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 800, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 800, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 700, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 700, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 600, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 600, "y": -110, "scriptIndex": 5);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1400, "y": 150); //                   HEART
+
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 2);
+wait(  30); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  30); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 2);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 2);
+wait(  40); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+
+
+
+
+wait(   1); setBonusCounter("bonus": 1, "value": 8);
+wait(   1); setBonusReward("bonus": 1, "type": 500);
+wait( 50); blackFish("bonus": 1, "x": 900, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 900, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 800, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 800, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 700, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 700, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 600, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 600, "y": -110, "scriptIndex": 5);
+
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 2);
+wait(  10); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 2);
+
+wait(   1); waitForNoEnemies();
+wait(  0); spawnEntity("entity": "starfishSmall", "x":800, "y": 300, "focus_x":600, "focus_y":300);
+
+wait( 100); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait( 40); spawnEntity("entity": "starfishSmall", "x":900, "y": 0, "focus_x":680, "focus_y":350);
+
+wait(  10); randSaucers("saucers": 2);
+
+wait(   0); greenBigUn("y": 150, "fruit_set": 1);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 500); //                   HEART
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1200, "y": 100); //                   HEART
+
+wait(   50); randSaucers("saucers": 1);
+wait(   50); randSaucers("saucers": 1);
+wait(   50); randSaucers("saucers": 1);
+
+wait( 100); greenBigUn("y": 350, "fruit_set": 1);
+
+wait( 100); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+
+// lua Saucers
+wait( 200); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  200);
+wait(  10); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+wait( 100); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  200);
+wait(  10); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 2);
+wait(  10); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 2);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1050, "y": 300); //                   HEART
+
+wait(   1); setBonusCounter("bonus": 1, "value": 8);
+wait(   1); setBonusReward("bonus": 1, "type": 500);
+wait( 100); blackFish("bonus": 1, "x": 900, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 900, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 800, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 800, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 700, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 700, "y": -110, "scriptIndex": 5);
+wait(  15); blackFish("bonus": 1, "x": 600, "y": 720, "scriptIndex": 4);
+wait(   0); blackFish("bonus": 1, "x": 600, "y": -110, "scriptIndex": 5);
+
+wait(   0); defineTileGroup("name": "mainMid", "tiles": [2, 2, 2, 3, 3, 3, 5, 6, 7, 7, 7, 9, 9, 9, 12, 12, 12, 13]);
+
+
+
+wait( 200); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "WideShotStar");
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 100); //                   HEART
+
+wait( 150); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait(  60); randSaucers("saucers": 3);
+wait(   5); randSaucers("saucers": 2);
+wait(  60); randSaucers("saucers": 3);
+wait(   5); randSaucers("saucers": 2);
+wait(  60); randSaucers("saucers": 3);
+wait(   5); randSaucers("saucers": 2);
+
+wait(   0); backGreenBigUn("y": 200);
+
+wait(  20); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "WideShotCheeseStar");
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 500); //                   HEART
+
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   1); setFishFire("enabled": true);
+    
+wait(   0); setFiringChanceRandomFishFighter("veryEasy": 0, "easy": 0, "normal": 0, "hard": 30, "nasty": 60);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 250); //                   HEART
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(   5); randSaucers("saucers": 2);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(   5); randSaucers("saucers": 2);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(   5); randSaucers("saucers": 2);
+wait(   5); randSaucers("saucers": 2);
+wait(  10); randFish("minY":50, "maxY":500);
+wait(  10); randFish("minY":50, "maxY":500);
+
+wait(  0); backGreenBigUn("y": 150);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1500, "y": 300); //                   HEART
+
+wait(  20); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "WideShotCheeseStar");
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+
+wait(   1); makeBirds("number": 3);
+
+wait(   0); spawnBackgroundSprite("x": 900, "y": 250, "mx": -1.4, "my": 0, "sprite": "Scenery/Stage 1/big_castle", "skipInFastForward": false, "layer": 3);
+//wait(   1); forceTile("layer": 4, "tile": 99);
+
+
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  40); randFish("minY":50, "maxY":500);
+
+
+
+wait( 120); greenBigUn("y": 450, "fruit_set": 3);
+wait(  0); spawnEntity("entity": "starfishSmall", "x":900, "y": 0, "focus_x":500, "focus_y":150);
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait( 40); spawnEntity("entity": "starfishSmall", "x":900, "y": 0, "focus_x":640, "focus_y":350);
+
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 250); //                   HEART
+
+
+wait( 100); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait( 120); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+wait(  30); randFish("minY":50, "maxY":500);
+
+wait(  20); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "AutoFireFishStar");
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+
+wait(   1); spawnBackgroundSprite("x": 900, "y": 180, "mx": -0.15, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 350); //                   HEART
+
+wait(   0); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait(  60); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 200);
+
+wait( 100); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait( 100); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 10, 10 ]);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 500); //                   HEART
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 100); //                   HEART
+
+wait( 200); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait( 100); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait(   1); greenBigUn("y": 450, "fruit_set": 4);
+wait(   1); backGreenBigUn("y": 200);
+wait(  20); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "AutoFireFishStar");
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 200); //                   HEART
+
+//wait(   0); redSaucer1("bonus": 2, "y": 350, "x": 200);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+
+wait(   1); greenBigUn("y": 400, "fruit_set": 1);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+
+wait(   0); skipIfDiffAbove("difficulty": "Easy", "places": 1);
+    wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "DonutStar");
+wait(   0); skipIfDiffBelow("difficulty": "Medium", "places": 2);
+    wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "HomingSausageStar");
+
+
+wait(   0); randSaucers("saucers": 1);
+wait(   5); randSaucers("saucers": 2);
+wait(  60); randSaucers("saucers": 1);
+
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [1, 2, 4, 10]]);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 200);
+
+wait( 200); randSaucers("saucers": 1);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 9);
+    wait(  0); squid("x": 700, "y": -200, "focus_x": 600, "focus_y": 250);
+    wait( 50); squid("x": 700, "y": -200, "focus_x": 600, "focus_y": 150);
+    
+    wait(  50); setBonusCounter("bonus": 2, "value": 5);
+    wait(   0); setBonusReward("bonus": 2, "type": "AutoFireFishStar");
+    wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+    wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+    wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+    wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+    wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+    
+
+wait(  10); randSaucers("saucers": 2);
+wait( 100); randSaucers("saucers": 1);
+wait( 200); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 2);
+wait( 100); randSaucers("saucers": 1);
+wait(   0); defineTileGroup("name": "mainMid", "tiles": [1, 2, 3, 3, 4, 4, 7, 9, 10, 10, 11, 12]);
+
+wait( 100); bigSquid("x": 700, "y": -200, "focus_x": 500, "focus_y": 300);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 2);
+    wait( 150); bigSquid("x": 700, "y": -200, "focus_x": 600, "focus_y": 250);
+    wait( 150); spawnEntity("entity": "starfishSmall", "x":900, "y": 0, "focus_x":500, "focus_y":250);
+
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 500); //                   HEART
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 1000, "y": 100); //                   HEART
+
+wait( 100); spawnEntity("entity": "passiveResistancePickup", "x": 2000, "y": 300); //                   HEART
+
+wait( 100); spawnEntity("entity": "passiveResistancePickup", "x": 2200, "y": 500); //                   HEART
+wait(   0); spawnEntity("entity": "passiveResistancePickup", "x": 2200, "y": 100); //                   HEART
+
+wait(   1); backGreenBigUn("y": 250);
+
+
+wait(   1); makeBirds("number": 16);
+
+// ######################################################################################
+
+wait( 200); sayEvaluation();
+
+wait(   1); toggleFiring("disabled": 1);
+wait(  50); sayPrimaryTargets();
+wait(  50); saySecondaryTargets();
+wait(  50); sayTotal();
+wait(  50); giveAreaBonus();
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [1, 2, 4, 10]]);
+wait(  50); convertBonusToPoints();
+wait(  50); destroyText();
+
+wait(  0); backGreenBigUn("y": 220);
+
+// Early exit for practice mode
+ifNotFastForwarding("places": 4);
+    ifPracticeMode("places": 3);
+        wait(   0); shootOutPlayers();
+        wait( 150); sayLevelOver();
+        wait( 150); killGame();
+
+ifFastForwarding("places": 2);
+    fastForwardAccuracyOverSpeed();
+    wait( 500); fastForwardSpeedOverAccuracy();
+
+ifFastForwarding("places": 2);
+    setSkyDayAmount("value": 0.95);
+    setSkyRise("value": -0.000065);
+
+wait(   1); nextArea();
+
+wait(   1); ifPassiveResistance("places": 13);
+    wait(   1); toggleFiring("disabled": 0);
+    wait(   1); blimp("y": 220, "message": 2);
+    wait( 200); balloon("x": 100, "y": 600, "bonus_type": 1);
+    wait( 100); balloon("x": 300, "y": 600, "bonus_type": 2);
+    wait(   0); spawnEntity("entity": "bonusStar", "x": 900, "y": 240, "starType": "HeartStar");
+    wait(  50); spawnEntity("entity": "bonusStar", "x": 900, "y": 340, "starType": "HeartStar");
+    wait(  50); spawnEntity("entity": "bonusStar", "x": 900, "y": 300, "starType": "HeartStar");
+    
+    wait(   1); ifMultiplayer("places": 5);
+        wait( 100); balloon("x": 100, "y": 600, "bonus_type": 1);
+        wait( 100); balloon("x": 300, "y": 600, "bonus_type": 2);
+        wait(  50); spawnEntity("entity": "bonusStar", "x": 900, "y": 200, "starType": "HeartStar");
+        wait(  50); spawnEntity("entity": "bonusStar", "x": 900, "y": 400, "starType": "HeartStar");
+        wait(  50); spawnEntity("entity": "bonusStar", "x": 900, "y": 300, "starType": "HeartStar");
+
+wait(   0); checkpoint("name": "area2");
+wait( 150); sayLevel("level": 1, "area": 2);
+    
+wait( 150); destroyText();
+wait(   1); toggleFiring("disabled": 0);
+
+
+// ######################################################################################
+// AREA 2
+
+
+//wait(   1); setFishFire("enabled": false);
+
+wait(   1); setBonusCounter("bonus": 5, "value": 9);
+wait(   1); setBonusReward("bonus": 5, "type": 1000);
+wait(  50); goldfish("x": 750, "y": 300, "bonus": 5);
+
+wait( 100); goldfish("x": 660, "y": 200, "bonus": 5);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 200, "focus_x":550, "focus_y":300);
+    
+wait( 100); goldfish("x": 660, "y": 400, "bonus": 5);
+
+wait( 100); goldfish("x": 660, "y": 300, "bonus": 5);
+wait( 100); goldfish("x": 660, "y": 200, "bonus": 5);
+wait(   0); goldfish("x": 660, "y": 400, "bonus": 5);
+
+wait( 200); goldfish("x": 660, "y": 300, "bonus": 5);
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 200, "focus_x":550, "focus_y":300);
+
+wait( 100); goldfish("x": 660, "y": 200, "bonus": 5);
+wait(   0); goldfish("x": 660, "y": 400, "bonus": 5);
+
+
+wait( 100); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  50); goldfish("x": 750, "y": 200, "bonus": 0);
+wait(  40); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  50); goldfish("x": 750, "y": 400, "bonus": 0);
+wait( 100); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+
+wait(   1); setBonusCounter("bonus": 5, "value": 3);
+wait(   1); setBonusReward("bonus": 5, "type": 500);
+wait(  50); goldfish("x": 750, "y": 300, "bonus": 5);
+wait(  50); goldfish("x": 660, "y": 200, "bonus": 5);
+wait(   0); goldfish("x": 660, "y": 400, "bonus": 5);
+
+wait(  40); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  40); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+
+
+
+wait(  50); setBonusCounter("bonus": 1, "value": 6);
+wait(   1); setBonusReward("bonus": 1, "type": 500);
+//wait(   1); setFishFire("enabled": false);
+wait(   1); blackFish("bonus": 1, "x": 820, "y": 300, "scriptIndex": 0);
+wait(   0); blackFish("bonus": 1, "x": 820, "y": 350, "scriptIndex": 1);
+wait(  10); blackFish("bonus": 1, "x": 820, "y": 250, "scriptIndex": 0);
+wait(   0); blackFish("bonus": 1, "x": 820, "y": 400, "scriptIndex": 1);
+wait(  10); blackFish("bonus": 1, "x": 820, "y": 200, "scriptIndex": 0);
+wait(   0); blackFish("bonus": 1, "x": 820, "y": 450, "scriptIndex": 1);
+
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  40); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+
+//wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+ //   wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 200, "focus_x":550, "focus_y":300);
+
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+wait(  20); randFish("minY":50, "maxY":500);
+
+wait(  50); setBonusCounter("bonus": 1, "value": 6);
+wait(   1); setBonusReward("bonus": 1, "type": 500);
+//wait(   1); setFishFire("enabled": false);
+wait(   1); blackFish("bonus": 1, "x": 820, "y": 300, "scriptIndex": 0);
+wait(   0); blackFish("bonus": 1, "x": 820, "y": 350, "scriptIndex": 1);
+wait(  10); blackFish("bonus": 1, "x": 820, "y": 250, "scriptIndex": 0);
+wait(   0); blackFish("bonus": 1, "x": 820, "y": 400, "scriptIndex": 1);
+wait(  10); blackFish("bonus": 1, "x": 820, "y": 200, "scriptIndex": 0);
+wait(   0); blackFish("bonus": 1, "x": 820, "y": 450, "scriptIndex": 1);
+
+
+wait(   0); blimp("y": 200, "message": 1);
+
+wait(   60); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "OriginalMultiStar");
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 350, "x": 0);
+
+
+
+wait(   1); makePylons();
+wait( 150); greenBigUn("y": 450, "fruit_set": 2);
+
+wait(   0); skipIfDiffBelow("difficulty": "Nasty", "places": 1);
+    wait(  0); spawnEntity("entity": "starTick", "x":1000, "y": 200, "focus_x":650, "focus_y":300);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 2);
+    wait(   0); skipIfDiffAbove("difficulty": "Hard", "places": 1);
+        wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 200, "focus_x":550, "focus_y":300);
+
+
+wait(   0); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+
+wait(  50); greenBigUn("y": 400, "fruit_set": 1);
+
+
+wait( 100); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait( 100); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait( 100); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait( 100); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(   0); switchTileGroup("layer": 7, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 6, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 5, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 4, "name": "openWater", "transition": 91);
+
+//ifFastForwarding("places": 2);
+//    fastForwardAccuracyOverSpeed();
+//    wait(100); fastForwardSpeedOverAccuracy();
+
+    
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 200, "focus_x":550, "focus_y":300);
+
+wait( 180); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "OriginalMultiStarWithCheese");
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+
+
+wait(  50); greenBigUn("y": 100, "fruit_set": 4);
+wait(   0); greenBigUn("y": 450, "fruit_set": 4);
+wait( 300); gunship("y": 250);
+
+wait( 200); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+
+
+wait(   0); switchTileGroup("layer": 3, "name": "openWater", "transition": 91);
+
+ifNotFastForwarding("places": 1);
+    wait(   0); forceTile("layer": 1, "tile": 99);
+
+//ifFastForwarding("places": 2);
+//    fastForwardAccuracyOverSpeed();
+//    wait(100); fastForwardSpeedOverAccuracy();
+
+
+wait( 200); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "OriginalMultiStarWithFish"); //was OriginalMultiStar
+
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 200, "focus_x":550, "focus_y":300);
+
+wait(   1); makeBirds("number": 10);
+
+ifNotFastForwarding("places": 1);
+    wait(   0); switchTileGroup("layer": 7, "name": "mainMid", "transition": 92);
+    
+wait(   1); setBonusCounter("bonus": 5, "value": 3);
+wait(   1); setBonusReward("bonus": 5, "type": 500);
+wait( 200); goldfish("x": 750, "y": 300, "bonus": 5);
+wait(  70); goldfish("x": 660, "y": 200, "bonus": 5);
+wait(  70); goldfish("x": 660, "y": 400, "bonus": 5);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 150);
+wait(  50); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 450);
+
+ifNotFastForwarding("places": 1);
+    wait(   0); switchTileGroup("layer": 7, "name": "openWater", "transition": 91);
+    
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  70); goldfish("x": 660, "y": 200, "bonus": 0);
+wait(  70); goldfish("x": 660, "y": 400, "bonus": 0);
+wait(  200); spawnEntity("entity": "starfishSmall", "x":1000, "y": -100, "focus_x":500, "focus_y":200);
+wait(   0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 700, "focus_x":500, "focus_y":400);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait( 80); bigSquid("x": 700, "y": -200, "focus_x": 600, "focus_y": 300);
+    
+//wait(   0); skipIfDiffBelow("difficulty": "Nasty", "places": 1);
+//    wait(400); spawnEntity("entity": "starTick", "x":1000, "y": 200, "focus_x":650, "focus_y":300);
+
+// ##############################################################################################
+
+//ifFastForwarding("places": 2);
+//    fastForwardAccuracyOverSpeed();
+//    wait(1000); fastForwardSpeedOverAccuracy();
+
+
+
+wait( 200); sayEvaluation();
+wait(   1); toggleFiring("disabled": 1);
+wait(  50); sayPrimaryTargets();
+wait(  50); saySecondaryTargets();
+wait(  50); sayTotal();
+wait(  50); giveAreaBonus();
+wait(   0); switchTileGroup("layer": 3, "name": "mainMid", "transition": 92);
+wait(  50); convertBonusToPoints();
+wait(  50); destroyText();
+// Early exit for practice mode
+ifNotFastForwarding("places": 4);
+    ifPracticeMode("places": 3);
+        wait(   0); shootOutPlayers();
+        wait( 150); sayLevelOver();
+        wait( 150); killGame();
+        
+ifFastForwarding("places": 2);
+    setSkyDayAmount("value": 0.55);
+    setSkyRise("value": -0.000065);
+
+wait(   1); nextArea();
+wait(   0); checkpoint("name": "area3");
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "BoxingGloveStar");
+    
+wait( 150); sayLevel("level": 1, "area": 3);
+
+wait( 150); destroyText();
+wait(   1); toggleFiring("disabled": 0);
+
+// ##############################################################################################
+// AREA 3
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   0); greenBigUn("y": 350, "fruit_set": 4);
+    
+wait(  50); ray();
+wait(  20); ray();
+
+wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+wait( 100); ray();
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(  50); ray();
+
+wait(   1); makeBirds("number": 8);
+wait(   1); nufzenuf();
+wait(  20); ray();
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   0); greenBigUn("y": 250, "fruit_set": 4);
+
+wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+wait( 100); ray();
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(  50); ray();
+    
+wait(  30); ray();
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   0); greenBigUn("y": 300, "fruit_set": 4);
+    
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 2);
+    wait(  50); ray();
+    wait(  50); ray();
+
+wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+wait( 100); ray();
+
+wait(  30); ray();
+wait(  30); ray();
+
+
+
+wait(  50); goldfish("x": 700, "y": 200, "bonus": 0);
+wait(  50); goldfish("x": 700, "y": 350, "bonus": 0);
+wait(  50); ray();
+wait(  30); ray();
+wait(  30); ray();
+wait(   1); switchTileGroup("layer": 3, "name": "hill", "transition": 50);
+wait(   1); makeWaterfall("layer": 3);
+wait(  50); goldfish("x": 700, "y": 350, "bonus": 0);
+wait(  50); goldfish("x": 700, "y": 200, "bonus": 0);
+wait(   1); makeWaterfall("layer": 3);
+
+wait(  50); ray();
+
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 5);
+    wait(   0); spawnEntity("entity": "pinkShip", "x": 900, "y": 200);
+    wait( 100); spawnEntity("entity": "pinkShip", "x": 900, "y": 500);
+    wait(  0); redBigUn("y": 275, "fruit_set": 7);
+    wait( 250); safe("x": 100, "y": 600, "bonus_type": 1);
+    wait( 200); setBonusCounter("bonus": 5, "value": 3);
+
+wait( 250); gunship("y": 180);
+wait(  25); gunship("y": 350);
+wait(   0); forceTile("layer": 3, "tile": 54);
+
+wait( 150); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait( 100); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+
+wait( 100); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+
+wait(   1); makeWaterfall("layer": 3);
+wait(   1); makeWaterfall("layer": 1);
+wait(   1); switchTileGroup("layer": 1, "name": "hill", "transition": 50);
+wait(   1); setBonusCounter("bonus": 1, "value": 8);
+wait(   1); setBonusReward("bonus": 1, "type": "OriginalMultiStarWithFish");
+//wait(   1); setFishFire("enabled": false);
+wait(   1); orangeFish("bonus": 1, "x": 900, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 900, "y": -110, "scriptIndex": 5);
+wait(  15); orangeFish("bonus": 1, "x": 800, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 800, "y": -110, "scriptIndex": 5);
+wait(  15); orangeFish("bonus": 1, "x": 700, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 700, "y": -110, "scriptIndex": 5);
+wait(  15); orangeFish("bonus": 1, "x": 600, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 600, "y": -110, "scriptIndex": 5);
+wait(   1); makeWaterfall("layer": 1);
+
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+
+wait(   0); ray();
+wait(  30); ray();
+wait(  30); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); ray();
+wait(  30); ray();
+wait(  30); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); ray();
+wait(  30); ray();
+wait(   1); setBonusCounter("bonus": 5, "value": 3);
+wait(   1); setBonusReward("bonus": 5, "type": 500);
+wait(  30); goldfish("x": 700, "y": 350, "bonus": 5);
+wait(  30); goldfish("x": 700, "y": 200, "bonus": 5);
+wait(  30); goldfish("x": 640, "y": 275, "bonus": 5);
+wait(   1); setBonusCounter("bonus": 1, "value": 8);
+wait(   1); setBonusReward("bonus": 1, "type": "OriginalMultiStarWithFish");
+//wait(   1); setFishFire("enabled": false);
+wait(   1); orangeFish("bonus": 1, "x": 900, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 900, "y": -110, "scriptIndex": 5);
+wait(  15); orangeFish("bonus": 1, "x": 800, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 800, "y": -110, "scriptIndex": 5);
+wait(  15); orangeFish("bonus": 1, "x": 700, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 700, "y": -110, "scriptIndex": 5);
+wait(  15); orangeFish("bonus": 1, "x": 600, "y": 720, "scriptIndex": 4);
+wait(   0); orangeFish("bonus": 1, "x": 600, "y": -110, "scriptIndex": 5);
+wait(   0); forceTile("layer": 1, "tile": 54);
+wait(  50); ray();
+wait(  0); randSaucers("saucers": 1);
+wait(  30); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); ray();
+wait(  30); ray();
+wait(  0); randSaucers("saucers": 1);
+wait(  30); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); ray();
+wait(  30); ray();
+wait(  0); randSaucers("saucers": 1);
+wait(  30); ray();
+wait(   1); makeWaterfall("layer": 1);
+wait(   1); setBonusCounter("bonus": 5, "value": 3);
+wait(   1); setBonusReward("bonus": 5, "type": 500);
+wait(  30); goldfish("x": 700, "y": 350, "bonus": 5);
+wait(  30); goldfish("x": 700, "y": 200, "bonus": 5);
+wait(  30); goldfish("x": 640, "y": 275, "bonus": 5);
+wait(  50); ray();
+wait(  30); ray();
+wait(  0); randSaucers("saucers": 1);
+wait(  30); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); ray();
+wait(  30); ray();
+wait(  0); randSaucers("saucers": 1);
+wait(  30); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); ray();
+wait(  0); randSaucers("saucers": 1);
+wait(  30); ray();
+wait(   1); makeWaterfall("layer": 3);
+wait( 100); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "OriginalMultiStarWithCheese");
+//wait(   0); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(   1); switchTileGroup("layer": 1, "name": "mainMid", "transition": 52);
+wait(  50); setBonusCounter("bonus": 3, "value": 5);
+wait(   0); setBonusReward("bonus": 3, "type": "HomingRocketHotDogStar");
+
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+
+wait(  0); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+
+wait(   0); greenBigUn("y": 450, "fruit_set": 4);
+wait(   0); greenBigUn("y": 100, "fruit_set": 4);
+wait(  0); randSaucers("saucers": 1);
+wait( 120); greenBigUn("y": 500, "fruit_set": 4);
+wait(   0); greenBigUn("y": 50, "fruit_set": 4);
+
+
+wait(   0); forceTile("layer": 3, "tile": 54);
+wait(  0); randSaucers("saucers": 1);
+
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+
+wait(   1); setBonusCounter("bonus": 5, "value": 3);
+wait(   1); setBonusReward("bonus": 5, "type": 500);
+wait(   0); goldfish("x": 700, "y": 350, "bonus": 5);
+wait(  0); randSaucers("saucers": 1);
+wait(   1); makeWaterfall("layer": 3);
+wait(  30); goldfish("x": 700, "y": 200, "bonus": 5);
+wait(  30); goldfish("x": 640, "y": 270, "bonus": 5);
+wait(  0); randSaucers("saucers": 1);
+
+wait( 200); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(   0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 300, "focus_x":600, "focus_y":250);
+
+wait(   1); setBonusCounter("bonus": 4, "value": 3);
+wait(   1); setBonusReward("bonus": 4, "type": 500);
+wait( 170); goldfish("x": 700, "y": 390, "bonus": 4);
+wait(  0); randSaucers("saucers": 1);
+wait(  30); goldfish("x": 700, "y": 160, "bonus": 4);
+//wait(  30); goldfish("x": 640, "y": 275, "bonus": 4);
+
+
+wait( 200); redBigUn("y": 275, "fruit_set": 7);
+
+wait( 150); gunship("y": 100);
+wait(   0); gunship("y": 450);
+wait(   0); forceTile("layer": 3, "tile": 54);
+
+wait( 250); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  60); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait( 120); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  10); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+
+wait(   1); waitForNoEnemies();
+
+wait( 100); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "HomingAutoFireFishStar");
+//wait(   0); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(   0); forceTile("layer": 3, "tile": 54);
+wait(  50); setBonusCounter("bonus": 3, "value": 5);
+wait(   0); setBonusReward("bonus": 3, "type": "AutoFireHomingFishStar");
+//wait(   0); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+//wait(   1); makeWaterfall("layer": 1);
+//wait(   1); switchTileGroup("layer": 1, "name": "hill", "transition": 50);
+switchTileGroup("layer": 1, "name": "plainHill", "transition": 50);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+//wait(   1); setMountedGuns("pattern": 3);
+wait(  0); randSaucers("saucers": 2);
+wait(  50); ray();
+wait(  0); randSaucers("saucers": 2);
+wait(  40); randSaucers("saucers": 2);
+wait(  40); ray();
+wait(  0); randSaucers("saucers": 2);
+wait(  40); randSaucers("saucers": 2);
+wait(  40); ray();
+wait(  0); randSaucers("saucers": 2);
+
+wait(  10); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); spawnEntity("entity": "starfishSmall", "x":1000, "y": 300, "focus_x":500, "focus_y":300);
+//wait(   1); makeWaterfall("layer": 1);
+wait(   1); setMountedGuns("pattern": 3);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+
+wait(   0); setFiringChanceSaucer("veryEasy": 0, "easy": 0, "normal": 20, "hard": 40, "nasty": 40);
+
+wait(   0); skipIfDiffAbove("difficulty": "VeryEasy", "places": 1);
+    wait(   25); dragonfly("y": 60, "acceleration": 0.02, "starType": "LightningStar");
+wait(   0); skipIfDiffBelow("difficulty": "Easy", "places": 1);
+    wait(   25); dragonfly("y": 60, "acceleration": 0.02, "starType": "FireballRocketStar");
+
+
+wait(  40); randSaucers("saucers": 1);
+wait(  40); randSaucers("saucers": 1);
+wait(  40); randSaucers("saucers": 1);
+wait(   0); setMountedGuns("pattern": 1);
+wait(   1); setHillpop("layer": 1);
+
+wait(   1); waitForHillpop("layer": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(   0); ray();
+wait(  40); randSaucers("saucers": 1);
+wait(  40); randSaucers("saucers": 1);
+wait(  20); ray();
+
+wait(  0); makeTanksAndBuilding("tanks": 1, "item": 9);
+
+
+wait(  40); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  20); ray();
+
+//wait(   1); setMountedGuns("pattern": 2);
+wait(   1); setHillpop("layer": 1);
+
+wait(  55); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+
+wait(  55); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(   0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+
+
+
+wait(   1); waitForHillpop("layer": 1);
+
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+
+switchTileGroup("layer": 1, "name": "hill", "transition": 54);
+
+wait(   0); spawnEntity("entity": "pinkShip", "x": 900, "y": 240);
+
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(   100); spawnEntity("entity": "pinkShip", "x": 900, "y": 460);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(   100); spawnEntity("entity": "pinkShip", "x": 900, "y": 350);
+
+wait(  75); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(   100); spawnEntity("entity": "pinkShip", "x": 900, "y": 160);
+wait(   50); spawnEntity("entity": "pinkShip", "x": 900, "y": 530);
+wait(   80); spawnEntity("entity": "pinkShip", "x": 900, "y": 350);
+
+wait( 200); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+
+wait( 100); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+wait(  25); randSaucers("saucers": 1);
+wait(  25); skipIfDiffBelow("difficulty": "Medium", "places": 1);
+    wait(  0); randSaucers("saucers": 1);
+
+wait(   1); switchTileGroup("layer": 1, "name": "mainMid", "transition": 52);
+wait(   1); makeWaterfall("layer": 3);
+
+wait(   0); setFiringChanceSaucer("veryEasy": 10, "easy": 20, "normal": 40, "hard": 60, "nasty": 60);
+
+
+// ##############################################################################################
+
+wait( 200); sayEvaluation();
+wait(   1); toggleFiring("disabled": 1);
+wait(  50); sayPrimaryTargets();
+wait(  50); saySecondaryTargets();
+wait(   1); makeWaterfall("layer": 3);
+wait(  50); sayTotal();
+wait(  50); giveAreaBonus();
+wait(  50); forceTile("layer": 3, "tile": 54);
+wait(   1); convertBonusToPoints();
+wait(  50); destroyText();
+// Early exit for practice mode
+ifNotFastForwarding("places": 4);
+    ifPracticeMode("places": 3);
+        wait(   0); shootOutPlayers();
+        wait( 150); sayLevelOver();
+        wait( 150); killGame();
+        
+ifFastForwarding("places": 2);
+    setSkyDayAmount("value": 0.08);
+    setSkyRise("value": 0.000065);
+
+wait(   1); nextArea();
+wait(   0); defineTileGroup("name": "mainMid", "tiles": [1, 2, 7, 9]);
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [2, 4]);
+wait(   0); checkpoint("name": "area4");
+wait( 150); sayLevel("level": 1, "area": 4);
+wait( 150); destroyText();
+wait(   1); toggleFiring("disabled": 0);
+
+
+// ##############################################################################################
+// AREA 4
+
+wait(   1); switchTileGroup("layer": 3, "name": "hill");
+wait(   1); forceTile("layer": 1, "tile": 99);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+wait( 100); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "OriginalMultiStarWithFish");
+//wait(   0); redSaucer1("bonus": 2, "y": 300, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 200);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 300, "x": 0);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+wait(   0); forceTile("layer": 3, "tile": 54);
+wait( 120); forceTile("layer": 1, "tile": 99);
+wait(   1); squid("x": 700, "y": 600, "focus_x": 550, "focus_y": 400);
+
+wait(   1); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(   0); backGreenBigUn("y": 200);
+wait( 100); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(   1); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+wait(  20); forceTile("layer": 1, "tile": 99);
+wait(   1); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); randSaucers("saucers": 1);
+wait(  20); randSaucers("saucers": 1);
+wait(  50); squid("x": 700, "y": 600, "focus_x": 550, "focus_y": 400);
+wait(  50); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(  50); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(   1); forceTile("layer": 1, "tile": 99);
+wait(   1); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+wait( 200); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "WideShotAutofireStar");
+//wait(   0); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(   0); forceTile("layer": 3, "tile": 54);
+wait(  50); setBonusCounter("bonus": 3, "value": 5);
+wait(   0); setBonusReward("bonus": 3, "type": "RocketBombBeansStar");
+//wait(   0); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+//wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 200);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait( 100); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "RocketBombBeansStar");
+//wait(   0); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+//wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 200);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+
+wait(   1); greenBigUn("y": 260, "fruit_set": 2);
+wait( 120); greenBigUn("y": 180, "fruit_set": 2);
+
+wait(   1); makeWaterfall("layer": 3);
+wait(  50); forceTile("layer": 1, "tile": 99);
+wait( 150); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 120);
+wait(  50); forceTile("layer": 1, "tile": 99);
+wait( 100); squid("x": 700, "y": 600, "focus_x": 550, "focus_y": 140);
+wait( 250); squid("x": 700, "y": 600, "focus_x": 550, "focus_y": 400);
+wait(  50); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+wait(   1); switchTileGroup("layer": 3, "name": "hangars");
+wait(  70); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait( 150); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(   1); waitForNoEnemies();
+wait(   1); bigSquid("x": 700, "y": -200, "focus_x": 500, "focus_y": 200);
+wait( 100); makeTanksAndBuilding("tanks": 2, "item": 9);
+wait(   1); switchTileGroup("layer": 3, "name": "hangars");
+wait(   1); waitForNoEnemies();
+
+wait(  50); switchTileGroup("layer": 3, "name": "hangars");
+wait(   1); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "WideShotAutofireStar");
+
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  50); setBonusCounter("bonus": 3, "value": 5);
+wait(   0); setBonusReward("bonus": 3, "type": "RocketBombBeansStar");
+
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 360, "x": 0);
+wait(   1); switchTileGroup("layer": 1, "name": "plainHill", "transition": 55);
+wait(   1); setMountedGuns("pattern": 3);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+wait(   1); setMountedGuns("pattern": 4);
+wait(  50); randSaucers("saucers": 2);
+wait(  50); randSaucers("saucers": 2);
+wait(  50); randSaucers("saucers": 2);
+wait(  50); randSaucers("saucers": 2);
+wait(  50); randSaucers("saucers": 2);
+
+wait(   1); setHillpop("layer": 1);
+wait(   0); makeTanksAndBuilding("tanks": 4, "item": 10);
+
+wait(   1); waitForHillpop("layer": 1);
+wait(   1); setMountedGuns("pattern": 5);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(   0); switchTileGroup("layer": 3, "name": "hill", "transition": 50);
+
+wait(   0); defineTileGroup("name": "mainMid", "tiles": [3, 4, 9, 10, 11, 12]);
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [2, 4]);
+wait(   1); backGreenBigUn("y": 225);
+wait(   0); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(   0); switchTileGroup("layer": 1, "name": "mainMid", "transition": 56);
+wait(   1); backGreenBigUn("y": 200);
+wait(  50); switchTileGroup("layer": 3, "name": "mainMid", "transition": 52);
+wait(   1); backGreenBigUn("y": 250);
+wait(  80); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+wait(  50); randSaucers("saucers": 1, "minY":100, "maxY":300);
+
+wait(   0); switchTileGroup("layer": 4, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 5, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 6, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 7, "name": "mainMid", "transition": 92);
+wait(  50); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(  20); randSaucers("saucers": 2);
+wait(   1); backRedBigUn("y": 200);
+wait(   1); backGreenBigUn("y": 140);
+
+wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "FireballHotdogStar");
+
+wait( 150); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 250);
+wait(  50); squid("x": 700, "y": 600, "focus_x": 500, "focus_y": 350);
+wait( 100); spawnEntity("entity": "pinkSquid", "x": 700, "y": -200, "focus_x": 500, "focus_y": 250);
+
+
+wait(   1); backGreenBigUn("y": 230);
+wait(   0); spawnBackgroundSprite("x": 850, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/tower@7", "layer": 7);
+wait(   1); setHillpop("layer": 7);
+wait(   1); waitForHillpop("layer": 7);
+wait( 350); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+
+wait( 350); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+
+wait(   1); backRedBigUn("y": 220);
+wait( 100); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+wait(   0); spawnBackgroundSprite("x": 1100, "y": 190, "mx": -0.20, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 960, "y": 230, "mx": -0.28, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 1600, "y": 150, "mx": -0.28, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+wait(   0); forceTile("layer": 8, "tile": 2);
+
+
+// ##############################################################################################
+
+wait( 200); sayEvaluation();
+wait(   0); backRedBigUn("y": 180);
+wait(   0); spawnBackgroundSprite("x": 850, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/tower@7", "layer": 7);
+wait(   1); toggleFiring("disabled": 1);
+wait(  50); sayPrimaryTargets();
+wait(  50); saySecondaryTargets();
+wait(  50); sayTotal();
+wait(  50); giveAreaBonus();
+wait(  50); convertBonusToPoints();
+wait(  50); destroyText();
+// Early exit for practice mode
+ifNotFastForwarding("places": 4);
+    ifPracticeMode("places": 3);
+        wait(   0); shootOutPlayers();
+        wait( 150); sayLevelOver();
+        wait( 150); killGame();
+
+ifFastForwarding("places": 2);
+    setSkyDayAmount("value": 0.5);
+    setSkyRise("value": 0.000065);
+
+wait(   1); nextArea();
+wait(   0); fastForwardStop("id": "stage1Boss");
+wait(   0); checkpoint("name": "area5");
+wait( 150); sayLevel("level": 1, "area": 5);
+wait( 150); destroyText();
+wait(   1); toggleFiring("disabled": 0);
+
+
+// ##############################################################################################
+// AREA 5
+
+//wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait(   0); setEnemyShotSpeed("multiplier": 1.25);
+
+wait(   2); musicFadeOut();
+wait(  20); changeToCustomisableTrack("slotName": "boss1");
+wait(   1); makePylons();
+wait(   1); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "AutoFireHomingFishStar");
+
+
+wait(  10); redSaucer1("bonus": 2, "y": 220, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 220, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 220, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 220, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 220, "x": 0);
+wait(  40); setBonusCounter("bonus": 3, "value": 5);
+wait(   0); setBonusReward("bonus": 3, "type": "HomingAutoFireFishStar");
+
+wait(  10); redSaucer1("bonus": 3, "y": 380, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 380, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 380, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 380, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 380, "x": 0);
+
+wait(  50); forcePlayerWarnings("ticks": 90);
+
+// Spawn boss, the branch is due to one fruit set in the train that needs to be multiplayer dependent
+wait( 50);
+ifMultiplayer("places": 1);
+    makeTrain("carts": [ "trainWar", "trainTransport", "trainTransport", "trainEmpty", "trainTransport", "trainEmpty", "trainWarCannon", "trainEmpty", "trainTransport", "trainEmpty", "trainTransport", "trainWar", "trainWarCannon", "trainTransport", "trainTransport", "trainEmpty", "trainEmpty", "trainHead" ], "cartFruitSets": [ 0, 7, 8, 0, 8, 0, 0, 0, 10, 0, 9, 0, 0, 8, 8, 0, 0, 12 ]);
+ifSingleplayer("places": 1);
+    makeTrain("carts": [ "trainWar", "trainTransport", "trainTransport", "trainEmpty", "trainTransport", "trainEmpty", "trainWarCannon", "trainEmpty", "trainTransport", "trainEmpty", "trainTransport", "trainWar", "trainWarCannon", "trainTransport", "trainTransport", "trainEmpty", "trainEmpty", "trainHead" ], "cartFruitSets": [ 0, 7, 8, 0, 8, 0, 0, 0, 15, 0, 9, 0, 0, 8, 8, 0, 0, 12 ]);
+
+wait(   0); setFiringChanceSaucer("veryEasy": 15, "easy": 30, "normal": 50, "hard": 50, "nasty": 60);
+wait( 0); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+    wait( 40); spawnEntity("entity": "starfishSmall", "x":900, "y": 0, "focus_x":600, "focus_y":150);
+
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 100); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 100); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 100); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+
+wait(   0); spawnBackgroundSprite("x": 850, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/tower@7", "layer": 7);
+wait(  50); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+//wait(   0); spawnEntity("entity": "starfishSmall", "x":800, "y": 300, "focus_x":400, "focus_y":200);
+//wait( 150); spawnEntity("entity": "starfishSmall", "x":800, "y": 300, "focus_x":600, "focus_y":200);
+wait( 200); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+wait(   1); randSaucers("saucers": 2);
+wait( 150); randSaucers("saucers": 2);
+wait(  50); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+wait(   0); forceTile("layer": 8, "tile": 2);
+
+wait( 200); setBonusCounter("bonus": 2, "value": 8);
+wait(   0); setBonusReward("bonus": 2, "type": "HomingAutoFireFishStar");
+
+wait(   1); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+
+wait( 200); goldfish("x": 800, "y": 100, "bonus": 0);
+wait(  50); goldfish("x": 700, "y": 200, "bonus": 0);
+wait(   1); makePylons();
+wait( 200); randSaucers("saucers": 2);
+wait( 100); goldfish("x": 800, "y": 100, "bonus": 0);
+wait(  50); goldfish("x": 700, "y": 200, "bonus": 0);
+wait(   1); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+
+wait(   0); setBonusCounter("bonus": 2, "value": 8);
+
+wait(   0); setBonusReward("bonus": 2, "type": "RocketBombBeansStar");
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+wait(   0); setBonusReward("bonus": 2, "type": "HomingBombBeansStar");
+
+wait(  60); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(   0); spawnBackgroundSprite("x": 850, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/tower@7", "layer": 7);
+wait(  50); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+wait(   0); spawnEntity("entity": "pinkShip", "x": 900, "y": 200);
+
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+wait(   0); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 100); setBonusCounter("bonus": 2, "value": 8);
+wait(   0); setBonusReward("bonus": 2, "type": "HomingBombBeansStar");
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+wait(   0); setBonusReward("bonus": 2, "type": "BombAutofireBeansStar");
+
+wait(   0); switchTileGroup("layer": 4, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 5, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 6, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 7, "name": "openWater", "transition": 91);
+wait(   0); switchTileGroup("layer": 3, "name": "openWater", "transition": 91);
+wait(   1); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+
+wait( 100); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait(   0); spawnEntity("entity": "pinkShip", "x": 900, "y": 200);
+
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+//wait(   0); spawnEntity("entity": "pinkShip", "x": 900, "y": 200);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); setBonusCounter("bonus": 2, "value": 8);
+wait(   0); setBonusReward("bonus": 2, "type": "RocketBombBeansStar");
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+wait(   0); setBonusReward("bonus": 2, "type": "BombAutofireBeansStar");
+
+wait(   1); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(  20); orangeFish("bonus": 2, "x": 800, "y": 0, "scriptIndex": 8);
+wait(   0); spawnBackgroundSprite("x": 900, "y": 190, "mx": -0.20, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 760, "y": 230, "mx": -0.28, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+
+
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait(  0); randSaucers("saucers": 2);
+wait(   0); switchTileGroup("layer": 3, "name": "mainMid", "transition": 92);
+
+
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2);
+wait(   0); switchTileGroup("layer": 4, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 5, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 6, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 7, "name": "mainMid", "transition": 92);
+wait(   0); switchTileGroup("layer": 3, "name": "mainMid", "transition": 92);
+
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 0); setBonusCounter("bonus": 2, "value": 5);
+wait(   0); setBonusReward("bonus": 2, "type": "HomingBombBeansStar");
+
+wait(   0); switchTileGroup("layer": 3, "name": "hill", "transition": 55);
+wait(   0); makeWaterfall("layer": 3);
+wait(   0); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 2, "y": 260, "x": 0);
+
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+
+wait( 200); setBonusCounter("bonus": 3, "value": 5);
+wait(   0); setBonusReward("bonus": 3, "type": "RocketBombBeansStar");
+
+wait(   0); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+wait(   0); setBonusReward("bonus": 3, "type": "HomingBombBeansStar");
+
+wait(  0); redSaucer1("bonus": 3, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 260, "x": 0);
+wait(  10); redSaucer1("bonus": 3, "y": 260, "x": 0);
+
+wait(   0); defineTileGroup("name": "mainFront", "tiles": [10]]);
+
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait(150); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+wait( 50); randSaucers("saucers": 2, "minY":100, "maxY":300);
+
+wait(   0); switchTileGroup("layer": 1, "name": "plainHill", "transition": 50);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+wait(   1); setMountedGuns("pattern": 5);
+wait(   1); randSaucers("saucers": 2);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+wait(   1); setMountedGuns("pattern": 4);
+wait(   1); randSaucers("saucers": 2);
+wait(   0); makeWaterfall("layer": 3);
+wait(   1); setHillpop("layer": 1);
+wait(   1); waitForHillpop("layer": 1);
+wait(   0); switchTileGroup("layer": 1, "name": "mainMid", "transition": 52);
+wait( 200); switchTileGroup("layer": 3, "name": "mainMid", "transition": 56);
+wait(   0); spawnBackgroundSprite("x": 760, "y": 230, "mx": -0.28, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 1250, "y": 40, "mx": -0.16, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 1700, "y": 190, "mx": -0.20, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 11);
+wait(   0); spawnBackgroundSprite("x": 1200, "y": 140, "mx": -0.18, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 900, "y": 190, "mx": -0.20, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
+wait(   0); spawnBackgroundSprite("x": 1800, "y": 150, "mx": -0.28, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 11);
+wait(   0); spawnBackgroundSprite("x": 850, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/tower@7", "layer": 7);
+wait(  50); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+wait( 350); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+
+
+ifEnemyOnScreen("places": 4);
+    wait( 300); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "TailGunWideShotStar");
+
+    wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "RocketDonutStar");
+
+ifEnemyOnScreen("places": 2);
+    wait( 200); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+    wait(   0); spawnBackgroundSprite("x": 1100, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/monolith@7", "layer": 7);
+
+wait(   1); makeBirds("number": 8);
+
+ifEnemyOnScreen("places": 1);
+    wait( 350); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+ifEnemyOnScreen("places": 3);
+    wait( 200); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+    wait(   1); makePylons();
+    wait(   0); spawnBackgroundSprite("x": 850, "y": 200, "mx": -0.4, "my": 0, "sprite": "Scenery/Stage 1/tower@7", "layer": 7);
+ifEnemyOnScreen("places": 2);
+    wait(  50); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+    wait( 350); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+ifEnemyOnScreen("places": 1);
+    wait( 200); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+ifEnemyOnScreen("places": 1);
+    wait( 350); spawnBackgroundSprite("x": 850, "y": 170, "mx": -0.6, "my": 0, "sprite": "Scenery/Stage 1/tower@6", "layer": 6);
+ifEnemyOnScreen("places": 1);
+    wait( 200); spawnBackgroundSprite("x": 1100, "y": 75, "mx": -1.2, "my": 0, "sprite": "Scenery/Stage 1/tower@4", "layer": 4);
+
+ifEnemyOnScreen("places": 4);
+    wait( 200); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "AutoFireTailGunFishStar");
+
+    wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "RocketDonutStar");
+    
+    
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+    
+ifEnemyOnScreen("places": 4);
+    wait( 200); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "FireballHomingBombBeansStar");
+
+    wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "HomingRocketBeansStar");
+    
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+ifEnemyOnScreen("places": 1); // kill time
+    wait(250); setBonusCounter("bonus": 2, "value": 1);
+    
+ifEnemyOnScreen("places": 4);
+    wait( 200); skipIfDiffBelow("difficulty": "Hard", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "HomingRocketBeansStar");
+
+    wait(   0); skipIfDiffAbove("difficulty": "Medium", "places": 1);
+        wait(   0); dragonfly("y": 60, "acceleration": 0.02, "starType": "LightningStar");
+    
+
+wait(  50); sayEvaluation();
+wait(   1); toggleFiring("disabled": 1);
+wait( 100); sayPrimaryTargets();
+
+wait( 100); saySecondaryTargets();
+wait( 100); sayTotal();
+wait( 100); giveAreaBonus();
+wait( 200); convertBonusToPoints();
+wait(  50); destroyText();
+// Early exit for practice mode
+ifNotFastForwarding("places": 4);
+    ifPracticeMode("places": 3);
+        wait(   0); shootOutPlayers();
+        wait( 150); sayLevelOver();
+        wait( 150); killGame();
+
+wait( 150); sayLevelOver();
+wait( 150); shootOutPlayers();
+wait( 150); giveBonusCredit();
+wait( 150); convertBonusCreditsToCredits();
+wait(   1); destroyText();
+wait(   0); saveLevelScore();
+wait( 150); endStage("nextLevel": "level2_data");
