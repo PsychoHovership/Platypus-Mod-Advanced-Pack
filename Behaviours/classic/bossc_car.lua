@@ -379,7 +379,7 @@ end
 
 function SpawnNextCart(xPosition)
     local entity = Globals.trainEntities[Globals.trainCounter + 1];
-    if entity == "trainHead" then
+    if entity == "bossc_car_front" then
         xPosition = xPosition + 20;
     end
 

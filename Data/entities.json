@@ -1,5 +1,157 @@
 [
 
+  // ################################################################################################## //
+  // ########################### ││                                      ││ ########################### //
+  // ########################### ││   P L A T Y P U S    C L A S S I C   ││ ########################### //
+  // ########################### ││                                      ││ ########################### //
+  // ################################################################################################## //
+
+  // ########################### ││   B O S S E S  ││ ########################### //
+
+  {
+    "name": "bossc_car_transport",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bossc_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": 0,
+      "cartype": 0
+    },
+    "mainDebrisEntity": "debris_tan_1",
+    "secondaryDebrisEntity": "debris_tan_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 320,
+    "points": 1000,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "bossc_car_cannon",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bossc_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": 0,
+      "cartype": 1
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 600,
+    "points": 1000,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "bossc_car_wartop",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bossc_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": 0,
+      "cartype": 2
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 600,
+    "points": 1000,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "bossc_car_empty",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bossc_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": 0,
+      "cartype": 3
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 200,
+    "points": 250,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "bossc_car_front",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bossc_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": 0,
+      "frontCarTopOffsetX": 22,
+      "frontCarTopOffsetY": -4,
+      "frontCarBackOffsetX": 10,
+      "frontCarBackOffsetY": -33,
+      "frontTurretOffsetX": 51,
+      "frontTurretOffsetY": -20,
+      "missileLauncherOffsetX": 53,
+      "missileLauncherOffsetY": 87,
+      "cartype": 4
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 2000,
+    "points": 2500,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+
+  // TO-DO: Lua Bouncy Wheel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // ################################################################################################## //
+  // ########################### ││                                      ││ ########################### //
+  // ########################### ││   P L A T Y P U S   R E C L A Y E D  ││ ########################### //
+  // ########################### ││                                      ││ ########################### //
+  // ################################################################################################## //
+
+
+
+
   // ########################### ││   B U L L E T S   ││ ########################### //
 
   {
@@ -14,6 +166,185 @@
     },
     "smallAndFastMoving": true
   },
+
+
+  // ########################### ││   B O S S E S  ││ ########################### //
+
+  {
+    "name": "boss_car_transport",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": -4.5,
+      "cartype": 0
+    },
+    "mainDebrisEntity": "debris_tan_1",
+    "secondaryDebrisEntity": "debris_tan_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 250,
+    "points": 1000,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "boss_car_cannon",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": -4.5,
+      "cartype": 1
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 350,
+    "points": 1000,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "boss_car_wartop",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": -4.5,
+      "cartype": 2
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 350,
+    "points": 1000,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "boss_car_empty",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": -4.5,
+      "cartype": 3
+    },
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 100,
+    "points": 250,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "boss_car_front",
+    "sprite": "empty",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_car",
+      "fireSFX": "s_laser",
+      "topOffsetX": 0,
+      "topOffsetY": -4.5,
+      "frontCarTopOffsetX": 0,
+      "frontCarTopOffsetY": 0,
+      "frontCarBackOffsetX": 10,
+      "frontCarBackOffsetY": -33,
+      "frontTurretOffsetX": -80,
+      "frontTurretOffsetY": -30,
+      "missileLauncherOffsetX": 0,
+      "missileLauncherOffsetY": 87,
+      "cartype": 4
+    },
+    "mainDebrisEntity": "debris_red_1",
+    "secondaryDebrisEntity": "debris_red_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "speedKillTimer": 6000,
+    "endKillTimerOnDeath": true,
+    "maxHitPoints": 2000,
+    "points": 2500,
+    "highlightPoints": true,
+    "primaryTargetValue": 1,
+    "damageEffects": [
+      {
+        "frame": 5,
+        "shards": [
+          {
+            "entity": "debris_red_1",
+            "x": -130,
+            "y": 20,
+            "mx": -2,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_1",
+            "x": 140,
+            "y": 0,
+            "mx": 2,
+            "my": -6,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_red_2",
+            "x": 60,
+            "y": 20,
+            "mx": 1,
+            "my": -6,
+            "frame": 9,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "shards": [
+          {
+            "entity": "debris_red_2",
+            "x": 0,
+            "y": 0,
+            "mx": 0,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_2",
+            "x": 0,
+            "y": -60,
+            "mx": 0,
+            "my": -6,
+            "frame": 9,
+            "type": 2
+          }
+        ]
+      }
+    ]
+  },
+
+  // TO-DO: Lua Bouncy Wheel
+
 
 
   // ########################### ││   E N E M I E S  ││ ########################### //

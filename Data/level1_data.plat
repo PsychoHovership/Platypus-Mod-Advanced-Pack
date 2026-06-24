@@ -74,9 +74,26 @@ wait( 100); toggleFiring("disabled": 0);
 //wait( 0); spawnEntity("entity": "pinkSquid", "x": 700, "y": -200, "focus_x": 500, "focus_y": 250);
 
 
-// TEST
 
-// wait( 999999);
+
+
+
+
+
+
+
+// ################################### │ TEST │ ################################### //
+
+//makeTrain("carts": [ "boss_car_wartop", "boss_car_cannon", "boss_car_transport", "boss_car_empty", "boss_car_transport", "boss_car_empty", "boss_car_empty", "boss_car_front" ], "cartFruitSets": [ 9, 0, 0, 8, 8, 0, 0, 12 ]);
+
+//wait( 999999);
+
+// ################################### │ TEST │ ################################### //
+
+
+
+
+
 
 
 
