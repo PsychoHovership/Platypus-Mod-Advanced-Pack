@@ -57,6 +57,9 @@ wait(   0); spawnBackgroundSprite("x": 500, "y": 275, "mx": -0.02, "my": -0.01, 
 wait(   0); spawnBackgroundSprite("x": 250, "y": 150, "mx": -0.15, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
 wait(   0); spawnBackgroundSprite("x": 200, "y": 180, "mx": -0.25, "my": 0, "sprite": "Scenery/Common/cloud", "layer": 12);
 wait(   0); spawnBackgroundSprite("x": 750, "y": 100, "mx": -0.20, "my": 0, "sprite": "Scenery/Common/cloud2", "layer": 12);
+
+wait(   0); skipIfDiffAbove("difficulty": "Easy", "places": 5); //-r skip for testing
+
 wait(  40); blimp("y": 140, "message": 0);
 wait(   0); toggleFiring("disabled": 1);
 wait(   0); checkpoint("name": "area1");
@@ -84,9 +87,18 @@ wait( 100); toggleFiring("disabled": 0);
 
 //-c ################################### │ TEST │ ################################### //
 
-wait(   0); spawnEntity("entity": "enemy_squid", "x": 400, "y": 400, "focus_x": 200, "focus_y": 350);
-//wait(   0); spawnEntity("entity": "enemy_squid", "x": 700, "y": 450, "focus_x": 500, "focus_y": 450);
-//wait(   0); squid(                               "x": 700, "y": 350, "focus_x": 500, "focus_y": 350);
+//-b GOLDFISH
+
+wait(   1); setBonusCounter("bonus": 1, "value": 1); wait(   1); setBonusReward("bonus": 1, "type": 1000);
+wait(   1); setBonusCounter("bonus": 2, "value": 1); wait(   1); setBonusReward("bonus": 2, "type":  500);
+
+wait(   0); spawnEntity("entity": "enemy_goldfish", "x": 450, "y": 250, "bonus": 1);
+wait(   0); goldfish(                               "x": 450, "y": 350, "bonus": 2); // x: 750
+
+// SQUID
+    //wait(   0); spawnEntity("entity": "enemy_squid", "x": 400, "y": 400, "focus_x": 200, "focus_y": 350);
+    //wait(   0); spawnEntity("entity": "enemy_squid", "x": 700, "y": 450, "focus_x": 500, "focus_y": 450);
+    //wait(   0); squid(                               "x": 700, "y": 350, "focus_x": 500, "focus_y": 350);
 
 wait( 999999);
 

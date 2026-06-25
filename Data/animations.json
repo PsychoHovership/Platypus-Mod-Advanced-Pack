@@ -1,5 +1,19 @@
 [
   {
+    "sprite": "Effects/Bullets/enemybulletB",
+    "generateColliders": true,
+    "collisionSprite": "Effects/Bullets/enemybulletB_collision",
+    "matEmissionPower": 2,
+    "matDayCycleMultiplier": 0.0,
+    "rows": 4,
+    "columns": 5,
+    "updateCounter": 2
+  },
+
+
+
+
+  {
     "sprite": "Sprites/Enemies/bomber",
     "generateColliders": true,
     "matDayCycleMultiplier": 0.5,

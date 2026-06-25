@@ -11,9 +11,9 @@ local turret2
 local allowDamageFrames = false
 
 function OnInitialise()
-    if self.commandArgs.HasField("topTurret") then turret1 = self.commandArgs.GetFieldString("topTurret") else turret1 = "turretFlipPlane1" end
-    if self.commandArgs.HasField("bottomTurret") then turret2 = self.commandArgs.GetFieldString("bottomTurret") else turret2 = "turretFlipPlane2" end
-    if self.commandArgs.HasField("fruit_set") then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set") else self.fruitSet = 5 end
+    if self.commandArgs.HasField("topTurret")    then turret1 =       self.commandArgs.GetFieldString("topTurret")    else turret1 =       "turretFlipPlane1" end
+    if self.commandArgs.HasField("bottomTurret") then turret2 =       self.commandArgs.GetFieldString("bottomTurret") else turret2 =       "turretFlipPlane2" end
+    if self.commandArgs.HasField("fruit_set")    then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set")       else self.fruitSet = 5                  end
 end
 
 function OnTick()

@@ -155,6 +155,16 @@
   // ########################### ││   B U L L E T S   ││ ########################### //
 
   {
+    "name": "enemyshot_normalB",
+    "sprite": "Effects/Bullets/enemybulletB",
+    "sortOrder": 21001,
+    "behaviour": "EnemyBullet",
+    "smallAndFastMoving": true,
+    "customBehaviourData": {
+      "shottype": 1
+    }
+  },
+  {
     "name": "bullet2_enemy_bomb",
     "sprite": "Effects/Bullets/bullet bomb",
     "sortOrder": 10001,
@@ -439,6 +449,53 @@
     "highlightPoints": true,
     "points": 500,
     "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy_goldfish",
+    "sprite": "Sprites/Enemies/goldfish",
+    "behaviour": "Lua",
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 9000,
+    "speed": -2,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "maxHitPoints": 35,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 100,
+    "secondaryTargetValue": 1,
+    "customBehaviourData": {
+      "luaScript": "enemy_goldfish",
+      "fireSFX": "s_laser2",
+      "turretData": {
+        "bulletCount": {
+          "easy":    3,
+          "normal":  5,
+          "hard":    6,
+          "nasty":   8
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": 0,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "easy":    3,
+          "normal":  4,
+          "hard":    5,
+          "nasty":   5
+        },
+        "bulletSpreadAngle": 120,
+        "bulletEntity": "enemyshot_normal"
+      },
+      "firePattern": {
+      "veryEasy": [ 200 ],
+      "easy":     [ 200 ],
+      "normal":   [ 200 ],
+      "hard":     [ 200 ],
+      "nasty":    [ 200 ]
+      }
+    }
   },
   {
     "name": "enemy_saucer",
