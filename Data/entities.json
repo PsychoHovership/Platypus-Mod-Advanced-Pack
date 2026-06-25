@@ -466,6 +466,102 @@
       }
     }
   },
+  {
+    "name": "enemy_squid",
+    "sprite": "Sprites/Enemies/squid top",
+    "turrets" : [
+      {
+        "turretEntity": "squidGun",
+        "turretX": -20.5,
+        "turretY": -10.2
+      }
+    ],
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "bottomSprite": "Sprites/Enemies/squid bottom",
+      "bottomSpriteOffset": {
+        "x": 1.4,
+        "y": 2.5
+      }
+    },
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_yellow_1",
+    "secondaryDebrisEntity": "debris_yellow_2",
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow_1",
+            "x": 14,
+            "y": 6,
+            "mx": 1,
+            "my": -8,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow_1",
+            "x": -25,
+            "y": -25,
+            "mx": -3,
+            "my": 0,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow_1",
+            "x": 15,
+            "y": -22,
+            "mx": 3,
+            "my": -3,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_yellow_1",
+            "x": 0,
+            "y": 30,
+            "mx": -4,
+            "my": 0,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      }
+    ],
+    "sortOrder": 5000,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 120,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 250,
+    "primaryTargetValue": 2
+  },
+
 
   {
     "name": "enemy2_bomber",

@@ -82,13 +82,15 @@ wait( 100); toggleFiring("disabled": 0);
 
 
 
-// ################################### │ TEST │ ################################### //
+//-c ################################### │ TEST │ ################################### //
 
-//makeTrain("carts": [ "boss_car_wartop", "boss_car_cannon", "boss_car_transport", "boss_car_empty", "boss_car_transport", "boss_car_empty", "boss_car_empty", "boss_car_front" ], "cartFruitSets": [ 9, 0, 0, 8, 8, 0, 0, 12 ]);
+wait(   0); spawnEntity("entity": "enemy_squid", "x": 400, "y": 400, "focus_x": 200, "focus_y": 350);
+//wait(   0); spawnEntity("entity": "enemy_squid", "x": 700, "y": 450, "focus_x": 500, "focus_y": 450);
+//wait(   0); squid(                               "x": 700, "y": 350, "focus_x": 500, "focus_y": 350);
 
-//wait( 999999);
+wait( 999999);
 
-// ################################### │ TEST │ ################################### //
+//-c ################################### │ TEST │ ################################### //
 
 
 
