@@ -51,11 +51,9 @@ function Fire()
 end
 
 function OnTick()
-
     -- MOVEMENT
     local mxT = mx
     mx = mx + 0.06
-    my = my * 0.98
     self.movement = { x = mxT, y = my, z = 0 }
 
     -- ANIMATION
