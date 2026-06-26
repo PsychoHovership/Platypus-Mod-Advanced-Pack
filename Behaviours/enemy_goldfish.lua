@@ -1,87 +1,83 @@
-
-local mx =             -7 -- -6.8
-local mxa =            0.06
-local mxt = mx
-
-local timer = 0
-
+local mx
+local my
 local turretData
+local bullets
+local speed
+local entity
+local spreadAngle
+local spawnDistance
+local originOffX
+local originOffY
 local firePattern
 local fireSFX
-local firstShotDelay = 118
-
-local goldframe = 0
-
---local fireTimer = 100
-
-
-
+local spriteIndex = 0
+local ignoreEnemyShotSpeed
+local globalEnemyShotSpeed
 
 function OnInitialise()
+    mx = self.commandArgs.GetFieldFloat("mx", -7)
+    my = self.commandArgs.GetFieldFloat("my",  0)
 
     -- TURRET
-    turretData  = NewTurretDataFromEntityData(self.data)
+    turretData = NewTurretDataFromEntityData(self.data)
+    bullets = turretData.bulletCount.Get()
+    speed = turretData.bulletSpeed.Get()
+    entity = turretData.bulletEntity
+    spreadAngle = turretData.bulletSpreadAngle
+    spawnDistance = turretData.bulletSpawnDistance
+    originOffX = turretData.bulletOriginOffX
+    originOffY = turretData.bulletOriginOffY
     firePattern = NewFirePatternFromEntityData(self.data)
-    fireSFX     = self.customBehaviourData.GetFieldString("fireSFX", "s_laser")
+    fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "s_laser2")
 
+    ignoreEnemyShotSpeed = self.customBehaviourData.GetFieldBool("ignoreEnemyShotSpeed", false)
+    if ignoreEnemyShotSpeed == false then globalEnemyShotSpeed = Globals.enemyShotSpeedMultiplier else globalEnemyShotSpeed = 1 end
+end
+
+function Fire()
+    for i = 0, bullets - 1 do
+        local t = (bullets > 1) and (i / (bullets - 1)) or 0.5
+        local angleDeg = 180 - spreadAngle / 2 + t * spreadAngle
+        local angleRad = math.rad(angleDeg)
+        local dx = math.cos(angleRad) * spawnDistance
+        local dy = math.sin(angleRad) * spawnDistance
+
+        local fireArgs = NewJSONObject()
+        fireArgs.AddFieldFloat("mx", math.cos(angleRad) * speed * globalEnemyShotSpeed - 1)
+        fireArgs.AddFieldFloat("my", math.sin(angleRad) * speed * globalEnemyShotSpeed)
+        SpawnEntityWorld(entity, { x = self.worldPosition.x + dx + originOffX, y = self.worldPosition.y + dy + originOffY }, fireArgs)
+    end
+    PlaySound(fireSFX)
 end
 
 function OnTick()
 
-    timer = timer + 1
-
-    mxt = mx
-
-    mx = mx + mxa
-
     -- MOVEMENT
-    self.movement = { x = mxt, y = 0, z = 0 }
+    local mxT = mx
+    mx = mx + 0.06
+    my = my * 0.98
+    self.movement = { x = mxT, y = my, z = 0 }
 
     -- ANIMATION
-
-    if timer > 100 then
-
-        goldframe = goldframe + 1
-
-    end
-
-    self.animator.AnimateTo(goldframe / 3.35)
-
+    if mx > -1 then spriteIndex = spriteIndex + 1 end
+    self.animator.GoTo(spriteIndex / 3.35)
 
     -- SHOT
-
-    --if fireTimer > 0 then fireTimer = fireTimer - 1 end
-    if timer == 120 then
-        return CanFire()
-    end
-
-    if firstShotDelay > 0 then firstShotDelay = firstShotDelay - 1 end
-
     if CanFire() then
         firePattern.Tick()
-        if firePattern.CanFire() and firstShotDelay == 0 then
+        if firePattern.CanFire() then
             firePattern.MarkFired()
             Fire()
         end
     end
 
     -- DESPAWN
-
-    if self.position.x < -160 or self.position.x > 1000 then
-        self.Deactivate()
-    end
-
+    if mx > 0 and self.position.x > 800 then self.Deactivate() end
 end
 
 function OnKill()
     self.SpawnShipShards(10, -6, 0, -15, 5, 0, 0, 0, 0, 0, 0)
-end
-
-function Fire()
-    for _, bulletParams in ipairs(turretData.CalculateBulletParams(self.worldPosition, angle)) do
-        SpawnEntityWorld(bulletParams.bulletEntity, bulletParams.spawnPosition, bulletParams.args)
-    end
-    PlaySound(fireSFX)
+    self.SpawnShipDebris(8, -6, 6, -20, 0, 0, 0, 0, 10, 0, 5)
 end
 
 function HasCollision()
@@ -93,15 +89,5 @@ function ShouldKillPlayerOnTouch()
 end
 
 function CanFire()
-    return firstShotDelay <= 30
-end
-
-function CreateBullet(x, y, angle)
-    local args = NewJSONObject()
-    args.AddFieldInt("var5", RandRange(0, 360))
-    args.AddFieldInt("currentAngle", -angle)
-    args.AddFieldInt("homingDelay", 30)
-
-    PlaySound(fireSFX)
-    SpawnEntityWorld("homingMissile", {x=x, y=y}, args)
+    return spriteIndex >= 18
 end
