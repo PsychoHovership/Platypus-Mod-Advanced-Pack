@@ -9,6 +9,13 @@
     "columns": 5,
     "updateCounter": 2
   },
+  {
+    "sprite": "Sprites/Enemies/pink ship_collision",
+    "generateColliders": true,
+    "matDayCycleMultiplier": 0.5,
+    "rows": 2,
+    "columns": 4
+  },
 
 
 

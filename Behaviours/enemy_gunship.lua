@@ -21,7 +21,7 @@ function OnTick()
     if my > 30.0 then yAcceleration = -1.0 end
     if my < -30.0 then yAcceleration = 1.0 end
 
-    if self.lifetime % 26 == 0 and mx > -0.5 then
+    if smokeTrailEntity ~= "" and self.lifetime % 26 == 0 and mx > -0.5 then
         local smokeArgs = NewJSONObject()
         smokeArgs.AddFieldFloat("mx", 2)
         smokeArgs.AddFieldInt("layer", 1)

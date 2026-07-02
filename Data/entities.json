@@ -697,6 +697,99 @@
     "primaryTargetValue": 3
   },
   {
+    "name": "enemy_pinkship",
+    "sprite": "Sprites/Enemies/pink ship_collision",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_pinkship",
+      "fireSFX": "s_laser",
+      "topGunY": 68,
+      "topGunX": -30,
+      "bottomGunY": -68,
+      "bottomGunX": -30,
+      "bulletEntity": "enemyshot_laser",
+      "bulletSpeed": [6, 6, 8, 10, 12],
+      "smokeTrailEntity": "smokeRing2",
+      "smokeTrailPosX": -60,
+      "smokeTrailPosY": 0
+    },
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_pink2_1",
+    "secondaryDebrisEntity": "debris_pink2_2",
+    "damageEffects": [
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink2_1",
+            "x": -30,
+            "y": 60,
+            "mx": -2,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "parachuterChance": 0.33,
+        "parachuterX": 50,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink2_1",
+            "x": 30,
+            "y": -40,
+            "mx": 3,
+            "my": -2,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 7,
+        "parachuterChance": 0.33,
+        "parachuterX": 50,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink2_1",
+            "x": -25,
+            "y": -15,
+            "mx": -3,
+            "my": -2,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_pink2_2",
+            "x": 20,
+            "y": 76,
+            "mx": -3,
+            "my": 3,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      }
+    ],
+    "sortOrder": 1200,
+    "speed": 2,
+    "maxHitPoints": 240,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 500,
+    "primaryTargetValue": 2
+  },
+  {
     "name": "enemy2_bomber",
     "sprite": "Sprites/Enemies/bomber",
     "behaviour": "Lua",
