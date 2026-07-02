@@ -698,10 +698,11 @@
   },
   {
     "name": "enemy_pinkship",
-    "sprite": "Sprites/Enemies/pink ship_collision",
+    "sprite": "Sprites/Enemies/pink ship",
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_pinkship",
+      "fruitSet": 3,
       "fireSFX": "s_laser",
       "topGunY": 68,
       "topGunX": -30,

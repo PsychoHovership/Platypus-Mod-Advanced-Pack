@@ -31,6 +31,9 @@ function OnInitialise()
     smokeTrailEntity = self.customBehaviourData.GetFieldString("smokeTrailEntity", "")
     smokeTrailPosX = self.customBehaviourData.GetFieldFloat("smokeTrailPosX", 0)
     smokeTrailPosY = self.customBehaviourData.GetFieldFloat("smokeTrailPosY", 0)
+
+	self.lastPosition = { x = self.position.x, y = self.position.y }
+	self.nextPosition = { x = self.position.x, y = self.position.y }
 end
 
 function OnTick()
@@ -38,7 +41,7 @@ function OnTick()
 	local targetX = (self.lifetime < 750) and 600 or 1000
 	if self.position.x > targetX then
 		if mx > -math.abs(self.data.speed) then mx = mx - 0.03 else mx = -math.abs(self.data.speed) end
-	elseif self.position.x < targetX then
+	else
 		if mx < math.abs(self.data.speed) then mx = mx + 0.03 else mx = math.abs(self.data.speed) end
 	end
 	my = math.sin(self.lifetime * 0.01) * 0.5
