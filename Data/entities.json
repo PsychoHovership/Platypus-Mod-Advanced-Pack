@@ -618,8 +618,84 @@
     "points": 250,
     "primaryTargetValue": 2
   },
-
-
+  {
+    "name": "enemy_gunship",
+    "sprite": "Sprites/Enemies/gunship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_gunship",
+      "fruitSet": 4,
+      "smokeTrailEntity": "smokeRing1",
+      "smokeTrailPosX": -45,
+      "smokeTrailPosY": 1
+    },
+    "turrets": [
+      {
+        "turretEntity": "turretNastySingle",
+        "turretX": 5,
+        "turretY": -1
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": 5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_red2_1",
+    "secondaryDebrisEntity": "debris_red2_2",
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red2_1",
+            "x": 44,
+            "y": -27,
+            "mx": 2,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_black_2",
+            "x": -80,
+            "y": -5,
+            "mx": -4,
+            "my": -4,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red2_1",
+            "x": -38,
+            "y": -30,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ],
+    "sortOrder": 8100,
+    "speed": -2,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 200,
+    "highlightPoints": true,
+    "points": 500,
+    "primaryTargetValue": 3
+  },
   {
     "name": "enemy2_bomber",
     "sprite": "Sprites/Enemies/bomber",
