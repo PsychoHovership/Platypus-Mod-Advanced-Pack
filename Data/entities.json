@@ -697,6 +697,160 @@
     "primaryTargetValue": 3
   },
   {
+    "name": "enemy_supergunship",
+    "sprite": "Sprites/Enemies/super gunship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_gunship",
+      "fruitSet": 4,
+      "smokeTrailEntity": "smokeRing1",
+      "smokeTrailPosX": -45,
+      "smokeTrailPosY": 1
+    },
+    "turrets": [
+      {
+        "turretEntity": "turretSuperGunShip",
+        "turretX": 15,
+        "turretY": -1
+      }
+    ],
+    "mainDebrisEntity": "debris_purple_1",
+    "secondaryDebrisEntity": "debris_purple_2",
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 8100,
+    "speed": -2,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 300,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_1",
+            "x": 44,
+            "y": -27,
+            "mx": 2,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_purple_2",
+            "x": -80,
+            "y": -5,
+            "mx": -4,
+            "my": -4,
+            "frame": 9,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_1",
+            "x": -38,
+            "y": -30,
+            "mx": -3,
+            "my": -4,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_thrustership",
+    "sprite": "Sprites/Enemies/thruster ship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_thrustership",
+      "fruitSet": 6,
+      "smokeTrailEntity": "smokeRing2",
+      "smokeTrailPosX": -90,
+      "smokeTrailPosY": 0
+    },
+    "turrets": [
+      {
+        "turretEntity": "turretTriple",
+        "turretX": 15
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_blue_1",
+    "secondaryDebrisEntity": "debris_blue_2",
+    "sortOrder": 8100,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 500,
+    "highlightPoints": true,
+    "points": 1500,
+    "primaryTargetValue": 1,
+    "damageEffects": [
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_blue_1",
+            "x": 0,
+            "y": -30,
+            "mx": 0,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_blue_1",
+            "x": -30,
+            "y": -30,
+            "mx": -3,
+            "my": -6,
+            "frame": 8,
+            "type": 2
+          },
+          {
+            "entity": "debris_black_2",
+            "x": -60,
+            "y": 20,
+            "mx": -4,
+            "my": -6,
+            "frame": 8,
+            "type": 2
+          },
+          {
+            "entity": "debris_black_2",
+            "x": -60,
+            "y": -20,
+            "mx": -4,
+            "my": -2,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "enemy_pinkship",
     "sprite": "Sprites/Enemies/pink ship",
     "behaviour": "Lua",
@@ -782,13 +936,114 @@
       }
     ],
     "sortOrder": 1200,
-    "speed": 2,
     "maxHitPoints": 240,
     "isEnemy": true,
     "shieldPenetrating": true,
     "highlightPoints": true,
     "points": 500,
     "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy_bigpinkship",
+    "sprite": "Sprites/Enemies/big pink ship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_bigpinkship",
+      "fireSFX": "s_laser",
+      "topGunX": -60,
+      "topGunY": 128,
+      "bottomGunX": -60,
+      "bottomGunY": -128,
+      "middleGunX": -100,
+      "middleGunY": 0,
+      "bulletEntity": "enemyshot_normal",
+      "bulletSpeed": [1.5, 1.5, 2.0, 2.5, 3.0],
+      "smokeTrailEntity": "smokeRing2",
+      "smokeTrailPosX": -100,
+      "smokeTrailPosY": 0
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_pink_1",
+    "secondaryDebrisEntity": "debris_pink_2",
+    "turrets": [
+      {
+        "turretEntity": "turretTriple",
+        "turretX": 0,
+        "turretY": 0
+      }
+    ],
+    "sortOrder": 1200,
+    "maxHitPoints": 1000,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 2000,
+    "primaryTargetValue": 4,
+    "damageEffects": [
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink_1",
+            "x": -60,
+            "y": 120,
+            "mx": -6,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "parachuterChance": 0.33,
+        "parachuterX": 100,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink_1",
+            "x": 60,
+            "y": -80,
+            "mx": -9,
+            "my": 0,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 7,
+        "parachuterChance": 0.33,
+        "parachuterX": 100,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink_1",
+            "x": -50,
+            "y": -30,
+            "mx": -7,
+            "my": 0,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_pink_2",
+            "x": 40,
+            "y": 152,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "enemy2_bomber",
@@ -846,6 +1101,16 @@
       "luaScript":"gun_boat_cannon"
     },
     "sortOrder": -100
+  },
+  {
+    "name": "gun_lasersquid",
+    "sprite": "Sprites/Enemies/laser squid gun",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "gun_lasersquid",
+      "shotOffX": -25,
+      "shotOffY": 10
+    }
   },
 
 
