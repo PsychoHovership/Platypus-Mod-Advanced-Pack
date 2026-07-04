@@ -42,14 +42,14 @@ function OnKill()
     self.SpawnShipDebris(4, -9, 3, -15, 5, 0, 0, 2, 4, 2, 4)
 end
 
+function CanFire()
+    return self.lifetime >= 160
+end
+
 function HasCollision()
     return true
 end
 
 function ShouldKillPlayerOnTouch()
     return self.position.x > 110
-end
-
-function CanFire()
-    return self.lifetime >= 160
 end

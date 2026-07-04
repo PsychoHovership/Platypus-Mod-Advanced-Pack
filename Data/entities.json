@@ -619,6 +619,303 @@
     "primaryTargetValue": 2
   },
   {
+    "name": "enemy_greenbigun",
+    "sprite": "Sprites/Enemies/green big uns",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"enemy_greenbigun",
+      "smokeTrailEntity": "smokeRing2",
+      "smokeTrailPosX": -54,
+      "smokeTrailPosY": 0
+    },
+    "explosionEntity": "explosionMedium",
+    "explosionX": 5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_green_1",
+    "secondaryDebrisEntity": "debris_green_2",
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": -8,
+            "y": 0,
+            "mx": -2,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_green_2",
+            "x": 19,
+            "y": 0,
+            "mx": 2,
+            "my": -6,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_2",
+            "x": 0,
+            "y": -15,
+            "mx": -1,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": 45,
+            "y": 15,
+            "mx": -1,
+            "my": -8,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_green_2",
+            "x": 45,
+            "y": -15,
+            "mx": 2,
+            "my": 3,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      }
+    ],
+    "sortOrder": 9000,
+    "speed": 0.2,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 120,
+    "highlightPoints": true,
+    "points": 200,
+    "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy_redbigun",
+    "sprite": "Sprites/Enemies/red big uns",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_redbigun",
+      "smokeTrailEntity": "smokeRing1",
+      "smokeTrailPosX": -94,
+      "smokeTrailPosY": 2,
+      "expertTurretEntity": "turretBigUnSlower",
+      "expertTurretPosX": 20,
+      "expertTurretPosY": 45
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_red_1",
+    "secondaryDebrisEntity": "debris_red_2",
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red_1",
+            "x": -16,
+            "y": 0,
+            "mx": -2,
+            "my": -10,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_2",
+            "x": 38,
+            "y": 0,
+            "mx": 2,
+            "my": -8,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 80,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red_2",
+            "x": 0,
+            "y": -30,
+            "mx": -1,
+            "my": -8,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 80,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red_1",
+            "x": 90,
+            "y": 30,
+            "mx": -1,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_2",
+            "x": 90,
+            "y": -30,
+            "mx": 2,
+            "my": -9,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      }
+    ],
+    "sortOrder": 8000,
+    "speed": 2.5,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 350,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5
+  },
+  {
+    "name": "enemy_purplebigun",
+    "sprite": "Sprites/Enemies/purple big uns",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_purplebigun",
+      "smokeTrailEntity": "smokeRing1",
+      "smokeTrailPosX": -144,
+      "smokeTrailPosY": 2,
+      "expertTurretEntity1": "turretBigUn",
+      "expertTurretPosX1": 30,
+      "expertTurretPosY1": 65,
+      "expertTurretEntity2": "turretBigUnSlower",
+      "expertTurretPosX2": 30,
+      "expertTurretPosY2": -65
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_purple_1",
+    "secondaryDebrisEntity": "debris_purple_2",
+    "sortOrder": 7000,
+    "speed": 1.5,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 1200,
+    "highlightPoints": true,
+    "points": 2500,
+    "primaryTargetValue": 8,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_1",
+            "x": -24,
+            "y": 0,
+            "mx": -2,
+            "my": -10,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_purple_2",
+            "x": 60,
+            "y": 0,
+            "mx": 2,
+            "my": -9,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 120,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_2",
+            "x": 0,
+            "y": -45,
+            "mx": -1,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 120,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_1",
+            "x": 135,
+            "y": 45,
+            "mx": -1,
+            "my": -3,
+            "frame": 8,
+            "type": 1
+          },
+          {
+            "entity": "debris_purple_2",
+            "x": 135,
+            "y": -45,
+            "mx": 2,
+            "my": -8,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "enemy_gunship",
     "sprite": "Sprites/Enemies/gunship",
     "behaviour": "Lua",
@@ -1040,6 +1337,152 @@
             "my": -6,
             "frame": 9,
             "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_homingship",
+    "sprite": "Sprites/Enemies/homing ship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"enemy_homingship",
+      "fruitSet": 5,
+      "smokeTrailEntity": "smokeRing1",
+      "smokeTrailPosX": -73,
+      "smokeTrailPosY": 2,
+      "topMissileOffX": 70,
+      "topMissileOffY": 56,
+      "bottomMissileOffX": 70,
+      "bottomMissileOffY": -56,
+      "fireSFX": "s_woosh",
+      "firePattern": {
+        "veryEasy": [ 120 ],
+        "easy": [ 120 ],
+        "normal": [ 120 ],
+        "hard": [ 120 ],
+        "nasty": [ 120 ]
+      }
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_green2_1",
+    "secondaryDebrisEntity": "debris_green2_2",
+    "sortOrder": 1200,
+    "maxHitPoints": 300,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 6,
+        "parachuterY": 66,
+        "shards": [
+          {
+            "entity": "debris_green2_1",
+            "x": 30,
+            "y": -60,
+            "mx": 4,
+            "my": -6,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 6,
+        "parachuterY": 66,
+        "shards": [
+          {
+            "entity": "debris_green2_1",
+            "x": -40,
+            "y": 20,
+            "mx": 4,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_flipplane",
+    "sprite": "Sprites/Enemies/flip plane",
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_flipplane",
+      "fruitSet": 5,
+      "damageFrames": 5,
+      "topTurretEntity": "turretFlipPlane1",
+      "topTurretX": -22,
+      "topTurretY": 67,
+      "bottomTurretEntity": "turretFlipPlane2",
+      "bottomTurretX": -22,
+      "bottomTurretY": -74
+    },
+    "mainDebrisEntity": "debris_purple_1",
+    "secondaryDebrisEntity": "debris_purple_2",
+    "sortOrder": 4000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 300,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 4,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0.33,
+        "parachuterX": 80,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_1",
+            "x": -30,
+            "y": 56,
+            "mx": -3,
+            "my": -8,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 80,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_2",
+            "x": 10,
+            "y": 100,
+            "mx": 3,
+            "my": -5,
+            "frame": 8,
+            "type": 1
+          },
+          {
+            "entity": "debris_purple_1",
+            "x": -25,
+            "y": -50,
+            "mx": -4,
+            "my": -2,
+            "frame": 9,
+            "type": 2
           }
         ]
       }

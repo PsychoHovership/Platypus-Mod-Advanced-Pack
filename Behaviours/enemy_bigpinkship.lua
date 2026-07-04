@@ -19,14 +19,13 @@ function OnInitialise()
     if self.commandArgs.HasField("fruit_set") then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set") else
         if self.customBehaviourData.HasField("fruitSet") then self.fruitSet = self.customBehaviourData.GetFieldInt("fruitSet") end
     end
-
 	topGunY = self.customBehaviourData.GetFieldFloat("topGunY", 0)
 	topGunX = self.customBehaviourData.GetFieldFloat("topGunX", 0)
 	bottomGunY = self.customBehaviourData.GetFieldFloat("bottomGunY", 0)
 	bottomGunX = self.customBehaviourData.GetFieldFloat("bottomGunX", 0)
 	middleGunX = self.customBehaviourData.GetFieldFloat("middleGunX", 0)
 	middleGunY = self.customBehaviourData.GetFieldFloat("middleGunY", 0)
-	fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "s_laser")
+	fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "")
 	bulletEntity = self.customBehaviourData.GetFieldString("bulletEntity", "")
     if self.customBehaviourData.HasField("bulletSpeed") then
         local s = self.customBehaviourData.GetFieldFloatArray("bulletSpeed")
@@ -90,7 +89,7 @@ function OnTick()
         	fireArgs.AddFieldFloat("mx", math.cos(rad) * bulletSpeed * Globals.enemyShotSpeedMultiplier - 1)
         	fireArgs.AddFieldFloat("my", (-math.sin(rad)) * bulletSpeed * Globals.enemyShotSpeedMultiplier)
         	SpawnEntityWorld(bulletEntity, { x = self.worldPosition.x + middleGunX, y = self.worldPosition.y + middleGunY }, fireArgs)
-			PlaySound(fireSFX)
+			if fireSFX ~= "" then PlaySound(fireSFX) end
 		end
 	end
 

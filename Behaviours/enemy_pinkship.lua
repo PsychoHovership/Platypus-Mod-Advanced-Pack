@@ -15,12 +15,11 @@ function OnInitialise()
     if self.commandArgs.HasField("fruit_set") then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set") else
         if self.customBehaviourData.HasField("fruitSet") then self.fruitSet = self.customBehaviourData.GetFieldInt("fruitSet") end
     end
-
 	topGunY = self.customBehaviourData.GetFieldFloat("topGunY", 0)
 	topGunX = self.customBehaviourData.GetFieldFloat("topGunX", 0)
 	bottomGunY = self.customBehaviourData.GetFieldFloat("bottomGunY", 0)
 	bottomGunX = self.customBehaviourData.GetFieldFloat("bottomGunX", 0)
-	fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "s_laser")
+	fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "")
 	bulletEntity = self.customBehaviourData.GetFieldString("bulletEntity", "")
     if self.customBehaviourData.HasField("bulletSpeed") then
         local s = self.customBehaviourData.GetFieldFloatArray("bulletSpeed")
@@ -61,7 +60,7 @@ function OnTick()
 		fireArgs.AddFieldFloat("my", 0)
 		SpawnEntityWorld(bulletEntity, { x = self.worldPosition.x + topGunX, y = self.worldPosition.y + topGunY }, fireArgs)
 		SpawnEntityWorld(bulletEntity, { x = self.worldPosition.x + bottomGunX, y = self.worldPosition.y + bottomGunY }, fireArgs)
-		PlaySound(fireSFX)
+		if fireSFX ~= "" then PlaySound(fireSFX) end
 	end
 
     local lastFrame = self.animator.currentFrame

@@ -1,84 +1,63 @@
-local mx = 6.5
-local mxTotal
-local knockback = 0
-local knockbackCap = 0
-local timer = 82
-local flipTimer = 133
-local flipSprite = 0
-local spawnTurrets = false
-local turret1
-local turret2
-local allowDamageFrames = false
+local mx = 5
+local flipFrame = 21
+local oldDamageFrame = 0
+local newDamageFrame = 0
+local totalDamageFrames
+local totalFlipFrames
+local turretEntity1
+local turretPosX1
+local turretPosY1
+local turretEntity2
+local turretPosX2
+local turretPosY2
 
 function OnInitialise()
-    if self.commandArgs.HasField("topTurret")    then turret1 =       self.commandArgs.GetFieldString("topTurret")    else turret1 =       "turretFlipPlane1" end
-    if self.commandArgs.HasField("bottomTurret") then turret2 =       self.commandArgs.GetFieldString("bottomTurret") else turret2 =       "turretFlipPlane2" end
-    if self.commandArgs.HasField("fruit_set")    then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set")       else self.fruitSet = 5                  end
+    if self.commandArgs.HasField("fruit_set") then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set") else
+        if self.customBehaviourData.HasField("fruitSet") then self.fruitSet = self.customBehaviourData.GetFieldInt("fruitSet") end
+    end
+    totalDamageFrames = self.customBehaviourData.GetFieldInt("damageFrames", 5)
+    totalFlipFrames = self.animator.totalFrames - totalDamageFrames
+    turretEntity1 = self.customBehaviourData.GetFieldString("topTurretEntity", "")
+    turretPosX1 = self.customBehaviourData.GetFieldInt("topTurretX", 0)
+    turretPosY1 = self.customBehaviourData.GetFieldInt("topTurretY", 0)
+    turretEntity2 = self.customBehaviourData.GetFieldString("bottomTurretEntity", "")
+    turretPosX2 = self.customBehaviourData.GetFieldInt("bottomTurretX", 0)
+    turretPosY2 = self.customBehaviourData.GetFieldInt("bottomTurretY", 0)
 end
 
 function OnTick()
-    mxTotal = mx + knockback
-
-    if knockback > 0 then
-        knockback = knockback - 0.065
-    else
-        knockback = 0
+    self.movement = { x = mx * 1.3, y = 0, z = 0 }
+    if self.lifetime > 80 then
+        if mx > -1 then mx = mx - 0.05 else mx = -1 end
     end
 
-    knockbackCap = mx + 1.3
-
-    self.movement = { x = mxTotal, y = 0, z = 0 }
-
-    if timer >= 0 then
-        timer = timer - 1
+    if self.lifetime == 146 then
+        if turretEntity1 ~= "" then CreateTurret(turretEntity1, turretPosX1, turretPosY1, self, Globals.firewait) end
+        if turretEntity2 ~= "" then CreateTurret(turretEntity2, turretPosX2, turretPosY2, self, Globals.firewait) end
     end
 
-    if timer <= 0 and mx > -1.3 then
-        mx = mx - 0.065
+    if self.lifetime > 40 then
+        oldDamageFrame = newDamageFrame
+        newDamageFrame = self.GetDamageFrame(self.data.maxHitPoints, self.hitPoints, totalDamageFrames)
+        self.HandleDamageEffects(newDamageFrame, oldDamageFrame)
     end
+    flipFrame = Lerp(0, totalFlipFrames - 1, (self.lifetime - 130) / (145 - 130))
+    if self.lifetime < 146 then self.animator.GoTo(flipFrame) else self.animator.GoTo(newDamageFrame + totalFlipFrames) end
 
-    if flipSprite < 11 then
-        flipTimer = flipTimer - 1
-    end
-
-    if flipSprite == 1 or flipSprite == 3 or flipSprite == 5 or flipSprite == 7 then
-        flipSprite = flipSprite + 1
-        flipTimer = 2
-    elseif flipTimer <= 0 and flipSprite < 11 then
-        flipSprite = flipSprite + 1
-    end
-
-    local damageframe = self.GetDamageFrame(self.hitPoints / 3.25)   
-
-    if allowDamageFrames == false then
-        self.animator.AnimateTo(flipSprite)
-    else
-        self.animator.AnimateTo(damageframe);
-    end
-
-    if spawnTurrets == false and flipSprite == 11 then
-        SpawnEntityChild(turret1, self, { x = -22, y = 67 }, NewJSONObject())
-        SpawnEntityChild(turret2, self, { x = -22, y = -74 }, NewJSONObject())
-        allowDamageFrames = true
-        spawnTurrets = true
-    end
-
-    if self.position.x < -200 and mx < 0 then self.Deactivate() end
+    if self.position.x < AdjustXToWideScreen(-150) and mx < 0 then self.Deactivate() end
 end
 
 function OnHitByBullet()
-    if mx <= 0.845 and self.position.x <= 770 then
-        knockback = 2.145 - knockbackCap
-    end
+    if self.position.x <= 770 and mx < 1 then mx = 0.65 end
 end
 
 function OnKill()
-    self.SpawnShipShards(16, -6, 0, -15, 5, 0, 0, 0, 0, 0, 0)
-    self.SpawnShipDebris(8, -6, 6, -20, 0, 0, 0, 0, 10, 0, 5)
+    self.SpawnShipShards(80, -14, 8, -22, 5, 0, -40, 2, 6, 2, 6)
+    self.SpawnShipDebris(8, -14, 8, -22, 5, 0, -40, 2, 6, 2, 6)
 end
 
 function CanFire()
-    return self.position.x >= 60
+    return self.lifetime >= 146 and self.position.x > 60
 end
 
 function HasCollision()
@@ -86,5 +65,5 @@ function HasCollision()
 end
 
 function ShouldKillPlayerOnTouch()
-    return self.position.x >= 260 or mx < 0
+    return self.lifetime > 70
 end
