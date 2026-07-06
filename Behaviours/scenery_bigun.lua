@@ -4,6 +4,8 @@ local mxTotal
 local xPos
 local yPos
 local smokeTrailEntity
+local smokeTrailSpeed
+local smokeTrailLayer
 local smokeTrailPosX
 local smokeTrailPosY
 
@@ -18,6 +20,8 @@ function OnInitialise()
     self.movement = { x = mxTotal, y = 0, z = 0 }
 
     smokeTrailEntity = self.customBehaviourData.GetFieldString("smokeTrailEntity", "")
+    smokeTrailSpeed = self.customBehaviourData.GetFieldFloat("smokeTrailSpeed", 0.4)
+    smokeTrailLayer = self.customBehaviourData.GetFieldFloat("smokeTrailLayer", 7)
     smokeTrailPosX = self.customBehaviourData.GetFieldFloat("smokeTrailPosX", 0)
     smokeTrailPosY = self.customBehaviourData.GetFieldFloat("smokeTrailPosY", 0)
 end
@@ -25,8 +29,8 @@ end
 function OnTick()
     if smokeTrailEntity ~= "" and self.lifetime % 16 == 0 then
         local smokeArgs = NewJSONObject()
-        smokeArgs.AddFieldFloat("mx", 1)
-        smokeArgs.AddFieldInt("layer", self.layer)
+        smokeArgs.AddFieldFloat("mx", smokeTrailSpeed)
+        smokeArgs.AddFieldInt("layer", smokeTrailLayer)
         smokeArgs.AddFieldInt("sortOrder", self.sortingGroup.GetSortingOrder() - 1)
         SpawnEntityWorld(smokeTrailEntity, { x = self.worldPosition.x + smokeTrailPosX, y = self.worldPosition.y + smokeTrailPosY }, smokeArgs)
     end
