@@ -3,7 +3,6 @@ local mxMax
 local mxTotal
 local xPos
 local yPos
-local trailTimer = 0
 local smokeTrailEntity
 local smokeTrailPosX
 local smokeTrailPosY
@@ -24,14 +23,12 @@ function OnInitialise()
 end
 
 function OnTick()
-    if smokeTrailEntity ~= "" then
-        if trailTimer > 0 then trailTimer = trailTimer - 1
-        else
-            trailTimer = 16
-            local smokeArgs = NewJSONObject()
-            smokeArgs.AddFieldFloat("mx", 1)
-            SpawnEntityWorld(smokeTrailEntity, { x = self.worldPosition.x + smokeTrailPosX, y = self.worldPosition.y + smokeTrailPosY }, smokeArgs)
-        end
+    if smokeTrailEntity ~= "" and self.lifetime % 16 == 0 then
+        local smokeArgs = NewJSONObject()
+        smokeArgs.AddFieldFloat("mx", 1)
+        smokeArgs.AddFieldInt("layer", self.layer)
+        smokeArgs.AddFieldInt("sortOrder", self.sortingGroup.GetSortingOrder() - 1)
+        SpawnEntityWorld(smokeTrailEntity, { x = self.worldPosition.x + smokeTrailPosX, y = self.worldPosition.y + smokeTrailPosY }, smokeArgs)
     end
 
     if mxTotal > 0 and self.position.x > 1000 then self.Deactivate() end

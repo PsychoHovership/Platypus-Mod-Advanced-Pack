@@ -1,6 +1,5 @@
 local mx
 local xAcceleration
-local trailTimer = 0
 local smokeTrailEntity
 local smokeTrailPosX
 local smokeTrailPosY
@@ -26,14 +25,12 @@ function OnTick()
     self.movement = { x = mx, y = 0, z = 0 }
     mx = mx + xAcceleration
 
-    if smokeTrailEntity ~= "" then
-        trailTimer = trailTimer - 1
-        if trailTimer <= 0 then
-            trailTimer = 16
-            local smokeArgs = NewJSONObject()
-            smokeArgs.AddFieldFloat("mx", 1)
-            SpawnEntityWorld(smokeTrailEntity, { x = self.worldPosition.x + smokeTrailPosX, y = self.worldPosition.y + smokeTrailPosY }, smokeArgs)
-        end
+    if smokeTrailEntity ~= "" and self.lifetime % 16 == 0 then
+        local smokeArgs = NewJSONObject()
+        smokeArgs.AddFieldFloat("mx", 1)
+        smokeArgs.AddFieldInt("layer", 1)
+        smokeArgs.AddFieldInt("sortOrder", self.sortingGroup.GetSortingOrder() - 1)
+        SpawnEntityWorld(smokeTrailEntity, { x = self.worldPosition.x + smokeTrailPosX, y = self.worldPosition.y + smokeTrailPosY }, smokeArgs)
     end
 
     local lastFrame = self.animator.currentFrame
@@ -44,12 +41,12 @@ function OnTick()
 end
 
 function OnKill()
-    self.SpawnShipShards(16, -6, 0, -15, 5, 0, 0, 0, 0, 0, 0)
-    self.SpawnShipDebris(8, -6, 6, -20, 0, 0, 0, 0, 10, 0, 5)
+    self.SpawnShipShards(40, -9, 3, -15, 5, 0, 0, 2, 2, 2, 2)
+    self.SpawnShipDebris(4, -9, 3, -15, 5, 0, 0, 2, 4, 2, 4)
 end
 
 function CanFire()
-    return self.position.x >= 120
+    return self.position.x >= 200
 end
 
 function HasCollision()
@@ -57,5 +54,5 @@ function HasCollision()
 end
 
 function ShouldKillPlayerOnTouch()
-    return self.position.x >= 29
+    return self.position.x > 30
 end
