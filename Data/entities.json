@@ -451,6 +451,32 @@
     "primaryTargetValue": 2
   },
   {
+    "name": "enemy_saucer",
+    "sprite": "Sprites/Enemies/saucer",
+    "behaviour": "Lua",
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": 4,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 10,
+    "secondaryTargetValue": 1,
+    "customBehaviourData": {
+      "luaScript": "enemy_saucer",
+      "firePattern": {
+        "veryEasy": [ 80 ],
+        "easy": [ 80 ],
+        "normal": [ 60 ],
+        "hard": [ 40 ],
+        "nasty": [ 50 ]
+      }
+    }
+  },
+  {
     "name": "enemy_goldfish",
     "sprite": "Sprites/Enemies/goldfish",
     "behaviour": "Lua",
@@ -498,34 +524,20 @@
     }
   },
   {
-    "name": "enemy_saucer",
-    "sprite": "Sprites/Enemies/saucer",
-    "behaviour": "Lua",
-    "explosionEntity": "explosionSmall",
-    "explosionX": 0,
-    "explosionY": 0,
-    "sortOrder": 10000,
-    "maxHitPoints": 1,
-    "speed": 4,
-    "isEnemy": true,
-    "deathBulletEntity": "deathBullet",
-    "highlightPoints": false,
-    "points": 10,
-    "secondaryTargetValue": 1,
-    "customBehaviourData": {
-      "luaScript": "enemy_saucer",
-      "firePattern": {
-        "veryEasy": [ 80 ],
-        "easy": [ 80 ],
-        "normal": [ 60 ],
-        "hard": [ 40 ],
-        "nasty": [ 50 ]
-      }
-    }
-  },
-  {
     "name": "enemy_squid",
     "sprite": "Sprites/Enemies/squid top",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 5,
+      "hangtime": 900,
+      "entityType": 0,
+      "bottomSprite": "Sprites/Enemies/squid bottom",
+      "bottomOffX": 1.4,
+      "bottomOffY": 2.5
+    },
     "turrets" : [
       {
         "turretEntity": "squidGun",
@@ -533,15 +545,6 @@
         "turretY": -10.2
       }
     ],
-    "behaviour": "Lua",
-    "customBehaviourData": {
-      "luaScript": "enemy_squid",
-      "bottomSprite": "Sprites/Enemies/squid bottom",
-      "bottomSpriteOffset": {
-        "x": 1.4,
-        "y": 2.5
-      }
-    },
     "explosionEntity": "explosionMedium",
     "explosionX": 0,
     "explosionY": 0,
@@ -617,6 +620,592 @@
     "highlightPoints": true,
     "points": 250,
     "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy_bigsquid",
+    "sprite": "Sprites/Enemies/big squid top",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "fruitSets": [5],
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 6,
+      "hangtime": 2000,
+      "entityType": 1,
+      "bottomSprite": "Sprites/Enemies/big squid bottom",
+      "bottomOffX": 1.7,
+      "bottomOffY": 6
+    },
+    "turrets" : [
+      {
+        "turretEntity": "bigSquidGun",
+        "turretX": -42,
+        "turretY": -21
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": -5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_green_1",
+    "secondaryDebrisEntity": "debris_green_2",
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": 28,
+            "y": 12,
+            "mx": 1,
+            "my": -9,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": -50,
+            "y": -50,
+            "mx": -3,
+            "my": 0,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": 30,
+            "y": -45,
+            "mx": 3,
+            "my": -4,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_green_1",
+            "x": 0,
+            "y": 60,
+            "mx": 4,
+            "my": -5,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ],
+    "sortOrder": 1200,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 500,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5
+  },
+  {
+    "name": "enemy_pinksquid",
+    "sprite": "Sprites/Enemies/squid top pink",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "fruitSets": [5],
+      "baseAcceleration": 0.1,
+      "focusAcceleration": 0.1,
+      "movementThreshold": 4,
+      "hangtime": 2000,
+      "entityType": 1,
+      "bottomSprite": "Sprites/Enemies/squid bottom pink",
+      "bottomOffX": 3,
+      "bottomOffY": 8
+    },
+    "turrets" : [
+      {
+        "turretEntity": "pinkSquidGun",
+        "turretX": -63,
+        "turretY": -31
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": -5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_pink_1",
+    "secondaryDebrisEntity": "debris_pink_2",
+    "sortOrder": 1200,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 1100,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 3000,
+    "primaryTargetValue": 5,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink_1",
+            "x": 42,
+            "y": 18,
+            "mx": 1,
+            "my": -9,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink_1",
+            "x": -75,
+            "y": -75,
+            "mx": 3,
+            "my": -4,
+            "frame": 9,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_pink_2",
+            "x": 45,
+            "y": -66,
+            "mx": 3,
+            "my": -5,
+            "frame": 2,
+            "type": 2
+          },
+          {
+            "entity": "debris_pink_2",
+            "x": 0,
+            "y": 90,
+            "mx": -4,
+            "my": -3,
+            "frame": 0,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_minitrashcan",
+    "sprite": "Sprites/Enemies/mini trashcan",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 5,
+      "hangtime": 900,
+      "entityType": 2,
+      "bottomSprite": "Sprites/Enemies/mini trashcan bottom",
+      "bottomOffX": 1.4,
+      "bottomOffY": 2
+    },
+    "turrets" : [
+      {
+        "turretEntity": "miniTrashcanGun",
+        "turretX": -21,
+        "turretY": -10
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_blue_1",
+    "secondaryDebrisEntity": "debris_blue_2",
+    "sortOrder": 5000,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 120,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 250,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "shards": [
+          {
+            "entity": "debris_blue_2",
+            "x": 10,
+            "y": 20,
+            "mx": 4,
+            "my": -6,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "shards": [
+          {
+            "entity": "debris_blue_2",
+            "x": 10,
+            "y": -25,
+            "mx": 4,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+       },
+       {
+        "frame": 5,
+        "shards": [
+            {
+                "entity": "debris_blue_2",
+                "x": 15,
+                "y": -6,
+                "mx": 4,
+                "my": -4,
+                "frame": 9,
+                "type": 1
+              }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_lasersquid",
+    "sprite": "Sprites/Enemies/laser squid",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "fruitSets": [5],
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 6,
+      "hangtime": 1600,
+      "entityType": 3,
+      "bottomSprite": "Sprites/Enemies/laser squid bottom",
+      "bottomOffX": 3,
+      "bottomOffY": 8
+    },
+    "turrets": [
+      {
+        "turretEntity": "gun_lasersquid",
+        "turretX": -44,
+        "turretY": -42
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": -5,
+    "explosionY": -20,
+    "mainDebrisEntity": "debris_orange_1",
+    "secondaryDebrisEntity": "debris_orange_2",
+    "sortOrder": 1200,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 600,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 5,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "shards": [
+          {
+            "entity": "debris_orange_2",
+            "x": 25,
+            "y": 40,
+            "mx": 4,
+            "my": -6,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "shards": [
+          {
+            "entity": "debris_orange_2",
+            "x": 20,
+            "y": -52,
+            "mx": 4,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+       },
+       {
+        "frame": 5,
+        "shards": [
+            {
+                "entity": "debris_orange_2",
+                "x": 30,
+                "y": -15,
+                "mx": 4,
+                "my": -4,
+                "frame": 9,
+                "type": 1
+            }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_lasersquidGun",
+    "sprite": "Sprites/Enemies/laser squid gun",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_lasersquidGun",
+      "shotOffX": -25,
+      "shotOffY": 10
+    }
+  },
+  {
+    "name": "enemy_startick",
+    "sprite": "Sprites/Enemies/tick red",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "fruitSets": [3, 4, 5],
+      "baseAcceleration": 0.1,
+      "focusAcceleration": 0.1,
+      "movementThreshold": 4,
+      "hangtime": 4000,
+      "entityType": 4,
+      "bottomSprite": "Sprites/Enemies/tick bottom red",
+      "bottomOffX": 1.4,
+      "bottomOffY": 2,
+      "eyeSprite": "Sprites/Enemies/glowing eye",
+      "eyeOffX": 1,
+      "eyeOffY": -5.5
+    },
+    "turrets" : [
+      {
+        "turretEntity": "bigTickGun",
+        "turretX": 0,
+        "turretY": 0
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_red2_1",
+    "secondaryDebrisEntity": "debris_red2_2",
+    "sortOrder": 5000,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 500,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 1500,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "shards": [
+          {
+            "entity": "debris_red2_1",
+            "x": -60,
+            "y": -10,
+            "mx": -4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "shards": [
+          {
+            "entity": "debris_red2_1",
+            "x":  60,
+            "y": -10,
+            "mx": 4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_medtick",
+    "sprite": "Sprites/Enemies/tick yellow",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "fruitSets": [3, 4, 5],
+      "baseAcceleration": 0.1,
+      "focusAcceleration": 0.1,
+      "movementThreshold": 4,
+      "hangtime": 4000,
+      "entityType": 4,
+      "bottomSprite": "Sprites/Enemies/tick bottom yellow",
+      "bottomOffX": 1.4,
+      "bottomOffY": 2,
+      "eyeSprite": "Sprites/Enemies/glowing eye",
+      "eyeOffX": 1,
+      "eyeOffY": -5.5
+    },
+    "turrets" : [
+      {
+        "turretEntity": "medTickGun",
+        "turretX": 0,
+        "turretY": 0
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_yellow_1",
+    "secondaryDebrisEntity": "debris_yellow_2",
+    "sortOrder": 5000,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 500,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 1500,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "shards": [
+          {
+            "entity": "debris_yellow_1",
+            "x": -60,
+            "y": -10,
+            "mx": -4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "shards": [
+          {
+            "entity": "debris_yellow_1",
+            "x":  60,
+            "y": -10,
+            "mx": 4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_bigtick",
+    "sprite": "Sprites/Enemies/tick",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_squid",
+      "fruitSets": [3, 4, 5],
+      "baseAcceleration": 0.1,
+      "focusAcceleration": 0.1,
+      "movementThreshold": 4,
+      "hangtime": 4000,
+      "entityType": 4,
+      "bottomSprite": "Sprites/Enemies/tick bottom",
+      "bottomOffX": 1.4,
+      "bottomOffY": 2,
+      "eyeSprite": "Sprites/Enemies/glowing eye",
+      "eyeOffX": 1,
+      "eyeOffY": -5.5
+    },
+    "turrets" : [
+      {
+        "turretEntity": "randomTickGun",
+        "turretX": 0,
+        "turretY": 0
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_red_1",
+    "secondaryDebrisEntity": "debris_red_2",
+    "sortOrder": 5000,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 2600,
+    "nudgeOnHit": true,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 4000,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "shards": [
+          {
+            "entity": "debris_red_1",
+            "x": -60,
+            "y": -10,
+            "mx": -4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "shards": [
+          {
+            "entity": "debris_red_1",
+            "x":  60,
+            "y": -10,
+            "mx": 4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "enemy_greenbigun",

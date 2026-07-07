@@ -1,101 +1,104 @@
-local mx = -3
+local mx = 0
 local my = 0
-local dx = 0
-local dy = 0
-local length
-local speed = 6
-local timer
-local fireTimer = 100
-local leaveTimer = 1200
-local finSprite
-local finCollider = nil
-local t = 1
-
-local posY = 0
-
-local focusx = 0
-local focusy = 0
+local focusX
+local focusY
+local baseAcceleration
+local focusAcceleration
+local movementThreshold
+local hangtime
+local entityType
+local bottomSprite
+local bottomOffX
+local bottomOffY
+local bottomAnimator
+local bottomCollider
+local eyeSprite
+local eyeOffX
+local eyeOffY
+local eyeAnimator
+local fruitSets = {}
 
 function OnInitialise()
+    if self.commandArgs.HasField("fruitSets") then
+        local f = self.commandArgs.GetFieldIntArray("fruitSets")
+        for i = 1, #f do fruitSets[i] = f[i] or 0 end
+    else
+        if self.customBehaviourData.HasField("fruitSets") then
+            local f = self.customBehaviourData.GetFieldIntArray("fruitSets")
+            for i = 1, #f do fruitSets[i] = f[i] or 0 end
+        else fruitSets = nil end
+    end
 
-    focusx = self.commandArgs.GetFieldInt("focus_x")
-    focusy = self.commandArgs.GetFieldInt("focus_y")
+    focusX = self.commandArgs.GetFieldFloat("focus_x", 350)
+    focusY = -self.commandArgs.GetFieldFloat("focus_y", 500)
+    baseAcceleration = self.customBehaviourData.GetFieldFloat("baseAcceleration", 0)
+    focusAcceleration = self.customBehaviourData.GetFieldFloat("focusAcceleration", 0)
+    movementThreshold = self.customBehaviourData.GetFieldFloat("movementThreshold", 0)
+    hangtime = self.customBehaviourData.GetFieldInt("hangtime", 0)
+    entityType = self.customBehaviourData.GetFieldInt("entityType", 0)
 
-    timer = math.random(0, 30)
-
-    finSprite = self.SpawnAttachedSpriteAnimator("Sprites/Enemies/squid bottom", -1)
-    finSprite.position = { x = 1.5, y = -37.5 }
-
-    if finSprite ~= nil then finCollider = finSprite.AddCollider(); finCollider.SetLogicLayerEnemy() end
-
+    bottomSprite = self.customBehaviourData.GetFieldString("bottomSprite", "")
+    bottomOffX = self.customBehaviourData.GetFieldFloat("bottomOffX", 0)
+    bottomOffY = self.customBehaviourData.GetFieldFloat("bottomOffY", 0)
+    if bottomSprite ~= "" then
+        if entityType == 3 then bottomAnimator = self.SpawnAttachedSpriteAnimator(bottomSprite, 1) else bottomAnimator = self.SpawnAttachedSpriteAnimator(bottomSprite, -1) end
+        bottomAnimator.position = { x = bottomOffX, y = bottomOffY - (GetSpriteDimensions(self.animator.currentSheet, 0).y / 2) - (GetSpriteDimensions(bottomAnimator.currentSheet, 0).y / 2) }
+        bottomAnimator.LoopAnimation()
+        bottomCollider = bottomAnimator.AddCollider()
+        bottomCollider = bottomAnimator.AddCollider()
+    end
+    eyeSprite = self.customBehaviourData.GetFieldString("eyeSprite", "")
+    eyeOffX = self.customBehaviourData.GetFieldFloat("eyeOffX", 0)
+    eyeOffY = self.customBehaviourData.GetFieldFloat("eyeOffY", 0)
+    if eyeSprite ~= "" then
+        eyeAnimator = self.SpawnAttachedSpriteAnimator(eyeSprite, -2)
+        eyeAnimator.position = { x = eyeOffX, y = eyeOffY }
+        eyeAnimator.LoopAnimation()
+    end
 end
 
 function OnTick()
+    self.movement = { x = mx, y = my, z = 0}
+    mx = mx + (math.random() * (2 * baseAcceleration) - baseAcceleration)
+    my = my + (math.random() * (2 * baseAcceleration) - baseAcceleration)
 
-    -- ANIMATION
+    if self.position.x > focusX and mx > -movementThreshold then mx = mx - focusAcceleration end
+    if self.position.x < focusX and mx < movementThreshold then mx = mx + focusAcceleration end
+    if self.position.y > focusY and my > -movementThreshold then my = my - focusAcceleration end
+    if self.position.y < focusY and my < movementThreshold then my = my + focusAcceleration end
 
-    finSprite.AnimateToNextFrame(true)
-
+    self.CheckCollision(bottomCollider)
     local lastFrame = self.animator.currentFrame
     self.animator.GoTo(self.GetDamageFrame(self.data.maxHitPoints, self.hitPoints, self.animator.totalFrames))
     self.HandleDamageEffects(self.animator.currentFrame, lastFrame)
 
-    if timer > 0 then timer = timer - 1 else t = t + 0.05 end
-    
-
-
-    local posY = self.position.y
-
-    -- MOVEMENT
-
-        dx = focusx --
-        dy = focusy --
-        length = math.sqrt(dx * dx + dy * dy)
-        --dx = dx / length
-        --dy = dy / length
-        --my = dy
-
-
-    if leaveTimer > 0 then
-        leaveTimer = leaveTimer - 1
-
-        --if dx > 0 or length < 200 then
-        if self.position.x > focusx then mx = mx - 0.2 else mx = mx + 0.2 end
-        if self.position.y > focusy then --my = my - 0.2 else my = my + 0.2 end
-        self.position.y = posY - 0.2 else
-        self.position.y = posY + 0.2 end
-        --else mx = mx - 0.2 end
-
-      
-
-
-    else mx = mx - 0.2 end
-
-
-
-    if mx < -3 then mx = -3 elseif mx > 5 then mx = 5 end
-    --if my < -3 then my = -3 elseif my > 5 then my = 5 end
-
-    
-
-    self.movement = { x = mx, y = my, z = 0 }
-
-    if fireTimer > 0 then fireTimer = fireTimer - 1 end
-
-    if self.position.x < -150 then self.Deactivate() end
-
-end
-
-function OnHitByBullet()
+    if self.lifetime > hangtime then
+        focusX = -1000
+        if self.position.x < -200 then self.Deactivate() end
+    end
 end
 
 function OnKill()
-    self.SpawnShipDebris( 5, -6, 0, -5, 5, 0, 0, 0, 0, 0, 0)
-    self.SpawnShipShards( 15, -6, 0, -5, 5, 0, 0, 0, 0, 0, 0)
+    if fruitSets ~= nil then
+        for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
+    end
+    if entityType == 1 or entityType == 3 then
+        self.SpawnShipShards(80, -14, 8, -22, 5, 0, 40, 2, 6, 2, 6)
+        self.SpawnShipDebris(4, -14, 8, -22, 5, 0, 40, 2, 6, 2, 6)
+    else
+        self.SpawnShipShards(40, -9, 3, -15, 5, 0, 0, 2, 2, 2, 2)
+        self.SpawnShipDebris(4, -9, 3, -15, 5, 0, 0, 2, 4, 2, 4)
+    end
 end
 
 function CanFire()
-    return fireTimer == 0
+    if entityType == 4 then
+        if self.lifetime > 200 and self.lifetime < 4200 then return self.lifetime % 500 < 450 end
+    else
+        if entityType == 2 then
+            if self.lifetime >= 120 then return self.position.x > 60 end
+        elseif entityType == 3 then return true else return self.lifetime > 150 end
+    end
 end
 
 function HasCollision()
@@ -103,5 +106,5 @@ function HasCollision()
 end
 
 function ShouldKillPlayerOnTouch()
-    return true
+    if entityType == 3 then return self.lifetime > 70 else return self.lifetime > 130 end
 end
