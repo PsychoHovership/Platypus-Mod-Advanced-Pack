@@ -6,15 +6,19 @@ local baseAcceleration
 local focusAcceleration
 local movementThreshold
 local hangtime
+local invulnTime
+local firstShotDelay
 local entityType
 local bottomSprite
 local bottomOffX
 local bottomOffY
+local bottomSortOrder
 local bottomAnimator
 local bottomCollider
 local eyeSprite
 local eyeOffX
 local eyeOffY
+local eyeSortOrder
 local eyeAnimator
 local fruitSets = {}
 
@@ -35,13 +39,16 @@ function OnInitialise()
     focusAcceleration = self.customBehaviourData.GetFieldFloat("focusAcceleration", 0)
     movementThreshold = self.customBehaviourData.GetFieldFloat("movementThreshold", 0)
     hangtime = self.customBehaviourData.GetFieldInt("hangtime", 0)
+    invulnTime = self.customBehaviourData.GetFieldInt("invulnTime", 0)
+    firstShotDelay = self.customBehaviourData.GetFieldInt("firstShotDelay", 0)
     entityType = self.customBehaviourData.GetFieldInt("entityType", 0)
 
     bottomSprite = self.customBehaviourData.GetFieldString("bottomSprite", "")
     bottomOffX = self.customBehaviourData.GetFieldFloat("bottomOffX", 0)
     bottomOffY = self.customBehaviourData.GetFieldFloat("bottomOffY", 0)
+    bottomSortOrder = self.customBehaviourData.GetFieldInt("bottomSortOrder", -1)
     if bottomSprite ~= "" then
-        if entityType == 3 then bottomAnimator = self.SpawnAttachedSpriteAnimator(bottomSprite, 1) else bottomAnimator = self.SpawnAttachedSpriteAnimator(bottomSprite, -1) end
+        bottomAnimator = self.SpawnAttachedSpriteAnimator(bottomSprite, bottomSortOrder)
         bottomAnimator.position = { x = bottomOffX, y = bottomOffY - (GetSpriteDimensions(self.animator.currentSheet, 0).y / 2) - (GetSpriteDimensions(bottomAnimator.currentSheet, 0).y / 2) }
         bottomAnimator.LoopAnimation()
         bottomCollider = bottomAnimator.AddCollider()
@@ -50,8 +57,9 @@ function OnInitialise()
     eyeSprite = self.customBehaviourData.GetFieldString("eyeSprite", "")
     eyeOffX = self.customBehaviourData.GetFieldFloat("eyeOffX", 0)
     eyeOffY = self.customBehaviourData.GetFieldFloat("eyeOffY", 0)
+    eyeSortOrder = self.customBehaviourData.GetFieldInt("eyeSprite", -2)
     if eyeSprite ~= "" then
-        eyeAnimator = self.SpawnAttachedSpriteAnimator(eyeSprite, -2)
+        eyeAnimator = self.SpawnAttachedSpriteAnimator(eyeSprite, eyeSortOrder)
         eyeAnimator.position = { x = eyeOffX, y = eyeOffY }
         eyeAnimator.LoopAnimation()
     end
@@ -82,7 +90,7 @@ function OnKill()
     if fruitSets ~= nil then
         for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
     end
-    if entityType == 1 or entityType == 3 then
+    if entityType == 1 then
         self.SpawnShipShards(80, -14, 8, -22, 5, 0, 40, 2, 6, 2, 6)
         self.SpawnShipDebris(4, -14, 8, -22, 5, 0, 40, 2, 6, 2, 6)
     else
@@ -92,12 +100,10 @@ function OnKill()
 end
 
 function CanFire()
-    if entityType == 4 then
-        if self.lifetime > 200 and self.lifetime < 4200 then return self.lifetime % 500 < 450 end
+    if entityType == 2 then
+        if self.lifetime > firstShotDelay and self.lifetime < hangtime + 200 then return self.lifetime % 500 < 450 end
     else
-        if entityType == 2 then
-            if self.lifetime >= 120 then return self.position.x > 60 end
-        elseif entityType == 3 then return true else return self.lifetime > 150 end
+        if self.lifetime > firstShotDelay then return self.position.x > 60 end
     end
 end
 
@@ -106,5 +112,5 @@ function HasCollision()
 end
 
 function ShouldKillPlayerOnTouch()
-    if entityType == 3 then return self.lifetime > 70 else return self.lifetime > 130 end
+    return self.lifetime > invulnTime
 end

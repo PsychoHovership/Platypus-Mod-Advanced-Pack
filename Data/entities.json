@@ -533,10 +533,13 @@
       "focusAcceleration": 0.15,
       "movementThreshold": 5,
       "hangtime": 900,
+      "invulnTime": 130,
+      "firstShotDelay": 150,
       "entityType": 0,
       "bottomSprite": "Sprites/Enemies/squid bottom",
       "bottomOffX": 1.4,
-      "bottomOffY": 2.5
+      "bottomOffY": 2.5,
+      "bottomSortOrder": -1
     },
     "turrets" : [
       {
@@ -632,10 +635,13 @@
       "focusAcceleration": 0.15,
       "movementThreshold": 6,
       "hangtime": 2000,
+      "invulnTime": 130,
+      "firstShotDelay": 150,
       "entityType": 1,
       "bottomSprite": "Sprites/Enemies/big squid bottom",
       "bottomOffX": 1.7,
-      "bottomOffY": 6
+      "bottomOffY": 6,
+      "bottomSortOrder": -1
     },
     "turrets" : [
       {
@@ -732,10 +738,13 @@
       "focusAcceleration": 0.1,
       "movementThreshold": 4,
       "hangtime": 2000,
+      "invulnTime": 130,
+      "firstShotDelay": 150,
       "entityType": 1,
       "bottomSprite": "Sprites/Enemies/squid bottom pink",
       "bottomOffX": 3,
-      "bottomOffY": 8
+      "bottomOffY": 8,
+      "bottomSortOrder": -1
     },
     "turrets" : [
       {
@@ -831,10 +840,13 @@
       "focusAcceleration": 0.15,
       "movementThreshold": 5,
       "hangtime": 900,
-      "entityType": 2,
+      "invulnTime": 130,
+      "firstShotDelay": 119,
+      "entityType": 0,
       "bottomSprite": "Sprites/Enemies/mini trashcan bottom",
       "bottomOffX": 1.4,
-      "bottomOffY": 2
+      "bottomOffY": 2,
+      "bottomSortOrder": -1
     },
     "turrets" : [
       {
@@ -913,10 +925,13 @@
       "focusAcceleration": 0.15,
       "movementThreshold": 6,
       "hangtime": 1600,
-      "entityType": 3,
+      "invulnTime": 70,
+      "firstShotDelay": 0,
+      "entityType": 1,
       "bottomSprite": "Sprites/Enemies/laser squid bottom",
       "bottomOffX": 3,
-      "bottomOffY": 8
+      "bottomOffY": 8,
+      "bottomSortOrder": 1
     },
     "turrets": [
       {
@@ -1005,13 +1020,17 @@
       "focusAcceleration": 0.1,
       "movementThreshold": 4,
       "hangtime": 4000,
-      "entityType": 4,
+      "invulnTime": 130,
+      "firstShotDelay": 200,
+      "entityType": 2,
       "bottomSprite": "Sprites/Enemies/tick bottom red",
       "bottomOffX": 1.4,
       "bottomOffY": 2,
+      "bottomSortOrder": -1,
       "eyeSprite": "Sprites/Enemies/glowing eye",
       "eyeOffX": 1,
-      "eyeOffY": -5.5
+      "eyeOffY": -5.5,
+      "eyeSortOrder": -2
     },
     "turrets" : [
       {
@@ -1076,13 +1095,17 @@
       "focusAcceleration": 0.1,
       "movementThreshold": 4,
       "hangtime": 4000,
-      "entityType": 4,
+      "invulnTime": 130,
+      "firstShotDelay": 200,
+      "entityType": 2,
       "bottomSprite": "Sprites/Enemies/tick bottom yellow",
       "bottomOffX": 1.4,
       "bottomOffY": 2,
+      "bottomSortOrder": -1,
       "eyeSprite": "Sprites/Enemies/glowing eye",
       "eyeOffX": 1,
-      "eyeOffY": -5.5
+      "eyeOffY": -5.5,
+      "eyeSortOrder": -2
     },
     "turrets" : [
       {
@@ -1147,13 +1170,17 @@
       "focusAcceleration": 0.1,
       "movementThreshold": 4,
       "hangtime": 4000,
-      "entityType": 4,
+      "invulnTime": 130,
+      "firstShotDelay": 200,
+      "entityType": 2,
       "bottomSprite": "Sprites/Enemies/tick bottom",
       "bottomOffX": 1.4,
       "bottomOffY": 2,
+      "bottomSortOrder": -1,
       "eyeSprite": "Sprites/Enemies/glowing eye",
       "eyeOffX": 1,
-      "eyeOffY": -5.5
+      "eyeOffY": -5.5,
+      "eyeSortOrder": -2
     },
     "turrets" : [
       {
