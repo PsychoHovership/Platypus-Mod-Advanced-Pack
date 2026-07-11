@@ -1,29 +1,46 @@
 local mx
-
-local wake
+local wakeSprite
+local wakePosX
+local wakePosY
+local wakeAnimator
+local fruitSets = {}
 
 function OnInitialise()
-    if self.commandArgs.HasField("speedX") then mx = self.commandArgs.GetFieldFloat("speedX") else mx = 0.3 end
-    
-    wake = self.SpawnAttachedSpriteAnimator("Effects/Water/boat wake", 1)
-    wake.position = { x = -20, y = -20 }
+    if self.customBehaviourData.HasField("fruitSets") then
+        local f = self.customBehaviourData.GetFieldIntArray("fruitSets")
+        for i = 1, #f do fruitSets[i] = f[i] or 0 end
+    else fruitSets = nil end
+
+    mx = self.commandArgs.GetFieldFloat("speed", 0.3)
+    wakeSprite = self.customBehaviourData.GetFieldString("wakeSprite", "")
+    wakePosX = self.customBehaviourData.GetFieldFloat("wakePosX", 0)
+    wakePosY = self.customBehaviourData.GetFieldFloat("wakePosY", 0)
+
+    if wakeSprite ~= "" then
+        if mx > -2.5 then
+            wakeAnimator = self.SpawnAttachedSpriteAnimator(wakeSprite, 1)
+            wakeAnimator.position = { x = wakePosX, y = wakePosY }
+            wakeAnimator.LoopAnimation()
+        end
+    end
 end
 
 function OnTick()
     self.movement = { x = mx, y = 0, z = 0 }
 
-    if self.position.x < -200 then self.Deactivate() end
-    if self.position.x > 860 then self.Deactivate() end
+    local lastFrame = self.animator.currentFrame
+    self.animator.GoTo(self.GetDamageFrame(self.data.maxHitPoints, self.hitPoints, self.animator.totalFrames))
+    self.HandleDamageEffects(self.animator.currentFrame, lastFrame)
 
-    local damageframe = self.GetDamageFrame(self.hitPoints)
-    self.animator.AnimateTo(damageframe)
-    
-    wake.AnimateToNextFrame(true)
+    if self.position.x < -200 or self.position.x > 860 then self.Deactivate() end
 end
 
 function OnKill()
-    self.SpawnShipShards(16, -6, 0, -15, 5, 0, 0, 0, 0, 0, 0)
-    self.SpawnShipDebris(8, -6, 6, -20, 0, 0, 0, 0, 10, 0, 5)
+    if fruitSets ~= nil then
+        for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
+    end
+    self.SpawnShipShards(10, -6, 0, -15, 5, 30, 40, 0, 0, 0, 0)
+    self.SpawnShipDebris(4, -12, 8, -22, 5, 0, 40, 2, 6, 2, 6)
 end
 
 function CanFire()

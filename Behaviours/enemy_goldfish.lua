@@ -13,8 +13,14 @@ local fireSFX
 local spriteIndex = 0
 local ignoreEnemyShotSpeed
 local globalEnemyShotSpeed
+local fruitSets = {}
 
 function OnInitialise()
+    if self.customBehaviourData.HasField("fruitSets") then
+        local f = self.customBehaviourData.GetFieldIntArray("fruitSets")
+        for i = 1, #f do fruitSets[i] = f[i] or 0 end
+    else fruitSets = nil end
+
     mx = self.commandArgs.GetFieldFloat("mx", -7)
     my = self.commandArgs.GetFieldFloat("my",  0)
 
@@ -74,6 +80,9 @@ function OnTick()
 end
 
 function OnKill()
+    if fruitSets ~= nil then
+        for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
+    end
     self.SpawnShipShards(10, -6, 0, -15, 5, 0, 0, 0, 0, 0, 0)
     self.SpawnShipDebris(8, -6, 6, -20, 0, 0, 0, 0, 10, 0, 5)
 end

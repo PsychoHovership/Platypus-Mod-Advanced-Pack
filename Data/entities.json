@@ -393,7 +393,11 @@
     "sprite": "Sprites/Enemies/cannon boat",
     "behaviour": "Lua",
     "customBehaviourData": {
-      "luaScript": "enemy_boat_big"
+      "luaScript": "enemy_boat_big",
+      "fruitSets": [6],
+      "wakeSprite": "Effects/Water/boat wake 2",
+      "wakePosX": -70,
+      "wakePosY": -48
     },
     "explosionEntity": "explosionBig",
     "explosionX": 0,
@@ -412,7 +416,11 @@
     "sprite": "Sprites/Enemies/missile boat",
     "behaviour": "Lua",
     "customBehaviourData": {
-      "luaScript": "enemy_boat_small"
+      "luaScript": "enemy_boat_small",
+      "fruitSets": [4],
+      "wakeSprite": "Effects/Water/boat wake",
+      "wakePosX": -21,
+      "wakePosY": -20
     },
     "explosionEntity": "explosionBig",
     "explosionX": 0,
@@ -431,11 +439,15 @@
     "sprite": "Sprites/Enemies/cannon boat",
     "behaviour": "Lua",
     "customBehaviourData": {
-      "luaScript": "enemy_boat_big"
+      "luaScript": "enemy_boat_big",
+      "fruitSets": [6],
+      "wakeSprite": "Effects/Water/boat wake 2",
+      "wakePosX": -70,
+      "wakePosY": -48
     },
     "turrets": [
       {
-        "turretEntity": "boatCannonGun",
+        "turretEntity": "gun_boat_cannon",
         "turretX": -65,
         "turretY": 30
       }
@@ -458,13 +470,17 @@
     "sprite": "Sprites/Enemies/missile boat",
     "behaviour": "Lua",
     "customBehaviourData": {
-      "luaScript": "enemy_boat_small"
+      "luaScript": "enemy_boat_small",
+      "fruitSets": [4],
+      "wakeSprite": "Effects/Water/boat wake",
+      "wakePosX": -21,
+      "wakePosY": -20
     },
     "turrets": [
       {
-        "turretEntity": "boatMissileLauncher",
+        "turretEntity": "gun_boat_missile",
         "turretX": 40,
-        "turretY": 10
+        "turretY": 11
       }
     ],
     "explosionEntity": "explosionBig",
@@ -523,6 +539,7 @@
     "secondaryTargetValue": 1,
     "customBehaviourData": {
       "luaScript": "enemy_goldfish",
+      "fruitSets": [0],
       "fireSFX": "s_laser2",
       "turretData": {
         "bulletCount": {
@@ -1566,7 +1583,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_gunship",
-      "fruitSet": 4,
+      "fruitSets": [4],
       "smokeTrailEntity": "smokeRing1",
       "smokeTrailPosX": -45,
       "smokeTrailPosY": 1
@@ -1644,7 +1661,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_gunship",
-      "fruitSet": 4,
+      "fruitSets": [4],
       "smokeTrailEntity": "smokeRing1",
       "smokeTrailPosX": -45,
       "smokeTrailPosY": 1
@@ -1722,7 +1739,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_thrustership",
-      "fruitSet": 6,
+      "fruitSets": [6],
       "smokeTrailEntity": "smokeRing2",
       "smokeTrailPosX": -90,
       "smokeTrailPosY": 0
@@ -1798,7 +1815,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_pinkship",
-      "fruitSet": 3,
+      "fruitSets": [3],
       "fireSFX": "s_laser",
       "topGunY": 68,
       "topGunX": -30,
@@ -1891,6 +1908,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_bigpinkship",
+      "fruitSets": [3, 5],
       "fireSFX": "s_laser",
       "topGunX": -60,
       "topGunY": 128,
@@ -1993,7 +2011,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript":"enemy_homingship",
-      "fruitSet": 5,
+      "fruitSets": [5],
       "smokeTrailEntity": "smokeRing1",
       "smokeTrailPosX": -73,
       "smokeTrailPosY": 2,
@@ -2069,7 +2087,7 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_flipplane",
-      "fruitSet": 5,
+      "fruitSets": [5],
       "damageFrames": 5,
       "topTurretEntity": "turretFlipPlane1",
       "topTurretX": -22,
@@ -2183,10 +2201,56 @@
 
   {
     "name": "gun_boat_cannon",
-    "sprite": "empty",
+    "sprite": "Sprites/Boss 1/big barrel",
     "behaviour": "Lua",
     "customBehaviourData": {
-      "luaScript":"gun_boat_cannon"
+      "luaScript":"gun_cannon",
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 7,
+          "easy": 7,
+          "normal": 7,
+          "hard": 7,
+          "nasty": 7
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": 0,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "veryEasy": 5,
+          "easy": 5,
+          "normal": 5,
+          "hard": 5,
+          "nasty": 5
+        },
+        "bulletSpreadAngle": 90,
+        "bulletEntity": "enemyshot_car_cannon"
+      },
+      "yStrength": 2.5,
+      "fireSFX": "s_laser",
+      "firePattern": {
+        "veryEasy": [ 150 ],
+        "easy": [ 150 ],
+        "normal": [ 150 ],
+        "hard": [ 150 ],
+        "nasty": [ 150 ]
+      }
+    },
+    "sortOrder": -100
+  },
+  {
+    "name": "gun_boat_missile",
+    "sprite": "Sprites/Enemies/missile launcher",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript":"gun_boat_missile",
+      "firePattern": {
+        "veryEasy": [ 200 ],
+        "easy": [ 200 ],
+        "normal": [ 200 ],
+        "hard": [ 200 ],
+        "nasty": [ 200 ]
+      }
     },
     "sortOrder": -100
   },
@@ -2198,6 +2262,46 @@
       "luaScript": "gun_lasersquid",
       "shotOffX": -25,
       "shotOffY": 10
+    }
+  },
+  {
+    "name": "gun_starfish_small",
+    "sprite": "Sprites/Enemies/starfish gun small",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "gun_starfish",
+      "bulletSpawnDistance": 40,
+      "bulletSpeed": [ 4.5, 4.5, 6, 6.5, 7 ],
+      "bulletEntity": "enemyshot_accellerator",
+      "shotsTillSwitch": [ 1, 1, 1, 1, 1 ],
+      "fireSFX": "s_laser2",
+      "firePattern": {
+        "veryEasy": [ 150 ],
+        "easy": [ 150 ],
+        "normal": [ 150 ],
+        "hard": [ 150 ],
+        "nasty": [ 150 ]
+      }
+    }
+  },
+  {
+    "name": "gun_starfish_med",
+    "sprite": "Sprites/Enemies/starfish gun med",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "gun_starfish",
+      "bulletSpawnDistance": 60,
+      "bulletSpeed": [ 4.5, 4.5, 6, 7, 8 ],
+      "bulletEntity": "enemyshot_accellerator",
+      "shotsTillSwitch": [ 3, 3, 3, 3, 3 ],
+      "fireSFX": "s_laser2",
+      "firePattern": {
+        "veryEasy": [ 20, 20, 110 ],
+        "easy": [ 20, 20, 110 ],
+        "normal": [ 20, 20, 110 ],
+        "hard": [ 20, 20, 110 ],
+        "nasty": [ 20, 20, 110 ]
+      }
     }
   },
 

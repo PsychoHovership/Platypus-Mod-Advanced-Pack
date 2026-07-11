@@ -1,72 +1,59 @@
 local firePattern
+local fireSFX
 local timer = 0
 local firstLaunch = 36
 local sprite
 local launcher
 local launchSprite = 0
-local launchPos = -30
+local launchPos = -32
+local originOffX
+local originOffY
 
 function OnInitialise()
     sprite = self.data.spriteName
-    launcher = self.SpawnAttachedSpriteAnimator(sprite, -100, false)
-    launcher.position = { x = 0, y = -30 }
+    launcher = self.SpawnAttachedSpriteAnimator(sprite, -1, false)
+    launcher.position = { x = 0, y = -32 }
     self.animator.Initialise("empty")
 
     firePattern = NewFirePatternFromEntityData(self.data)
+    fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "")
+    originOffX = self.customBehaviourData.GetFieldInt("bulletOriginOffX", 0)
+    originOffY = self.customBehaviourData.GetFieldInt("bulletOriginOffY", 0)
 end
 
 function OnTick()
-    launcher.AnimateTo(launchSprite)
-    launcher.position = { x = 0, y = launchPos }
-
     if launchSprite == 0 then
-        if timer > 0 then
-            timer = timer - 1
-        end
-
-        if launchPos >= -30 and timer <= 0 then
-            launchPos = launchPos - 1
-        end
+        if timer > 0 then timer = timer - 1 end
+        if launchPos > -32 and timer == 0 then launchPos = launchPos - 1 end
     end
 
     if CanFire() == true then
         firePattern.Tick()
-        if firstLaunch > 0 then
-            firstLaunch = firstLaunch - 1
-        end
-
-        if firePattern.GetTicksTillFire() <= 36 or firstLaunch <= 36 and firstLaunch > 0 then
+        if firstLaunch > 0 then firstLaunch = firstLaunch - 1 end
+        if firePattern.GetTicksTillFire() <= 35 or firstLaunch <= 36 and firstLaunch > 0 then
             launchSprite = 1
-            if launchPos <= 0 then
-                launchPos = launchPos + 1
-            end
+            if launchPos <= 0 then launchPos = launchPos + 1 end
         end
 
-        if firePattern.CanFire() and firstLaunch <= 0 then
+        if firePattern.CanFire() and firstLaunch == 0 then
             firePattern.MarkFired()
             launchSprite = 0
             timer = 27
-            PlaySound("s_woosh")
-        
-            local missilePos = { x = self.worldPosition.x, y = self.worldPosition.y + 13}
 
             local missileArgs = NewJSONObject()
             missileArgs.AddFieldInt("homingDelay", 30)
             missileArgs.AddFieldInt("currentAngle", -30)
-
-            SpawnEntityWorld("homingMissile", missilePos, missileArgs)
+            missileArgs.AddFieldInt("var5", math.random(0, 360))
+            SpawnEntityWorld("homingMissile", { x = self.worldPosition.x + originOffX, y = self.worldPosition.y + originOffY}, missileArgs)
+            if fireSFX ~= "" then PlaySound(fireSFX) end
         end
-    elseif CanFire() == false then
-        if firePattern.GetTicksTillFire() >= 36 then
-            firePattern.Tick()
-        elseif firePattern.GetTicksTillFire() < 36 then
-            firstLaunch = 36
-        end
-
-        if launchPos >= -30 then
-            launchPos = launchPos - 1
-        end
+    else
+        if firePattern.GetTicksTillFire() > 35 then firePattern.Tick() else firstLaunch = 36 end
+        if launchPos > -32 then launchPos = launchPos - 1 end
     end
+
+    launcher.GoTo(launchSprite)
+    launcher.position = { x = 0, y = launchPos }
 end
 
 function CanFire()

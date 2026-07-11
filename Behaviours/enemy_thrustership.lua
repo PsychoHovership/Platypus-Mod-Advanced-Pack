@@ -4,11 +4,14 @@ local yAcceleration = 1
 local smokeTrailEntity
 local smokeTrailPosX
 local smokeTrailPosY
+local fruitSets = {}
 
 function OnInitialise()
-    if self.commandArgs.HasField("fruit_set") then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set") else
-        if self.customBehaviourData.HasField("fruitSet") then self.fruitSet = self.customBehaviourData.GetFieldInt("fruitSet") end
-    end
+    if self.customBehaviourData.HasField("fruitSets") then
+        local f = self.customBehaviourData.GetFieldIntArray("fruitSets")
+        for i = 1, #f do fruitSets[i] = f[i] or 0 end
+    else fruitSets = nil end
+
 	mx = self.commandArgs.GetFieldFloat("mx", 5)
 	my = self.commandArgs.GetFieldFloat("my", 0)
     smokeTrailEntity = self.customBehaviourData.GetFieldString("smokeTrailEntity", "")
@@ -51,6 +54,9 @@ function OnTick()
 end
 
 function OnKill()
+    if fruitSets ~= nil then
+        for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
+    end
     self.SpawnShipShards(30, -14, 7, -22, 4, 0, 40, 2, 5, 2, 5)
     self.SpawnShipDebris(4, -24, 15, -44, 9, 0, 40, 2, 5, 2, 5)
 end

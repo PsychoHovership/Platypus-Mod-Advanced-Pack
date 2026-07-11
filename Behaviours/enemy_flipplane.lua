@@ -10,11 +10,14 @@ local turretPosY1
 local turretEntity2
 local turretPosX2
 local turretPosY2
+local fruitSets = {}
 
 function OnInitialise()
-    if self.commandArgs.HasField("fruit_set") then self.fruitSet = self.commandArgs.GetFieldInt("fruit_set") else
-        if self.customBehaviourData.HasField("fruitSet") then self.fruitSet = self.customBehaviourData.GetFieldInt("fruitSet") end
-    end
+    if self.customBehaviourData.HasField("fruitSets") then
+        local f = self.customBehaviourData.GetFieldIntArray("fruitSets")
+        for i = 1, #f do fruitSets[i] = f[i] or 0 end
+    else fruitSets = nil end
+
     totalDamageFrames = self.customBehaviourData.GetFieldInt("damageFrames", 5)
     totalFlipFrames = self.animator.totalFrames - totalDamageFrames
     turretEntity1 = self.customBehaviourData.GetFieldString("topTurretEntity", "")
@@ -52,6 +55,9 @@ function OnHitByBullet()
 end
 
 function OnKill()
+    if fruitSets ~= nil then
+        for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
+    end
     self.SpawnShipShards(80, -14, 8, -22, 5, 0, -40, 2, 6, 2, 6)
     self.SpawnShipDebris(8, -14, 8, -22, 5, 0, -40, 2, 6, 2, 6)
 end
