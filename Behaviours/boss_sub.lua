@@ -32,7 +32,7 @@ function OnInitialise()
 	subOffX = self.customBehaviourData.GetFieldFloat("subOffX", 0)
 	subOffY = self.customBehaviourData.GetFieldFloat("subOffY", 0)
 	subEntity = self.customBehaviourData.GetFieldString("subEntity", "")
-	if IsOriginalVersion() then CreateTurret("legacyTurret", 5, 95, self, Globals.firewait) else
+	if IsOriginalVersion() then CreateTurret("legacyTurret", 5, -95, self, Globals.firewait) else
         if Globals.difficulty <= GameDifficulty.Medium then
             CreateTurret("turretNastySingle", 25, -70, self, Globals.firewait)
         else CreateTurret("turretTripleSmall", 25, -70, self, Globals.firewait) end
@@ -177,7 +177,7 @@ function OnKill()
     local subArgs = NewJSONObject()
     subArgs.AddFieldInt("targetX", 600)
     subArgs.AddFieldInt("targetY", 300)
-	SpawnEntityWorld(subEntity, { x = self.worldPosition.x + subOffX, y = self.worldPosition.y + subOffY }, subArgs);
+	if subEntity ~= "" then SpawnEntityWorld(subEntity, { x = self.worldPosition.x + subOffX, y = self.worldPosition.y + subOffY }, subArgs) end
 	SpawnEntityWorld("explosionBig", { x = self.worldPosition.x - 150, y = self.worldPosition.y - 50 })
 	SpawnEntityWorld("explosionBig", { x = self.worldPosition.x +  50, y = self.worldPosition.y - 50 })
 	SpawnEntityWorld("explosionBig", { x = self.worldPosition.x -  50, y = self.worldPosition.y + 50 })
