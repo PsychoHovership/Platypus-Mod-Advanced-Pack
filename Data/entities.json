@@ -352,8 +352,37 @@
       }
     ]
   },
-
   // TO-DO: Lua Bouncy Wheel
+  {
+    "name": "boss_sub",
+    "sprite": "Sprites/Boss 3/sub",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_sub",
+      "barrelOffX": -116,
+      "barrelOffY": 10,
+      "fireSFX": "s_laser",
+      "missileOffX": 210,
+      "missileOffY": -20,
+      "missileSFX": "s_woosh",
+      "subOffX": 160,
+      "subOffY": -160,
+      "subEntity": "subShip"
+    },
+    "mainDebrisEntity": "debris_yellow2_1",
+    "secondaryDebrisEntity": "debris_yellow2_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "sortOrder": 1115,
+    "maxHitPoints": 6000,
+    "highlightPoints": true,
+    "speedKillTimer": 6000,
+    "endKillTimerOnDeath": false,
+    "points": 2500,
+    "primaryTargetValue": 1
+  },
+  // TO-DO: Lua Sub Ship
+
 
 
 
