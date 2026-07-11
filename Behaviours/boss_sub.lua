@@ -149,7 +149,7 @@ function UpdateWake()
 		wakeAnimator.Initialise(text, 1)
 		wakeAnimator.ApplyLayerMaterial(self.layer)
     end
-	wakeAnimator.position = { x = offset, y = Globals.horizonLevels[self.layer] - self.worldPosition.y }
+	wakeAnimator.position = { x = offset, y = (Globals.horizonLevels[self.layer] / 1.5) - (self.worldPosition.y + 145) }
 end
 
 function HasCollision()
