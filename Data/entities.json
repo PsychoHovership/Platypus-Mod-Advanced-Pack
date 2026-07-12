@@ -123,6 +123,83 @@
   },
 
   // TO-DO: Lua Bouncy Wheel
+  {
+    "name": "bossc_sub",
+    "sprite": "Sprites/Boss 3/sub",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_sub",
+      "fireSFX": "s_laser",
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 7,
+          "easy": 7,
+          "normal": 7,
+          "hard": 7,
+          "nasty": 7
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": -129,
+        "bulletOriginOffY": 10,
+        "bulletSpeed": {
+          "veryEasy": 5,
+          "easy": 5,
+          "normal": 5,
+          "hard": 5,
+          "nasty": 5
+        },
+        "bulletSpreadAngle": 90,
+        "bulletEntity": "enemyshot_car_cannon"
+      },
+      "missileOffX": 175,
+      "missileOffY": -20,
+      "missileSFX": "s_woosh",
+      "subOffX": 160,
+      "subOffY": -160,
+      "subEntity": "bossc_subship"
+    },
+    "mainDebrisEntity": "debris_yellow_1",
+    "secondaryDebrisEntity": "debris_yellow_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "sortOrder": 1115,
+    "maxHitPoints": 4000,
+    "highlightPoints": true,
+    "points": 2500,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "bossc_subship",
+    "sprite": "Sprites/Boss 3/sub ship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "luaSubShip",
+      "fruitSets": [12],
+      "hangtime": 7000,
+      "topMissileOffX": 30,
+      "topMissileOffY": 126,
+      "bottomMissileOffX": 30,
+      "bottomMissileOffY": -116,
+      "fireSFX": "s_woosh",
+      "spawnedEntity": "fastShipBoss3",
+      "spawnOffX": -70,
+      "spawnOffY": 0,
+      "hatchSprite": "Sprites/Boss 3/sub ship back",
+      "hatchOffX": -105,
+      "hatchOffY": -6.5
+    },
+    "mainDebrisEntity": "debris_yellow_1",
+    "secondaryDebrisEntity": "debris_yellow_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "sortOrder": 1116,
+    "maxHitPoints": 2800,
+    "highlightPoints": true,
+    "points": 2500,
+    "primaryTargetValue": 1
+  },
+
+  // TO-DO: Lua Bouncy Wheel
 
 
 
@@ -359,15 +436,34 @@
     "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "boss_sub",
-      "barrelOffX": -116,
-      "barrelOffY": 10,
       "fireSFX": "s_laser",
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 7,
+          "easy": 7,
+          "normal": 7,
+          "hard": 7,
+          "nasty": 7
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": -116,
+        "bulletOriginOffY": 10,
+        "bulletSpeed": {
+          "veryEasy": 5,
+          "easy": 5,
+          "normal": 5,
+          "hard": 5,
+          "nasty": 5
+        },
+        "bulletSpreadAngle": 90,
+        "bulletEntity": "enemyshot_car_cannon"
+      },
       "missileOffX": 210,
       "missileOffY": -20,
       "missileSFX": "s_woosh",
       "subOffX": 160,
       "subOffY": -160,
-      "subEntity": "subShip"
+      "subEntity": "boss_subship"
     },
     "mainDebrisEntity": "debris_yellow2_1",
     "secondaryDebrisEntity": "debris_yellow2_2",
@@ -381,7 +477,108 @@
     "points": 2500,
     "primaryTargetValue": 1
   },
-  // TO-DO: Lua Sub Ship
+  {
+    "name": "boss_subship",
+    "sprite": "Sprites/Boss 3/sub ship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_subship",
+      "fruitSets": [12],
+      "hangtime": 7000,
+      "topMissileOffX": 60,
+      "topMissileOffY": 166,
+      "bottomMissileOffX": 60,
+      "bottomMissileOffY": -86,
+      "fireSFX": "s_woosh",
+      "spawnedEntity": "fastShipBoss3",
+      "spawnOffX": -70,
+      "spawnOffY": 0,
+      "hatchSprite": "Sprites/Boss 3/sub ship back",
+      "hatchOffX": -81,
+      "hatchOffY": 0
+    },
+    "mainDebrisEntity": "debris_yellow2_1",
+    "secondaryDebrisEntity": "debris_yellow2_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "sortOrder": 1116,
+    "maxHitPoints": 5000,
+    "highlightPoints": true,
+    "endKillTimerOnDeath": true,
+    "points": 2500,
+    "primaryTargetValue": 1,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow2_2",
+            "x": -90,
+            "y": 20,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow2_1",
+            "x": -20,
+            "y": 20,
+            "mx": -1,
+            "my": -6,
+            "frame": 9,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow2_2",
+            "x": -95,
+            "y": -45,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_yellow2_2",
+            "x": 50,
+            "y": 0,
+            "mx": 3,
+            "my": -3,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_yellow2_1",
+            "x": 60,
+            "y": 40,
+            "mx": 3,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
 
 
 
@@ -1909,15 +2106,39 @@
     "customBehaviourData": {
       "luaScript": "enemy_bigpinkship",
       "fruitSets": [3, 5],
-      "fireSFX": "s_laser",
       "topGunX": -60,
       "topGunY": 128,
       "bottomGunX": -60,
       "bottomGunY": -128,
-      "middleGunX": -100,
-      "middleGunY": 0,
-      "bulletEntity": "enemyshot_normal",
-      "bulletSpeed": [1.5, 1.5, 2.0, 2.5, 3.0],
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 7,
+          "easy": 7,
+          "normal": 7,
+          "hard": 7,
+          "nasty": 7
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": -100,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "veryEasy": 1.5,
+          "easy": 1.5,
+          "normal": 2,
+          "hard": 2.5,
+          "nasty": 3
+        },
+        "bulletSpreadAngle": 120,
+        "bulletEntity": "enemyshot_normal"
+      },
+      "fireSFX": "s_laser",
+      "firePattern": {
+      "veryEasy": [ 200 ],
+      "easy": [ 200 ],
+      "normal": [ 200 ],
+      "hard": [ 200 ],
+      "nasty": [ 200 ]
+      },
       "smokeTrailEntity": "smokeRing2",
       "smokeTrailPosX": -100,
       "smokeTrailPosY": 0
@@ -2226,6 +2447,7 @@
         "bulletSpreadAngle": 90,
         "bulletEntity": "enemyshot_car_cannon"
       },
+      "xMovement": -0.5,
       "yStrength": 2.5,
       "fireSFX": "s_laser",
       "firePattern": {

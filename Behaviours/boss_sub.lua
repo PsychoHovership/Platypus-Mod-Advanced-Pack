@@ -7,9 +7,17 @@ local oktofire = false
 local deathFallbackTick = 0
 local wakeAnimator
 local barrelAnimator
-local barrelOffX
-local barrelOffY
 local fireSFX
+local turretData
+local bulletCount
+local bulletSpeed
+local bulletEntity
+local spreadAngle
+local spawnDistance
+local originOffX
+local originOffY
+local xStrength = 0
+local yStrength = 0
 local missileOffX
 local missileOffY
 local missileSFX
@@ -23,9 +31,15 @@ function OnInitialise()
 	targetY = self.commandArgs.GetFieldFloat("targetY", self.position.y)
 	wakeAnimator = self.SpawnAttachedSpriteAnimator("Effects/Water/boat wake", 1)
 	barrelAnimator = self.SpawnAttachedSpriteAnimator("Sprites/Boss 1/big barrel", -1)
-	barrelOffX = self.customBehaviourData.GetFieldFloat("barrelOffX", 0)
-	barrelOffY = self.customBehaviourData.GetFieldFloat("barrelOffY", 0)
 	fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "")
+    turretData = NewTurretDataFromEntityData(self.data)
+    bulletCount = turretData.bulletCount.Get()
+    bulletSpeed = turretData.bulletSpeed.Get()
+    bulletEntity = turretData.bulletEntity
+    spreadAngle = turretData.bulletSpreadAngle
+    spawnDistance = turretData.bulletSpawnDistance
+    originOffX = turretData.bulletOriginOffX
+    originOffY = turretData.bulletOriginOffY
 	missileOffX = self.customBehaviourData.GetFieldFloat("missileOffX", 0)
 	missileOffY = self.customBehaviourData.GetFieldFloat("missileOffY", 0)
 	missileSFX = self.customBehaviourData.GetFieldString("missileSFX", "")
@@ -39,15 +53,26 @@ function OnInitialise()
     end
 end
 
+function Fire()
+	for i = 0, bulletCount - 1 do
+		local t = (bulletCount > 1) and (i / (bulletCount - 1)) or 0.5
+		local shotAngle = 90 - spreadAngle / 2 + t * spreadAngle
+		local fireArgs = NewJSONObject()
+		fireArgs.AddFieldFloat("mx", math.cos(math.rad(shotAngle)) * (bulletSpeed + xStrength) + mx)
+		fireArgs.AddFieldFloat("my", math.sin(math.rad(shotAngle)) * (bulletSpeed + yStrength))
+		SpawnEntityWorld(bulletEntity, { x = self.worldPosition.x + (math.cos(math.rad(shotAngle)) * spawnDistance) + (originOffX - 8), y = self.worldPosition.y + (math.sin(math.rad(shotAngle)) * spawnDistance) + (originOffY - 10) }, fireArgs)
+		if fireSFX ~= "" then PlaySound(fireSFX) end
+	end
+end
+
 function OnTick()
     UpdateWake()
-	barrelAnimator.position = { x = barrelOffX, y = barrelOffY - recoil }
+	barrelAnimator.position = { x = originOffX, y = originOffY - recoil }
     self.movement = { x = mx, y = my - self.position.y, z = 0 }
 	if self.position.x > 420 then mx = mx - 0.01 end
 	if self.position.x < 220 then mx = mx + 0.01 end
 	if self.lifetime % 3 ~= 0 then
-        if targetY < -448 and self.lifetime >= 600 then targetY = targetY + 1
-		elseif targetY < -652 then targetY = targetY + 1 end
+        if targetY < -448 and self.lifetime >= 600 then targetY = targetY + 1 elseif targetY < -652 then targetY = targetY + 1 end
     end
 	if targetY < -640 and self.data.maxHitPoints - self.hitPoints > 500 then self.hitPoints = self.data.maxHitPoints - 500 end
 	my = targetY - (5 + math.cos(math.rad(Globals.levelLifetime * 2 % 360)) * 5)
@@ -67,32 +92,26 @@ function OnTick()
 			if Globals.difficulty > GameDifficulty.Easy then
 			    if self.lifetime % 350 == 100 or self.lifetime % 350 == 200 then
 				    recoil = 20
-					for i = 45, 135, 15 do
-						CreateBullet("enemyshot_car_cannon", self.worldPosition.x + (barrelOffX - 8), self.worldPosition.y + (barrelOffY - 10), math.cos(math.rad(i)) * 5 + mx, math.sin(math.rad(i)) * 7.5)
-						if fireSFX ~= "" then PlaySound(fireSFX) end
-                    end
+					xStrength = 0
+					yStrength = 2.5
+					Fire()
                 end
 				if self.lifetime % 350 == 150 then
 					recoil = 40
-					for j = 45, 135, 15 do
-                        CreateBullet("enemyshot_car_cannon", self.worldPosition.x + (barrelOffX - 8), self.worldPosition.y + (barrelOffY - 10), math.cos(math.rad(j)) * 4 + mx, math.sin(math.rad(j)) * 11)
-						if fireSFX ~= "" then PlaySound(fireSFX) end
-                    end
+					xStrength = -1
+					yStrength = 6
+					Fire()
 				end
 			else
 			    if self.lifetime % 350 == 100 then
                     recoil = 40
-					for k = 45, 135, 15 do
-                        CreateBullet("enemyshot_car_cannon", self.worldPosition.x + (barrelOffX - 8), self.worldPosition.y + (barrelOffY - 10), math.cos(math.rad(k)) * 5 + mx, math.sin(math.rad(k)) * 9)
-						if fireSFX ~= "" then PlaySound(fireSFX) end
-                    end
+					yStrength = 4
+					Fire()
 				end
 				if self.lifetime % 350 == 200 and Globals.difficulty == GameDifficulty.Easy then
 				    recoil = 40
-					for l = 45, 135, 15 do
-                        CreateBullet("enemyshot_car_cannon", self.worldPosition.x + (barrelOffX - 8), self.worldPosition.y + (barrelOffY - 10), math.cos(math.rad(l)) * 5 + mx, math.sin(math.rad(l)) * 10)
-						if fireSFX ~= "" then PlaySound(fireSFX) end
-                    end
+					yStrength = 5
+					Fire()
 				end
 			end
 		end
@@ -100,7 +119,7 @@ function OnTick()
 		currentFrame = self.GetDamageFrame(self.hitPoints)
 		self.HandleDamageEffects(currentFrame, oldFrame)
 		self.animator.GoTo(currentFrame)
-		if oldFrame ~= currentFrame then CreateExplosionSquare(self.worldPosition.x + -200, self.worldPosition.y - 40, 400, 80) end
+		if oldFrame ~= currentFrame then CreateExplosionSquare(self.worldPosition.x - 200, self.worldPosition.y - 40, 400, 80) end
     end
 	if self.hitPoints > -200 and self.hitPoints <= 0 then
 		if self.data.endKillTimerOnDeath then self.EndKillTimer() end
@@ -188,14 +207,6 @@ end
 
 function CanFire()
 	return oktofire
-end
-
-function CreateBullet(entity, _x, _y, _mx, _my)
-    local args = NewJSONObject()
-    args.AddFieldFloat("mx", _mx)
-    args.AddFieldFloat("my", _my)
-
-    SpawnEntityWorld(entity, {x=_x, y=_y}, args)
 end
 
 function CreateExplosionSquare(x, y, width, height)

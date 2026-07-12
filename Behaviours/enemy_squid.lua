@@ -38,7 +38,7 @@ function OnInitialise()
     baseAcceleration = self.customBehaviourData.GetFieldFloat("baseAcceleration", 0)
     focusAcceleration = self.customBehaviourData.GetFieldFloat("focusAcceleration", 0)
     movementThreshold = self.customBehaviourData.GetFieldFloat("movementThreshold", 0)
-    hangtime = self.customBehaviourData.GetFieldInt("hangtime", 0)
+    hangtime = self.customBehaviourData.GetFieldInt("hangtime", 900)
     invulnTime = self.customBehaviourData.GetFieldInt("invulnTime", 0)
     firstShotDelay = self.customBehaviourData.GetFieldInt("firstShotDelay", 0)
     entityType = self.customBehaviourData.GetFieldInt("entityType", 0)
@@ -66,7 +66,7 @@ function OnInitialise()
 end
 
 function OnTick()
-    self.movement = { x = mx, y = my, z = 0}
+    self.movement = { x = mx, y = my, z = 0 }
     mx = mx + (math.random() * (2 * baseAcceleration) - baseAcceleration)
     my = my + (math.random() * (2 * baseAcceleration) - baseAcceleration)
 

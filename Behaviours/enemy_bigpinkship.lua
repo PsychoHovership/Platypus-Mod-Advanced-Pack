@@ -4,16 +4,21 @@ local topGunY
 local topGunX
 local bottomGunY
 local bottomGunX
-local middleGunX
-local middleGunY
-local fireSFX
-local bulletEntity
-local bulletSpeed
 local laserCounter = 0
 local lightningAudio = nil
 local smokeTrailEntity
 local smokeTrailPosX
 local smokeTrailPosY
+local turretData
+local bulletCount
+local bulletSpeed
+local bulletEntity
+local spreadAngle
+local spawnDistance
+local originOffX
+local originOffY
+local firePattern
+local fireSFX
 local fruitSets = {}
 
 function OnInitialise()
@@ -26,14 +31,16 @@ function OnInitialise()
 	topGunX = self.customBehaviourData.GetFieldFloat("topGunX", 0)
 	bottomGunY = self.customBehaviourData.GetFieldFloat("bottomGunY", 0)
 	bottomGunX = self.customBehaviourData.GetFieldFloat("bottomGunX", 0)
-	middleGunX = self.customBehaviourData.GetFieldFloat("middleGunX", 0)
-	middleGunY = self.customBehaviourData.GetFieldFloat("middleGunY", 0)
+    turretData = NewTurretDataFromEntityData(self.data)
+    bulletCount = turretData.bulletCount.Get()
+    bulletSpeed = turretData.bulletSpeed.Get()
+    bulletEntity = turretData.bulletEntity
+    spreadAngle = turretData.bulletSpreadAngle
+    spawnDistance = turretData.bulletSpawnDistance
+    originOffX = turretData.bulletOriginOffX
+    originOffY = turretData.bulletOriginOffY
+    firePattern = NewFirePatternFromEntityData(self.data)
 	fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "")
-	bulletEntity = self.customBehaviourData.GetFieldString("bulletEntity", "")
-    if self.customBehaviourData.HasField("bulletSpeed") then
-        local s = self.customBehaviourData.GetFieldFloatArray("bulletSpeed")
-        bulletSpeed = NewDiffDictFloat(s[1], s[2], s[3], s[4], s[5]).Get()
-    else bulletSpeed = NewDiffDictFloat(0, 0, 0, 0, 0).Get() end
 
     smokeTrailEntity = self.customBehaviourData.GetFieldString("smokeTrailEntity", "")
     smokeTrailPosX = self.customBehaviourData.GetFieldFloat("smokeTrailPosX", 0)
@@ -85,14 +92,19 @@ function OnTick()
 	end
 
 	-- Bullet spread attack every 200 frames
-	if self.lifetime > 220 and self.lifetime % 200 == 0 then
-		for i = 120, 240, 20 do
-			local rad = i * (math.pi / 180.0)
-        	local fireArgs = NewJSONObject()
-        	fireArgs.AddFieldFloat("mx", math.cos(rad) * bulletSpeed * Globals.enemyShotSpeedMultiplier - 1)
-        	fireArgs.AddFieldFloat("my", (-math.sin(rad)) * bulletSpeed * Globals.enemyShotSpeedMultiplier)
-        	SpawnEntityWorld(bulletEntity, { x = self.worldPosition.x + middleGunX, y = self.worldPosition.y + middleGunY }, fireArgs)
-			if fireSFX ~= "" then PlaySound(fireSFX) end
+	if self.lifetime >= 400 then
+		firePattern.Tick()
+		if firePattern.CanFire() then
+			firePattern.markFired()
+			for i = 0, bulletCount - 1 do
+        	    local t = (bulletCount > 1) and (i / (bulletCount - 1)) or 0.5
+        	    local shotAngle = 180 - spreadAngle / 2 + t * spreadAngle
+        		local fireArgs = NewJSONObject()
+        		fireArgs.AddFieldFloat("mx", math.cos(math.rad(shotAngle)) * bulletSpeed * Globals.enemyShotSpeedMultiplier - 1)
+        		fireArgs.AddFieldFloat("my", math.sin(math.rad(shotAngle)) * bulletSpeed * Globals.enemyShotSpeedMultiplier)
+        		SpawnEntityWorld(bulletEntity, { x = self.worldPosition.x + (math.cos(math.rad(shotAngle)) * spawnDistance) + originOffX, y = self.worldPosition.y + (math.sin(math.rad(shotAngle)) * spawnDistance) + originOffY }, fireArgs)
+				if fireSFX ~= "" then PlaySound(fireSFX) end
+			end
 		end
 	end
 

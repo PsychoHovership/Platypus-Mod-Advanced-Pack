@@ -1,6 +1,7 @@
-local sprite
-local barrel
-local recoil = -1
+local barrelSprite
+local barrelAnimator
+local barrelOffset = -1
+local recoil
 
 local turretData
 local bullets
@@ -10,16 +11,18 @@ local spreadAngle
 local spawnDistance
 local originOffX
 local originOffY
+local xMovement
 local yStrength
 
 local firePattern
 local fireSFX
 
 function OnInitialise()
-    sprite = self.data.spriteName
-    barrel = self.SpawnAttachedSpriteAnimator(sprite, -100, false)
-    barrel.position = { x = 0.5, y = 0 }
+    barrelSprite = self.data.spriteName
+    barrelAnimator = self.SpawnAttachedSpriteAnimator(barrelSprite, -100, false)
+    barrelAnimator.position = { x = 0.5, y = 0 }
     self.animator.Initialise("empty")
+    recoil = math.abs(self.customBehaviourData.GetFieldInt("recoil", 0))
 
     turretData = NewTurretDataFromEntityData(self.data)
     bullets = turretData.bulletCount.Get()
@@ -29,6 +32,7 @@ function OnInitialise()
     spawnDistance = turretData.bulletSpawnDistance
     originOffX = turretData.bulletOriginOffX
     originOffY = turretData.bulletOriginOffY
+    xMovement = self.customBehaviourData.GetFieldFloat("xMovement", 0)
     yStrength = self.customBehaviourData.GetFieldFloat("yStrength", 0)
 
     firePattern = NewFirePatternFromEntityData(self.data)
@@ -36,22 +40,22 @@ function OnInitialise()
 end
 
 function OnTick()
-    barrel.position = { x = 0.5, y = recoil }
-    if recoil < 0 then recoil = recoil + 1 end
+    barrelAnimator.position = { x = 0.5, y = barrelOffset }
+    if barrelOffset < 0 then barrelOffset = barrelOffset + 1 end
 
     if CanFire() then
         firePattern.Tick()
         if firePattern.CanFire() then
             firePattern.MarkFired()
             if fireSFX ~= "" then PlaySound(fireSFX) end
-            recoil = -29
-            barrel.position = { x = 0.5, y = -28 }
+            barrelOffset = -recoil - 1
+            barrelAnimator.position = { x = 0.5, y = -recoil }
 
             for i = 0, bullets - 1 do
                 local t = (bullets > 1) and (i / (bullets - 1)) or 0.5
                 local shotAngle = 90 - spreadAngle / 2 + t * spreadAngle
                 local fireArgs = NewJSONObject()
-                fireArgs.AddFieldFloat("mx", math.cos(math.rad(shotAngle)) * speed - 0.5)
+                fireArgs.AddFieldFloat("mx", math.cos(math.rad(shotAngle)) * speed + xMovement)
                 fireArgs.AddFieldFloat("my", math.sin(math.rad(shotAngle)) * (speed + yStrength))
                 SpawnEntityWorld(entity, { x = self.worldPosition.x + (math.cos(math.rad(shotAngle)) * spawnDistance) + originOffX, y = self.worldPosition.y + (math.sin(math.rad(shotAngle)) * spawnDistance) + originOffY }, fireArgs)
             end
