@@ -2007,6 +2007,50 @@
     ]
   },
   {
+    "name": "enemy_bigthrustership",
+    "sprite": "Sprites/Boss 2/thruster",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_bigthrustership",
+      "fruitSets": [12],
+      "topWingSprite": "Sprites/Boss 2/top fin",
+      "topWingOffX": -24,
+      "topWingOffY": 110,
+      "topWingHitPoints": 400,
+      "bottomWingSprite": "Sprites/Boss 2/bottom fin",
+      "bottomWingOffX": -24,
+      "bottomWingOffY": -110,
+      "bottomWingHitPoints": 400,
+      "engineSprite": "Sprites/Enemies/engine",
+      "engineOffX": -130,
+      "engineOffY": 0,
+      "engineHitPoints": 600,
+      "smokeTrailEntity": "smokeRing1",
+      "smokeTrailPosX": -170,
+      "smokeTrailPosY": 2
+    },
+    "turrets": [
+      {
+        "turretEntity": "turretSpinner",
+        "turretX": -15,
+        "turretY": 6
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_green2_1",
+    "secondaryDebrisEntity": "debris_green2_2",
+    "sortOrder": 7100,
+    "speed": -2,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 550,
+    "highlightPoints": true,
+    "points": 3000,
+    "primaryTargetValue": 3
+  },
+  {
     "name": "enemy_pinkship",
     "sprite": "Sprites/Enemies/pink ship",
     "behaviour": "Lua",
