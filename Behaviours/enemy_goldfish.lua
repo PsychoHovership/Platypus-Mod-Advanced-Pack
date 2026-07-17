@@ -10,7 +10,6 @@ local originOffX
 local originOffY
 local firePattern
 local fireSFX
-local spriteIndex = 0
 local ignoreEnemyShotSpeed
 local globalEnemyShotSpeed
 local fruitSets = {}
@@ -24,7 +23,6 @@ function OnInitialise()
     mx = self.commandArgs.GetFieldFloat("mx", -7)
     my = self.commandArgs.GetFieldFloat("my",  0)
 
-    -- TURRET
     turretData = NewTurretDataFromEntityData(self.data)
     bullets = turretData.bulletCount.Get()
     speed = turretData.bulletSpeed.Get()
@@ -34,7 +32,7 @@ function OnInitialise()
     originOffX = turretData.bulletOriginOffX
     originOffY = turretData.bulletOriginOffY
     firePattern = NewFirePatternFromEntityData(self.data)
-    fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "s_laser2")
+    fireSFX = self.customBehaviourData.GetFieldString("fireSFX", "")
 
     ignoreEnemyShotSpeed = self.customBehaviourData.GetFieldBool("ignoreEnemyShotSpeed", false)
     if ignoreEnemyShotSpeed == false then globalEnemyShotSpeed = Globals.enemyShotSpeedMultiplier else globalEnemyShotSpeed = 1 end
@@ -53,30 +51,23 @@ function Fire()
         fireArgs.AddFieldFloat("my", math.sin(angleRad) * speed * globalEnemyShotSpeed)
         SpawnEntityWorld(entity, { x = self.worldPosition.x + dx + originOffX, y = self.worldPosition.y + dy + originOffY }, fireArgs)
     end
-    PlaySound(fireSFX)
+    if fireSFX ~= "" then PlaySound(fireSFX) end
 end
 
 function OnTick()
-    -- MOVEMENT
-    local mxT = mx
+    self.movement = { x = mx, y = my, z = 0 }
     mx = mx + 0.06
-    self.movement = { x = mxT, y = my, z = 0 }
 
-    -- ANIMATION
-    if mx > -1 then spriteIndex = spriteIndex + 1 end
-    self.animator.GoTo(spriteIndex / 3.35)
+    local spriteIndex = math.floor(Lerp(0, self.animator.totalFrames, (mx + 1) / (1 + 1)))
+    self.animator.GoTo(spriteIndex)
 
-    -- SHOT
-    if CanFire() then
-        firePattern.Tick()
-        if firePattern.CanFire() then
-            firePattern.MarkFired()
-            Fire()
-        end
+    firePattern.Tick()
+    if mx > 0 and firePattern.CanFire() and self.lifetime % 3 == 0 then
+        firePattern.MarkFired()
+        Fire()
     end
 
-    -- DESPAWN
-    if mx > 0 and self.position.x > 800 then self.Deactivate() end
+    if mx > 0 and self.position.x > AdjustXToWideScreen(700) then self.Deactivate() end
 end
 
 function OnKill()
@@ -84,7 +75,7 @@ function OnKill()
         for i = 1, #fruitSets do MakeBonuses(self.worldPosition.x, self.worldPosition.y, fruitSets[i]) end
     end
     self.SpawnShipShards(10, -6, 0, -15, 5, 0, 0, 0, 0, 0, 0)
-    self.SpawnShipDebris(8, -6, 6, -20, 0, 0, 0, 0, 10, 0, 5)
+    self.SpawnShipDebris(4, -9, 3, -15, 5, 0, 0, 2, 4, 2, 4)
 end
 
 function HasCollision()
@@ -92,9 +83,5 @@ function HasCollision()
 end
 
 function ShouldKillPlayerOnTouch()
-    return true
-end
-
-function CanFire()
-    return spriteIndex >= 18
+    return self.position.x < AdjustXToWideScreen(640)
 end

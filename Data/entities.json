@@ -767,6 +767,26 @@
     }
   },
   {
+    "name": "enemy_ray",
+    "sprite": "Sprites/Enemies/ray",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_ray"
+    },
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_white_1",
+    "secondaryDebrisEntity": "debris_white_2",
+    "sortOrder": 9000,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "maxHitPoints": 20,
+    "highlightPoints": false,
+    "points": 100,
+    "secondaryTargetValue": 1
+  },
+  {
     "name": "enemy_squid",
     "sprite": "Sprites/Enemies/squid top",
     "behaviour": "Lua",
