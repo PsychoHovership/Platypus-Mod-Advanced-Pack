@@ -2437,6 +2437,63 @@
     ]
   },
   {
+    "name": "enemy_monorailpod",
+    "sprite": "Sprites/Enemies/monorail pod",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_monorailpod"
+    },
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_grey_1",
+    "secondaryDebrisEntity": "debris_grey_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "maxHitPoints": 100,
+    "sortOrder": 425,
+    "podType": 1,
+    "points": 500,
+    "highlightPoints": true,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 80,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_grey_1",
+            "x": -25,
+            "y":  50,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 80,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_grey_1",
+            "x": 25,
+            "y": -50,
+            "mx": 3,
+            "my": -3,
+            "frame": 2,
+            "type": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "enemy2_bomber",
     "sprite": "Sprites/Enemies/bomber",
     "behaviour": "Lua",
