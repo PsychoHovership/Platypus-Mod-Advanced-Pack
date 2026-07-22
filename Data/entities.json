@@ -1273,6 +1273,74 @@
     }
   },
   {
+    "name": "enemy_minitick",
+    "sprite": "Sprites/Enemies/tick small",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_minitick",
+      "fruitSets": [2],
+      "bottomSprite": "Sprites/Enemies/tick bottom small",
+      "bottomOffX": 1.4,
+      "bottomOffY": 2,
+      "bottomSortOrder": -1,
+      "eyeSprite": "Sprites/Enemies/glowing eye small",
+      "eyeOffX": 1,
+      "eyeOffY": -2.6,
+      "eyeSortOrder": -2
+    },
+    "turrets" : [
+      {
+        "turretEntity": "miniTickGun",
+        "turretX": 0,
+        "turretY": 0
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_purple_2",
+    "secondaryDebrisEntity": "debris_purple_2",
+    "sortOrder": 5000,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 300,
+    "isEnemy": true,
+    "nudgeOnHit": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points":1000,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "shards": [
+          {
+            "entity": "debris_purple_2",
+            "x": -30,
+            "y": -5,
+            "mx": -4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "shards": [
+          {
+            "entity": "debris_purple_2",
+            "x":  30,
+            "y": -5,
+            "mx": 4,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "enemy_startick",
     "sprite": "Sprites/Enemies/tick red",
     "behaviour": "Lua",
@@ -1492,6 +1560,471 @@
             "my": -6,
             "frame": 9,
             "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_starfishsmall",
+    "sprite": "Sprites/Enemies/starfish body small",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_starfish",
+      "fruitSets": [4],
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 5,
+      "hangtime": 1200,
+      "invulnTime": 130,
+      "firstShotDelay": 100,
+      "backSprite": "Sprites/Enemies/starfish back small",
+      "backOffX": 0,
+      "backOffY": 0,
+      "backSortOrder": -1
+    },
+    "turrets": [
+      {
+        "turretEntity": "starfishGunSmall",
+        "turretX": 2,
+        "turretY": -9
+      }
+    ],
+    "explosionEntity": "explosionMedium",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_yellow_1",
+    "secondaryDebrisEntity": "debris_yellow_2",
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow_2",
+            "x": -65,
+            "y": 15,
+            "mx": -2,
+            "my": -9,
+            "frame": 8,
+            "type": 1
+          },
+          {
+            "entity": "debris_yellow_2",
+            "x": 38,
+            "y": -60,
+            "mx": 0,
+            "my": -3,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow_2",
+            "x": -29,
+            "y": -56,
+            "mx": -1,
+            "my": -4,
+            "frame": 7,
+            "type": 1
+          },
+          {
+            "entity": "debris_yellow_2",
+            "x": 35,
+            "y": -56,
+            "mx": -1,
+            "my": -3,
+            "frame": 0,
+            "type": 2
+          },
+          {
+            "entity": "debris_yellow_1",
+            "x": -40,
+            "y": -6,
+            "mx": -2,
+            "my": -8,
+            "frame": 6,
+            "type": 1
+          },
+          {
+            "entity": "debris_yellow_1",
+            "x": -40,
+            "y": -27,
+            "mx": -1,
+            "my": -10,
+            "frame": 3,
+            "type": 2
+          },
+          {
+            "entity": "debris_yellow_1",
+            "x": -10,
+            "y": 50,
+            "mx": 0,
+            "my": -6,
+            "frame": 0,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_yellow_1",
+            "x": 0,
+            "y": 67,
+            "mx": 0,
+            "my": -11,
+            "frame": 4,
+            "type": 2
+          },
+          {
+            "entity": "debris_yellow_1",
+            "x": -35,
+            "y": -30,
+            "mx": -3,
+            "my": -3,
+            "frame": 2,
+            "type": 1
+          },
+          {
+            "entity": "debris_yellow_1",
+            "x": -14,
+            "y": -37,
+            "mx": 0,
+            "my": -4,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      }
+    ],
+    "sortOrder": 9001,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "nudgeOnHit": true,
+    "points": 250,
+    "maxHitPoints": 250,
+    "highlightPoints": true,
+    "primaryTargetValue": 1
+  },
+  {
+    "name": "enemy_starfishmed",
+    "sprite": "Sprites/Enemies/starfish body med",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_starfish",
+      "fruitSets": [4],
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 5,
+      "hangtime": 1500,
+      "invulnTime": 130,
+      "firstShotDelay": 100,
+      "backSprite": "Sprites/Enemies/starfish back med",
+      "backOffX": 0,
+      "backOffY": 0,
+      "backSortOrder": -1
+    },
+    "turrets": [
+      {
+        "turretEntity": "starfishGunMed",
+        "turretX": 2,
+        "turretY": -13
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_red_1",
+    "secondaryDebrisEntity": "debris_red_2",
+    "sortOrder": 9001,
+    "maxHitPoints": 600,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "nudgeOnHit": true,
+    "highlightPoints": true,
+    "points": 1000,
+    "primaryTargetValue": 2,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red_2",
+            "x": -97,
+            "y": 22,
+            "mx": -2,
+            "my": -9,
+            "frame": 8,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_2",
+            "x": 60,
+            "y": -90,
+            "mx": 0,
+            "my": -3,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red_2",
+            "x": -45,
+            "y": -73,
+            "mx": -1,
+            "my": -2,
+            "frame": 7,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_2",
+            "x": 52,
+            "y": -86,
+            "mx": -1,
+            "my": 0,
+            "frame": 0,
+            "type": 2
+          },
+          {
+            "entity": "debris_red_1",
+            "x": -60,
+            "y": -9,
+            "mx": -2,
+            "my": -7,
+            "frame": 6,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_1",
+            "x": -60,
+            "y": -40,
+            "mx": -1,
+            "my": -10,
+            "frame": 3,
+            "type": 2
+          },
+          {
+            "entity": "debris_red_1",
+            "x": -15,
+            "y": 75,
+            "mx": 0,
+            "my": -7,
+            "frame": 0,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_red_1",
+            "x": 0,
+            "y": 100,
+            "mx": 0,
+            "my": -12,
+            "frame": 4,
+            "type": 2
+          },
+          {
+            "entity": "debris_red_1",
+            "x": -52,
+            "y": -45,
+            "mx": -3,
+            "my": 0,
+            "frame": 2,
+            "type": 1
+          },
+          {
+            "entity": "debris_red_1",
+            "x": -21,
+            "y": -54,
+            "mx": 0,
+            "my": -3,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "enemy_starfishbig",
+    "sprite": "Sprites/Enemies/starfish body big",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_starfish",
+      "fruitSets": [4],
+      "baseAcceleration": 0.2,
+      "focusAcceleration": 0.15,
+      "movementThreshold": 5,
+      "hangtime": 1500,
+      "invulnTime": 130,
+      "firstShotDelay": 100,
+      "backSprite": "Sprites/Enemies/starfish back big",
+      "backOffX": 0,
+      "backOffY": 0,
+      "backSortOrder": -1
+    },
+    "turrets": [
+      {
+        "turretEntity": "starfishGunBig",
+        "turretX": 3,
+        "turretY": -16
+      }
+    ],
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_turquoise_1",
+    "secondaryDebrisEntity": "debris_turquoise_2",
+    "sortOrder": 3001,
+    "maxHitPoints": 1000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "nudgeOnHit": true,
+    "highlightPoints": true,
+    "points": 2500,
+    "primaryTargetValue": 4,
+    "damageEffects": [
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_turquoise_2",
+            "x": -130,
+            "y": 30,
+            "mx": -2,
+            "my": -8,
+            "frame": 8,
+            "type": 1
+          },
+          {
+            "entity": "debris_turquoise_2",
+            "x": 76,
+            "y": -120,
+            "mx": 0,
+            "my": -2,
+            "frame": 7,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_turquoise_2",
+            "x": -58,
+            "y": -112,
+            "mx": -1,
+            "my": -1,
+            "frame": 7,
+            "type": 1
+          },
+          {
+            "entity": "debris_turquoise_2",
+            "x": 70,
+            "y": -112,
+            "mx": -1,
+            "my": -3,
+            "frame": 0,
+            "type": 2
+          },
+          {
+            "entity": "debris_turquoise_1",
+            "x": -80,
+            "y": -12,
+            "mx": -2,
+            "my": -7,
+            "frame": 6,
+            "type": 1
+          },
+          {
+            "entity": "debris_turquoise_1",
+            "x": -80,
+            "y": -54,
+            "mx": -1,
+            "my": -10,
+            "frame": 3,
+            "type": 2
+          },
+          {
+            "entity": "debris_turquoise_1",
+            "x": -20,
+            "y": 100,
+            "mx": 0,
+            "my": -7,
+            "frame": 0,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 6,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_turquoise_1",
+            "x": 0,
+            "y": 272,
+            "mx": 0,
+            "my": -12,
+            "frame": 4,
+            "type": 2
+          },
+          {
+            "entity": "debris_turquoise_1",
+            "x": -140,
+            "y": -60,
+            "mx": -3,
+            "my": 0,
+            "frame": 2,
+            "type": 1
+          },
+          {
+            "entity": "debris_turquoise_1",
+            "x": -28,
+            "y": -74,
+            "mx": 0,
+            "my": -3,
+            "frame": 7,
+            "type": 2
           }
         ]
       }
