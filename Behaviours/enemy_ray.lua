@@ -20,7 +20,7 @@ function OnInitialise()
 end
 
 function OnTick()
-    if Globals.createSplashes and not splashed and self.position.y <= 580 then
+    if Globals.createSplashes and not splashed and self.position.y <= -580 then
         self.CreateFancySplashes()
         splashed = true
     end
