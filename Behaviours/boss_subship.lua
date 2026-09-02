@@ -74,8 +74,8 @@ function OnTick()
             	missileArgs2.AddFieldInt("homingDelay", 30)
             	missileArgs2.AddFieldInt("currentAngle", 80)
             	missileArgs2.AddFieldInt("var5", math.random(0, 360))
-				SpawnEntityWorld("homingMissile", { x = self.position.x + topMissileOffX, y = self.position.y + topMissileOffY }, missileArgs1)
-				SpawnEntityWorld("homingMissile", { x = self.position.x + bottomMissileOffX, y = self.position.y + bottomMissileOffY }, missileArgs2)
+				SpawnEntityWorld("homingMissile", { x = self.worldPosition.x + topMissileOffX, y = self.worldPosition.y + topMissileOffY }, missileArgs1)
+				SpawnEntityWorld("homingMissile", { x = self.worldPosition.x + bottomMissileOffX, y = self.worldPosition.y + bottomMissileOffY }, missileArgs2)
 				if fireSFX ~= "" then PlaySound(fireSFX) end
 			end
 		end

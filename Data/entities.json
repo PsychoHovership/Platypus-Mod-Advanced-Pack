@@ -579,6 +579,172 @@
       }
     ]
   },
+  {
+    "name": "boss_squidmother",
+    "sprite": "Sprites/Boss 4/squid mother",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "boss_squidmother",
+      "fruitSets": [12],
+      "hangtime": 18000,
+      "topMissileOffX": -115,
+      "topMissileOffY": 120,
+      "bottomMissileOffX": -115,
+      "bottomMissileOffY": -130,
+      "missileSFX": "s_woosh",
+      "hatchOffX": -17,
+      "hatchOffY": -54,
+      "hatchSortOffset": -1,
+      "hatchSquidSprite": "Sprites/Boss 4/squid mother hatch",
+      "spawnedEntity": "squid",
+      "spawnOffX": 25,
+      "spawnOffY": 25,
+      "hatchTurretSprite": "Sprites/Boss 4/squid mother hatch turret",
+      "spawnedTurret": "squidMotherTurret",
+      "turretOffX": 33.2,
+      "turretOffY": -3.8,
+      "fireSFX": "s_huge_bullet",
+      "turretData": {
+        "bulletCount": {
+          "easy": 2,
+          "normal": 3,
+          "hard": 3,
+          "nasty": 5
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": -120,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "easy": 3,
+          "normal": 3,
+          "hard": 3,
+          "nasty": 3
+        },
+        "bulletSpreadAngle": 70,
+        "bulletEntity": "enemyshot_huge_bullet"
+      }
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_green2_1",
+    "secondaryDebrisEntity": "debris_green2_2",
+    "sortOrder": 1110,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 15000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "speedKillTimer": 9000,
+    "endKillTimerOnDeath": true,
+    "points": 2500,
+    "primaryTargetValue": 50,
+    "damageEffects": [
+      {
+        "frame": 5,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green2_1",
+            "x": -50,
+            "y": 20,
+            "mx": 3,
+            "my": -9,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_green2_1",
+            "x": -100,
+            "y": -36,
+            "mx": 4,
+            "my": -6,
+            "frame": 8,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 7,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green2_1",
+            "x": -120,
+            "y": 90,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_green2_1",
+            "x": -120,
+            "y": 50,
+            "mx": -4,
+            "my": -7,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_green2_1",
+            "x": -120,
+            "y": 20,
+            "mx": -5,
+            "my": -3,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_green2_1",
+            "x": -120,
+            "y": -20,
+            "mx": -4,
+            "my": -3,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_green2_1",
+            "x": -120,
+            "y": 50,
+            "mx": -5,
+            "my": -2,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_green2_1",
+            "x": -120,
+            "y": 90,
+            "mx": -4,
+            "my": 0,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "explosionMedium",
+            "x": -105,
+            "y": 70
+          },
+          {
+            "entity": "explosionMedium",
+            "x": -120,
+            "y": 0
+          },
+          {
+            "entity": "explosionMedium",
+            "x": -105,
+            "y": -70
+          }
+        ]
+      }
+    ]
+  },
 
 
 
