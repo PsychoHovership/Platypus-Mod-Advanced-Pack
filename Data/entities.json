@@ -198,6 +198,86 @@
     "points": 2500,
     "primaryTargetValue": 1
   },
+  {
+    "name": "bossc_squidmother",
+    "sprite": "Sprites/Boss 4/squid mother",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "bossc_squidmother",
+      "fruitSets": [14],
+      "hangtime": 20000,
+      "topMissileOffX": -110,
+      "topMissileOffY": 106,
+      "bottomMissileOffX": -130,
+      "bottomMissileOffY": -96,
+      "missileSFX": "s_woosh",
+      "hatchSprite": "Sprites/Boss 4/squid mother hatch",
+      "hatchOffX": 22,
+      "hatchOffY": 12,
+      "hatchSortOffset": 1,
+      "spawnedEntity": "squid",
+      "spawnOffX": 25,
+      "spawnOffY": 25
+    },
+    "explosionEntity": "explosionBig",
+    "explosionX": 0,
+    "explosionY": 0,
+    "mainDebrisEntity": "debris_green2_1",
+    "secondaryDebrisEntity": "debris_green2_2",
+    "sortOrder": 1100,
+    "sortOrderSiblingBuffer": 2,
+    "maxHitPoints": 15000,
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "highlightPoints": true,
+    "points": 2500,
+    "primaryTargetValue": 50,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": 28,
+            "y": 12,
+            "mx": 1,
+            "my": -9,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0,
+        "parachuterX": 0,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_green_1",
+            "x": -60,
+            "y": -84,
+            "mx": -3,
+            "my": 0,
+            "frame": 8,
+            "type": 2
+          },
+          {
+            "entity": "debris_green_1",
+            "x": -60,
+            "y": -30,
+            "mx": -3,
+            "my": 0,
+            "frame": 8,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
 
   // TO-DO: Lua Bouncy Wheel
 
