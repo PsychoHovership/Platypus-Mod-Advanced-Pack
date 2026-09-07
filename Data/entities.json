@@ -1111,6 +1111,28 @@
     "secondaryTargetValue": 1
   },
   {
+    "name": "enemy_fastship",
+    "sprite": "Sprites/Enemies/fast ship",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_fastship",
+      "smokeTrailEntity": "rocketTrail",
+      "smokeTrailPosX": 0,
+      "smokeTrailPosY": 0
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": -2,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 10,
+    "secondaryTargetValue": 1
+  },
+  {
     "name": "enemy_squid",
     "sprite": "Sprites/Enemies/squid top",
     "behaviour": "Lua",
