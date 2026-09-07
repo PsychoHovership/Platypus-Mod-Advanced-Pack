@@ -942,6 +942,40 @@
     "name": "enemy_saucer",
     "sprite": "Sprites/Enemies/saucer",
     "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_saucer",
+      "allowedToShoot": true,
+      "ignoreEnemyShotSpeed": false,
+      "turretData": {
+        "bulletCount": {
+          "veryEasy": 1,
+          "easy": 1,
+          "normal": 1,
+          "hard": 1,
+          "nasty": 1
+        },
+        "bulletSpawnDistance": 0,
+        "bulletOriginOffX": 0,
+        "bulletOriginOffY": 0,
+        "bulletSpeed": {
+          "veryEasy": 3,
+          "easy": 3,
+          "normal": 4,
+          "hard": 5,
+          "nasty": 6
+        },
+        "bulletSpreadAngle": 20,
+        "bulletEntity": "enemyshot_normal"
+      },
+      "fireSFX": "s_laser2",
+      "firePattern": {
+        "veryEasy": [ 80 ],
+        "easy": [ 80 ],
+        "normal": [ 60 ],
+        "hard": [ 40 ],
+        "nasty": [ 50 ]
+      }
+    },
     "explosionEntity": "explosionSmall",
     "explosionX": 0,
     "explosionY": 0,
@@ -952,17 +986,61 @@
     "deathBulletEntity": "deathBullet",
     "highlightPoints": false,
     "points": 10,
-    "secondaryTargetValue": 1,
+    "secondaryTargetValue": 1
+  },
+  {
+    "name": "enemy_redsaucer",
+    "sprite": "Sprites/Enemies/red saucer",
+    "behaviour": "Lua",
     "customBehaviourData": {
       "luaScript": "enemy_saucer",
+      "allowedToShoot": false
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": 4,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 10,
+    "secondaryTargetValue": 1
+  },
+  {
+    "name": "enemy_randomfishfighter",
+    "sprite": "Sprites/Enemies/fish fighter black",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_randomfishfighter",
+      "bulletCount": [1, 1, 1, 1, 1],
+      "bulletSpeed": [8, 8, 8, 8, 8],
+      "bulletEntity": "enemyshot_laser",
+      "bulletOriginOffset": 42,
+      "bulletSpawnDistance": 0,
+      "bulletSpreadAngle": 20,
+      "ignoreEnemyShotSpeed": true,
+      "fireSFX": "s_laser",
       "firePattern": {
-        "veryEasy": [ 80 ],
-        "easy": [ 80 ],
-        "normal": [ 60 ],
-        "hard": [ 40 ],
-        "nasty": [ 50 ]
+        "veryEasy": [ 99999 ],
+        "easy": [ 99999 ],
+        "normal": [ 99999 ],
+        "hard": [ 99999 ],
+        "nasty": [ 99999 ]
       }
-    }
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": 5,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 20,
+    "secondaryTargetValue": 1
   },
   {
     "name": "enemy_goldfish",
@@ -3297,6 +3375,41 @@
     "highlightPoints": true,
     "points": 1000,
     "primaryTargetValue": 2
+  },
+  {
+    "name": "enemy2_homingfishfighter",
+    "sprite": "Sprites/Enemies/fish fighter green",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy2_homingfishfighter",
+      "firstShotDelay": [80, 40, 20, 20, 20],
+      "bulletCount": [1, 1, 1, 1, 1],
+      "bulletSpeed": [8, 8, 8, 8, 8],
+      "bulletEntity": "enemyshot_laser",
+      "bulletOriginOffset": 42,
+      "bulletSpawnDistance": 0,
+      "bulletSpreadAngle": 20,
+      "ignoreEnemyShotSpeed": true,
+      "fireSFX": "s_laser",
+      "firePattern": {
+        "veryEasy": [ 200 ],
+        "easy": [ 100 ],
+        "normal": [ 60 ],
+        "hard": [ 40 ],
+        "nasty": [ 40 ]
+      }
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": 5,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 20,
+    "secondaryTargetValue": 1
   },
   {
     "name": "enemy2_jumper",

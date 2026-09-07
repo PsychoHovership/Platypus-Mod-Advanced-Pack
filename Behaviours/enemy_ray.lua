@@ -20,13 +20,13 @@ function OnInitialise()
 end
 
 function OnTick()
-    if Globals.createSplashes and not splashed and self.position.y <= -580 then
+    if Globals.createSplashes and not splashed and self.position.y < -580 then
         self.CreateFancySplashes()
         splashed = true
     end
     self.movement = { x = -4, y = -my, z = 0 }
     my = my + yAcceleration
-    if my > 0 then mathSign = 1 elseif my < 0 then mathSign = -1 else mathSign = 0 end 
+    if my > 0 then mathSign = 1 elseif my < 0 then mathSign = -1 else mathSign = 0 end
     if yAcceleration < 0.1 and yAcceleration > -0.1 then yAcceleration = yAcceleration * 1.05 end
 
     if math.abs(my * 0.02) > math.abs(3) then

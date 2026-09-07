@@ -9,10 +9,6 @@
     "columns": 5,
     "updateCounter": 2
   },
-
-
-
-
   {
     "sprite": "Sprites/Enemies/bomber",
     "generateColliders": true,
@@ -35,6 +31,13 @@
       "matEmissionPower": 2,
       "rows": 10,
       "columns": 1
+  },
+  {
+    "sprite": "Sprites/Enemies/fish fighter green",
+    "generateColliders": true,
+    "matDayCycleMultiplier": 0.5,
+    "rows": 8,
+    "columns": 8
   },
   {
     "sprite": "Sprites/Enemies/jumper",
