@@ -3316,6 +3316,107 @@
     ]
   },
   {
+    "name": "enemy_minelayer",
+    "sprite": "Sprites/Enemies/mine layer",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_minelayer",
+      "fruitSets": [3, 5, 12],
+      "hangtime": 4500,
+      "topMissileOffX": 60,
+      "topMissileOffY": 146,
+      "bottomMissileOffX": 60,
+      "bottomMissileOffY": -106,
+      "fireSFX": "s_woosh",
+      "spawnedEntity": "mineLayerFloatingBomb",
+      "spawnOffX": -30,
+      "spawnOffY": -30,
+      "hatchSprite": "Sprites/Enemies/mine layer hatch",
+      "hatchOffX": -81,
+      "hatchOffY": 0
+    },
+    "mainDebrisEntity": "debris_purple_1",
+    "secondaryDebrisEntity": "debris_purple_2",
+    "isEnemy": true,
+    "shieldPenetrating": true,
+    "sortOrder": 2500,
+    "maxHitPoints": 1000,
+    "highlightPoints": true,
+    "points": 2000,
+    "primaryTargetValue": 1,
+    "damageEffects": [
+      {
+        "frame": 3,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_2",
+            "x": -90,
+            "y": 20,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      },
+      {
+        "frame": 4,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_1",
+            "x": -20,
+            "y": 20,
+            "mx": -1,
+            "my": -6,
+            "frame": 9,
+            "type": 2
+          }
+        ]
+      },
+      {
+        "frame": 5,
+        "parachuterChance": 0.33,
+        "parachuterX": 40,
+        "parachuterY": 0,
+        "shards": [
+          {
+            "entity": "debris_purple_2",
+            "x": -95,
+            "y": -45,
+            "mx": -3,
+            "my": -6,
+            "frame": 9,
+            "type": 1
+          },
+          {
+            "entity": "debris_purple_2",
+            "x": 50,
+            "y": 0,
+            "mx": 3,
+            "my": -3,
+            "frame": 9,
+            "type": 2
+          },
+          {
+            "entity": "debris_purple_1",
+            "x": 60,
+            "y": 40,
+            "mx": 3,
+            "my": -4,
+            "frame": 9,
+            "type": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "enemy_monorailpod",
     "sprite": "Sprites/Enemies/monorail pod",
     "behaviour": "Lua",
