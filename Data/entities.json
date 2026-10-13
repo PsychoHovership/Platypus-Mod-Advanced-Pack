@@ -1133,6 +1133,26 @@
     "secondaryTargetValue": 1
   },
   {
+    "name": "enemy_dragonfly",
+    "sprite": "Sprites/Enemies/dragonfly",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_dragonfly",
+      "smokeTrailEntity": "rocketTrail",
+      "smokeTrailPosX": -20,
+      "smokeTrailPosY": 0
+    },
+    "explosionEntity": "explosionSmall",
+    "mainDebrisEntity": "debris_orange2_1",
+    "secondaryDebrisEntity": "debris_orange2_2",
+    "sortOrder": 10001,
+    "maxHitPoints": 1,
+    "speed": 0.4,
+    "isEnemy": true,
+    "highlightPoints": false,
+    "points": 100
+  },
+  {
     "name": "enemy_squid",
     "sprite": "Sprites/Enemies/squid top",
     "behaviour": "Lua",
