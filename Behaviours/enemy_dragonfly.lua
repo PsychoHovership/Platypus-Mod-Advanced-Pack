@@ -17,7 +17,7 @@ function OnTick()
 	if self.position.x > AdjustXToWideScreen(680) then self.Deactivate() end
 	if self.position.x > AdjustXToWideScreen(160) then
 		mx = mx + acceleration
-		if self.lifetime % 4 == 0 then
+		if self.lifetime % 4 == 0 and smokeTrailEntity ~= "" then
             local smokeArgs = NewJSONObject()
             smokeArgs.AddFieldFloat("mx", 0)
             smokeArgs.AddFieldInt("layer", 1)
