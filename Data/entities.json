@@ -1009,6 +1009,26 @@
     "secondaryTargetValue": 1
   },
   {
+    "name": "enemy_blackFish",
+    "sprite": "Sprites/Enemies/fish fighter black",
+    "behaviour": "Lua",
+    "customBehaviourData": {
+      "luaScript": "enemy_fishfighter",
+      "fireSFX": "s_laser"
+    },
+    "explosionEntity": "explosionSmall",
+    "explosionX": 0,
+    "explosionY": 0,
+    "sortOrder": 10000,
+    "maxHitPoints": 1,
+    "speed": 5,
+    "isEnemy": true,
+    "deathBulletEntity": "deathBullet",
+    "highlightPoints": false,
+    "points": 20,
+    "secondaryTargetValue": 1
+  },
+  {
     "name": "enemy_randomfishfighter",
     "sprite": "Sprites/Enemies/fish fighter black",
     "behaviour": "Lua",

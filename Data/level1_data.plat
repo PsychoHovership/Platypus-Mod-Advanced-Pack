@@ -87,13 +87,35 @@ wait( 100); toggleFiring("disabled": 0);
 
 //-c ################################### │ TEST │ ################################### //
 
-//-b GOLDFISH
+wait(   1); setBonusCounter("bonus": 1, "value": 1); wait(   1); setBonusReward("bonus": 1, "type": 500);
+wait(   1); setBonusCounter("bonus": 2, "value": 1); wait(   1); setBonusReward("bonus": 2, "type": 600);
 
-wait(   1); setBonusCounter("bonus": 1, "value": 1); wait(   1); setBonusReward("bonus": 1, "type": 1000);
-wait(   1); setBonusCounter("bonus": 2, "value": 1); wait(   1); setBonusReward("bonus": 2, "type":  500);
+wait(  30); setFishFire("enabled": true);
 
-wait(   0); spawnEntity("entity": "enemy_goldfish", "x": 450, "y": 250, "bonus": 1);
-wait(   0); goldfish(                               "x": 450, "y": 350, "bonus": 2); // x: 750
+wait(   0); blackFish(                               "bonus": 1,     "x":  900, "y":  720, "scriptIndex": 4);
+wait( 100); spawnEntity("entity": "enemy_blackFish","x":  900, "y":  600, "scriptIndex": 4);
+//wait( 100); spawnEntity("entity": "enemy_blackFish", "bonus": 2      "x":  900, "y":  600  "scriptIndex": 4);
+
+// SAUCER
+
+    // wait(   0); setFiringChanceSaucer("veryEasy": 0, "easy": 0, "normal": 0, "hard": 50, "nasty": 70);
+    // wait(  50); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+    // wait( 100); spawnEntity("entity": "saucer",       "x":  700, "y":  200); wait(   0); spawnEntity("entity": "enemy_saucer", "x":  700, "y":  400);
+
+// GOLDFISH
+
+    //wait(   1); setBonusCounter("bonus": 1, "value": 1); wait(   1); setBonusReward("bonus": 1, "type": 1000);
+    //wait(   1); setBonusCounter("bonus": 2, "value": 1); wait(   1); setBonusReward("bonus": 2, "type":  500);
+
+    //wait(   0); spawnEntity("entity": "enemy_goldfish", "x": 450, "y": 250, "bonus": 1);
+    //wait(   0); goldfish(                               "x": 450, "y": 350, "bonus": 2); // x: 750
 
 // SQUID
     //wait(   0); spawnEntity("entity": "enemy_squid", "x": 400, "y": 400, "focus_x": 200, "focus_y": 350);
